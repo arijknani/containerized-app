@@ -1,5 +1,5 @@
 #base image from docker hub,specifies the Parent image from which you are building
-FROM openjdk
+FROM openjdk:11
 #define the working directory of a docker container
 WORKDIR /opt
 #informs docker that the container listens on the specified network
