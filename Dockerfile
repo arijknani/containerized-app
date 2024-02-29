@@ -1,16 +1,14 @@
 #build the app
-FROM maven AS build
-#working directory
-WORKDIR /home/app
+FROM maven:latest AS build
+ENV home /home/app
+WORKDIR $home
 #Copy everything from the current directory into /home/app-prod
-COPY . /home/app
+COPY . .
 #builds the project, packages it, and installs the artifact into the local Maven repository
-RUN mvn -f /home/app/pom.xml clean install
+RUN mvn clean install
 
 #create the final image
-FROM openjdk
-EXPOSE 8080
-WORKDIR /home/app
-#Copy created jar file into the target folder
-COPY --from=build /home/app/target/*.jar app.jar
+FROM openjdk:latest
+WORKDIR $home
+COPY --from=build $home/target/*.jar app.jar
 ENTRYPOINT ["java", "-Dspring.profiles.active=prod", "-jar", "app.jar"]
