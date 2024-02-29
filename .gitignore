@@ -1,3 +1,5 @@
+### ignore specific directory 
+mysql_data/
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
