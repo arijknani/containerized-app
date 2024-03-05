@@ -1,17 +1,17 @@
 1.	Deployment mysql database container
 +add => database => mysql => create => start rollout
-Username = arij /password = pass /db name = sampledb /database root password = root
+Username = [username] /password = [password] /db name = [db-name] /database root password = [root-password]
 
 *In secret I add this values :
-database-name => sampledb /
-databse-user => arij /
-database-password => pass /
-database-root-password => root /
+database-name =>  [db-name] /
+databse-user => [username] /
+database-password => [password] /
+database-root-password => [root-password] /
 
 ![image](https://github.com/arijknani/containerized-app/assets/118684147/a3cb339b-4da2-4322-879b-09c841806256)
 
 *commands for mysql CLI
-> mysql -u arij -p
+> mysql -u [username] -p
 > SHOW DATABASES ;
 > 
 ![image](https://github.com/arijknani/containerized-app/assets/118684147/9dfa8ab2-7c2f-4b57-a21d-9afe764ac25b)
@@ -30,14 +30,14 @@ create route = checked
 
 *in configMap : create configMap => 
 name : spring boot 
-db-url : jdbc:mysql://mysql:3306/sampledb  == jdbc:mysql://<service-name>:3306/sampledb
-db-password : pass
+db-url : jdbc:mysql://<service-name>:3306/<db-name>  
+db-password : [password]
 
 ![image](https://github.com/arijknani/containerized-app/assets/118684147/c3b3f755-ee7c-475d-8d4d-fb01d14a2dc4)
 *commands for mysql CLI 
-> mysql -u arij -p
+> mysql -u [username] -p
 > SHOW DATABASES ;
-> use sampledb;
+> use <db>;
 > SHOW tables;
-> 	SELECT * FROM user;
+> SELECT * FROM <table>;
 
