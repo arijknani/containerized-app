@@ -3,10 +3,10 @@
 Username = arij /password = pass /db name = sampledb /database root password = root
 
 *In secret I add this values :
-database-name => sampledb
-databse-user => arij
-database-password => pass
-database-root-password => root
+database-name => sampledb /
+databse-user => arij /
+database-password => pass /
+database-root-password => root /
 
 ![image](https://github.com/arijknani/containerized-app/assets/118684147/a3cb339b-4da2-4322-879b-09c841806256)
 
