@@ -1,16 +1,19 @@
 1.	Deployment mysql database container
 +add => database => mysql => create => start rollout
 Username = arij /password = pass /db name = sampledb /database root password = root
+
 *In secret I add this values :
 database-name => sampledb
 databse-user => arij
 database-password => pass
 database-root-password => root
+
 ![image](https://github.com/arijknani/containerized-app/assets/118684147/a3cb339b-4da2-4322-879b-09c841806256)
 
 *commands for mysql CLI
 > mysql -u arij -p
 > SHOW DATABASES ;
+> 
 ![image](https://github.com/arijknani/containerized-app/assets/118684147/9dfa8ab2-7c2f-4b57-a21d-9afe764ac25b)
 
 ![image](https://github.com/arijknani/containerized-app/assets/118684147/637a6459-c407-493a-84ab-66ce2478c17c)
