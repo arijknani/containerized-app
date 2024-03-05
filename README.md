@@ -16,7 +16,8 @@ database-root-password => root /
 > 
 ![image](https://github.com/arijknani/containerized-app/assets/118684147/9dfa8ab2-7c2f-4b57-a21d-9afe764ac25b)
 
-![image](https://github.com/arijknani/containerized-app/assets/118684147/637a6459-c407-493a-84ab-66ce2478c17c)
+![image](https://github.com/arijknani/containerized-app/assets/118684147/7f55d611-cd81-4713-9351-7825c3c14090)
+
 
 2.	Deployment spring boot  container from git
    
