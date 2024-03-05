@@ -1,58 +1,39 @@
-# Ez Learning
+1.	Deployment mysql database container
++add => database => mysql => create => start rollout
+Username = arij /password = pass /db name = sampledb /database root password = root
+*In secret I add this values :
+database-name => sampledb
+databse-user => arij
+database-password => pass
+database-root-password => root
+![image](https://github.com/arijknani/containerized-app/assets/118684147/a3cb339b-4da2-4322-879b-09c841806256)
 
-> e-learning web application made using Java 8, Spring Boot, MySql and Materialize
+*commands for mysql CLI
+> mysql -u arij -p
+> SHOW DATABASES ;
+![image](https://github.com/arijknani/containerized-app/assets/118684147/9dfa8ab2-7c2f-4b57-a21d-9afe764ac25b)
 
-[![GitHub](https://img.shields.io/github/license/donnatto/ez-learning?color=purple)](https://opensource.org/licenses/MIT)
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/donnatto/ez-learning?color=red)](https://github.com/donnatto/ez-learning/releases)
-[![GitHub issues](https://img.shields.io/github/issues/donnatto/ez-learning)](https://github.com/donnatto/ez-learning/issues)
-![GitHub repo size](https://img.shields.io/github/repo-size/donnatto/ez-learning?color=blue&label=size)
-[![GitHub stars](https://img.shields.io/github/stars/donnatto/ez-learning?style=social)](https://github.com/donnatto/ez-learning/stargazers)
+![image](https://github.com/arijknani/containerized-app/assets/118684147/637a6459-c407-493a-84ab-66ce2478c17c)
 
-[![Ez Learning](https://i.imgur.com/QrXbo6q.jpg)](https://ez-learning.herokuapp.com)
+2.	Deployment spring boot  container from git
+   
++add => import from git 
+git repo url : https://github.com/arijknani/containerized-app.git
+git refreance : my-app-dockerbuild-UI
+import strategy : dockerfile 
+Docker file path : Dockerfile 
+create route = checked 
 
----
+*in configMap : create configMap => 
+name : spring boot 
+db-url : jdbc:mysql://mysql:3306/sampledb  == jdbc:mysql://<service-name>:3306/sampledb
+db-password : pass
 
-## Start the Application
+![image](https://github.com/arijknani/containerized-app/assets/118684147/c3b3f755-ee7c-475d-8d4d-fb01d14a2dc4)
+*commands for mysql CLI 
+> mysql -u arij -p
+> SHOW DATABASES ;
+> use sampledb;
+> SHOW tables;
+> 	SELECT * FROM user;
 
-To start the application locally with the default profile (dev) run this command at the /ez-learning folder
-```shell
-./mvnw spring-boot:run
-```
-
----
-
-## General Info
-
-This application started as an academic project in August 2019, developed for the Business Applications Development II course at Isil, Lima, Perú.
-
-It's an e-learning platform where you can explore courses, teachers, and register to take as many courses as you like.
-
----
-
-## Technologies
-
-Uses [Thymeleaf](https://www.thymeleaf.org/) as the template engine for the Frontend, which was styled using [Materialize](https://materializecss.com/).
-
-The backend is developed in Java 8, using [Spring Boot](https://spring.io/projects/spring-boot) with Spring MVC, Spring JPA and Spring Security dependencies.
-
-It has 2 application profiles, one for development and one for production. The dev profile uses an in memory [H2 Database](https://www.h2database.com/), while the production one uses [MySql](https://www.mysql.com/). Both of them use Sql versioning with [Flyway](https://flywaydb.org/).
-
-The web application is hosted in [Heroku](https://www.heroku.com/), while the MySql database is hosted in a [AWS RDS](https://aws.amazon.com/rds/) instance.
-
----
-
-## Contact
-
-Reach out to me at:
-
-- My personal page : [donnatto.com](https://donnatto.com)
-- My Blog : [blog.donnatto.com](https://blog.donnatto.com)
-- LinkedIn : [linkedin.com/in/donnatto](https://linkedin.com/in/donnatto)
-- Instagram : [@donnatto_](https://instagram.com/donnatto_)
-- Email : [contact@donnatto.com](mailto:contact@donnatto.com)
-
----
-
-## License
-
-[MIT License](https://opensource.org/licenses/MIT)
