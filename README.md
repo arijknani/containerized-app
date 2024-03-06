@@ -4,16 +4,21 @@ oc login -u [username] -p openshift [url]
 
 oc get projects
 
-**Create key/value secret
-name: 
+****create secrets 
+name: mysql-s2i-cli 
 
-database-name = 
+oc create secret generic mysql-s2i-cli \
+--from-literal=database-name= \
 
-database-user = 
+--from-literal=database-password= \
 
-database-password = 
+--from-literal=database-root-password=  \
 
-database-root-password = 
+--from-literal=database-user=
+
+oc get secret mysql-s2i-cli -o yaml 
+
+oc get secret mysql-s2i-cli -o jsonpath='{.data.database-password}' | base64 -d
 
 
 **Create mysql application from an image => set env var from secrets 
@@ -31,14 +36,65 @@ db-url =
 
 db-username = 
 
-**Create spring boot application from a remote Git repository => set env var 
+** Create mysql application from an image:
+oc new-app mysql:latest --name=mysql-s2i-cli \
+    -e MYSQL_DATABASE=$(oc get secret mysql-s2i-cli -o jsonpath='{.data.database-name}' | base64  -d) \
+    
+    -e MYSQL_USER=$(oc get secret mysql-s2i-cli -o jsonpath='{.data.database-user}' | base64 -d) \
+    
+    -e MYSQL_PASSWORD=$(oc get secret mysql-s2i-cli -o jsonpath='{.data.database-password}' | base64 -d) \
+    
+    -e MYSQL_ROOT_PASSWORD=$(oc get secret mysql-s2i-cli -o jsonpath='{.data.database-root-password}' | base64 -d)
+    
+**Add volume to mysql 
+oc get pvc 
+oc set volume deployment/mysql-s2i-cli --add --name=mysql-s2i-cli --type=persistentVolumeClaim --claim-name=mysql --mount-path=/var/lib/mysql-s2i-cli
 
-![image](https://github.com/arijknani/containerized-app/assets/118684147/cb6e54cf-8180-4196-9473-10e2ce2e0dd2)
+oc delete all -l app=mysql-s2i-cli
 
-![image](https://github.com/arijknani/containerized-app/assets/118684147/dcc07892-4d12-4e33-b36a-e5a39b3edd80)
+**create config maps 
+oc create configmap springboot-s2i-cli \
+--from-literal=db-password= \
+
+--from-literal=db-url=jdbc:mysql://mysql-s2i-cli:3306/[db_name] \
+
+--from-literal=db-username=
+
+oc get configmaps springboot-s2i-cli -o yaml
+
+oc patch configmap springboot-s2i-cli  --type merge --patch '{"data": {"db-url": "new_url"}}'
+
+oc delete all -l app=springboot-s2i-cli
 
 
-![image](https://github.com/arijknani/containerized-app/assets/118684147/00adc4bd-09c4-4678-a582-b7ed725ada5c)
+**Create spring boot application from a remote Git repository:
+
+oc new-app [git url]#s2i-CLI \
+
+--name=springboot-s2i-cli \
+
+--image-stream=java:openjdk-17-ubi8 \
+
+--strategy=source  \
+
+--as-deployment-config=true \
+
+--env=DB_URL=$(oc get configmap springboot-s2i-cli -o jsonpath='{.data.db-url}') \
+
+--env=DB_USERNAME=$(oc get configmap springboot-s2i-cli -o jsonpath='{.data.db-username}') \
+
+--env=DB_PASSWORD=$(oc get configmap springboot-s2i-cli -o jsonpath='{.data.db-password}') \
+
+--env=APP_PROFILE=prod
+
+[Builder image = openjdk-17-ubi8]
+
+oc logs -f buildconfig/springboot-s2i-cli
+
+oc expose service/springboot-s2i-cli
+
+oc status
+
 
 
 **connect to mysql database 
