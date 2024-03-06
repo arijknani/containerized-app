@@ -58,7 +58,7 @@ SHOW DATABASES;
 
 use [db-name];
 
-SELECT * FROM <table>;
+SELECT * FROM [table];
 
 **Open the url of spring boot container 
 
