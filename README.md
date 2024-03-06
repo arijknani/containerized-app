@@ -28,7 +28,12 @@ oc get configmaps [CM-name] -o yaml
 
 
 **Create spring boot application from a remote Git repository:
-oc new-app [git url]#[branch name]  --name=[container-name] --strategy=docker --env=DB_URL=$(oc get configmap  [CM-name] -o jsonpath='{.data.db-url}')  --env=DB_USERNAME=$(oc get configmap  [CM-name] -o jsonpath='{.data.db-username}')  --env=DB_PASSWORD=$(oc get configmap  [CM-name] -o jsonpath='{.data.db-password}')
+oc new-app [git url]#[branch name]  \
+--name=[container-name] \
+--strategy=docker \
+--env=DB_URL=$(oc get configmap  [CM-name] -o jsonpath='{.data.db-url}') \
+--env=DB_USERNAME=$(oc get configmap  [CM-name] -o jsonpath='{.data.db-username}') \
+--env=DB_PASSWORD=$(oc get configmap  [CM-name] -o jsonpath='{.data.db-password}')
 
 oc expose service/[container-name]
 oc status
