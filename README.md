@@ -33,6 +33,11 @@ db-username =
 
 **Create spring boot application from a remote Git repository => set env var 
 
+![image](https://github.com/arijknani/containerized-app/assets/118684147/cb6e54cf-8180-4196-9473-10e2ce2e0dd2)
+
+![image](https://github.com/arijknani/containerized-app/assets/118684147/dcc07892-4d12-4e33-b36a-e5a39b3edd80)
+
+
 ![image](https://github.com/arijknani/containerized-app/assets/118684147/00adc4bd-09c4-4678-a582-b7ed725ada5c)
 
 
