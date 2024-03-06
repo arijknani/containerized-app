@@ -22,6 +22,13 @@ oc new-app mysql:latest --name=[container-name] \
     -e MYSQL_PASSWORD=$(oc get secret[secret-name] -o jsonpath='{.data.database-password}' | base64 -d) \
     -e MYSQL_ROOT_PASSWORD=$(oc get secret [secret-name] -o jsonpath='{.data.database-root-password}' | base64 -d)
 
+**Add volume to mysql 
+
+oc get pvc 
+
+oc set volume deployment/mysql-container --add --name=mysql-cli --type=persistentVolumeClaim --claim-name=mysql --mount-path=/var/lib/mysql
+
+
 **create config maps 
 
 oc create configmap [CM-name] \
