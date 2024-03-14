@@ -1,15 +1,10 @@
-# build the app
-FROM maven:latest AS build
-ENV home=/home/app
-WORKDIR ${home}
-# Copy everything from the current directory into /home/app
-COPY . ${home}/
-# builds the project, packages it, and installs the artifact into the local Maven repository
-RUN mvn package -Dmaven.test.skip=true
-
-# create the final image
-FROM openjdk:latest
-WORKDIR ${home}
-EXPOSE 8080
-COPY --from=build /home/app/target/*.jar app.jar
-ENTRYPOINT ["java", "-Dspring.profiles.active=prod", "-jar", "app.jar"]
+#define the env of the app
+#pulling the base
+FROM registry.redhat.io/rhel8/buildah
+#add the sample Dockerfile
+ADD dockerfile.sample /tmp/input/Dockerfile
+#add the build script
+ADD build.sh /usr/bin
+#run the build script
+RUN chmod a+x /usr/bin/build.sh
+ENTRYPOINT ["/usr/bin/build.sh"]
