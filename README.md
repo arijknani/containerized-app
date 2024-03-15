@@ -16,6 +16,7 @@ db-url: jdbc:mysql://mysql-container:3306/
 ********MYSQL deployment*********
 
 vi mysql-secrets.yaml
+
 ----------------
 apiVersion: v1
 kind: Secret
@@ -27,6 +28,7 @@ stringData:
   mysql-user: arij
   mysql-password: Arijk123*
 -----------------
+
 oc apply -f mysql-secrets.yaml
 
 oc get secret mysql-secrets -o yaml
