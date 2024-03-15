@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: app-configmap
+data:
+  db-url: jdbc:mysql://mysql:3306/appdb-s2i 
+  app-profile: prod
