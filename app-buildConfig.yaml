@@ -1,0 +1,50 @@
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
+metadata:
+  annotations:
+    openshift.io/generated-by: OpenShiftNewApp
+  creationTimestamp: "2024-03-15T15:52:10Z"
+  generation: 2
+  labels:
+    app: springboot-s2i
+    app.kubernetes.io/component: springboot-s2i
+    app.kubernetes.io/instance: springboot-s2i
+    app.kubernetes.io/name: java
+  name: springboot-s2i
+  namespace: arij-project
+  resourceVersion: "9372589"
+  uid: 69b2f773-4ef6-47c7-afbf-975459ec4472
+spec:
+  failedBuildsHistoryLimit: 5
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: springboot-s2i:latest
+  postCommit: {}
+  resources: {}
+  runPolicy: Serial
+  source:
+    git:
+      ref: s2i-build
+      uri: https://github.com/arijknani/containerized-app.git
+    type: Git
+  strategy:
+    sourceStrategy:
+      from:
+        kind: ImageStreamTag
+        name: java:openjdk-17-ubi8
+        namespace: openshift
+    type: Source
+  successfulBuildsHistoryLimit: 5
+  triggers:
+  - github:
+      secret: VhV9SO-9kej1Wh7z9db_
+    type: GitHub
+  - generic:
+      secret: lmdTe9waDgVljLK4WQrR
+    type: Generic
+  - type: ConfigChange
+  - imageChange: {}
+    type: ImageChange
+

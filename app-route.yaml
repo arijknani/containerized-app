@@ -1,0 +1,24 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  annotations:
+    openshift.io/host.generated: "true"
+  creationTimestamp: "2024-03-15T15:59:02Z"
+  labels:
+    app: springboot-s2i
+    app.kubernetes.io/component: springboot-s2i
+    app.kubernetes.io/instance: springboot-s2i
+    app.kubernetes.io/name: java
+  name: springboot-s2i
+  namespace: arij-project
+  resourceVersion: "9375169"
+  uid: a34afa16-e6f9-4ad0-8e06-cfed81daac95
+spec:
+  host: springboot-s2i-arij-project.apps.ocp4.smartek.ae
+  port:
+    targetPort: 8080-tcp
+  to:
+    kind: Service
+    name: springboot-s2i
+    weight: 100
+  wildcardPolicy: None
