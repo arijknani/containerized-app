@@ -6,4 +6,6 @@ pipeline {
                 echo "Building" 
             }
         }
+    }
 }
+
