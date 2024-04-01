@@ -9,12 +9,13 @@ pipeline {
                 }
             }
         }
-        stage('Build') {
+        stage('Docker Build') {
             steps {
                 script {
-                    sh 'mvn clean package'
+                    sh 'docker build -t springboot-jenkins:latest .'
                 }
             }
         }
     }
 }
+
