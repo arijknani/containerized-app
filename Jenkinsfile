@@ -1,5 +1,8 @@
 pipeline {
     agent { any { image 'maven:3.9.6-eclipse-temurin-17-alpine' } }
+    tools {
+        maven '3.9.6'
+    }
     
     stages {
         stage('Build') {
