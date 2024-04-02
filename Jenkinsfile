@@ -5,14 +5,6 @@ pipeline {
         dockerTool 'docker'
     }
     stages {
-        stage('Set Maven Home') {
-            steps {
-                script {
-                    def mvnHome = tool 'maven3'
-                    env.PATH = "${mvnHome}/bin:${env.PATH}"
-                }
-            }
-        }
         stage('Build') {
             steps {
                 sh 'mvn -version'
