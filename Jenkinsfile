@@ -1,5 +1,5 @@
 pipeline {
-    agent any 
+    agent { dockerfile true } 
     tools {
         maven 'maven3'
         dockerTool 'docker'
@@ -8,7 +8,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 script {
-                    sh 'docker build -t springboot-jenkins:latest .'
+                    docker.build('springboot-jenkins:latest')
                 }
             }
         }
