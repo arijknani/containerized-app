@@ -5,10 +5,18 @@ pipeline {
         dockerTool 'docker'
     }
     stages {
+         stage('Build') {
+            steps {
+                sh 'mvn -version'
+                sh 'mvn -B -DskipTests clean package'
+            }
+        }
+
         stage('Docker Build') {
             steps {
                 script {
-                    docker.build('springboot-jenkins:latest')
+                    sh 'docker build -t springboot-jenkins:latest .'
+
                 }
             }
         }
