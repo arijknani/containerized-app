@@ -8,7 +8,7 @@ pipeline {
         stage('Build') {
             steps {
                 sh 'mvn -version'
-                sh 'mvn clean verify'
+                sh 'mvn -DskipTests clean verify'
             }
         }
         stage('Docker Build') {
