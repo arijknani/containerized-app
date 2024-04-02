@@ -8,7 +8,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 script {
-                    sh 'docker build -t springboot-jenkins:latest .'
+                    sh 'podman build -t springboot-jenkins:latest .'
                 }
             }
         }
