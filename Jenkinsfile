@@ -15,6 +15,7 @@ pipeline {
         stage('Docker Build') {
             steps {
                 script {
+                    sh 'docker --version'
                     sh 'docker build -t springboot-jenkins:latest .'
                 }
             }
