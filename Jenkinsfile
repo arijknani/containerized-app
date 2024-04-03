@@ -1,8 +1,5 @@
 pipeline {
-    agent { any { 
-		image 'maven:3.9.6-eclipse-temurin-17-alpine' 
-		args '-u root'
-} }
+    agent any 
 
     tools {
         maven 'maven3'
