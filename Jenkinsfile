@@ -1,17 +1,23 @@
 pipeline {
     agent any 
+    
+    environment {
+        DOCKER_CREDS = credentials('docker-hub')
+    }
 
     tools {
         maven 'maven3'
         dockerTool 'docker'
     }
+
     stages {
-        /*stage('Build') {
+        stage('Docker Login') {
             steps {
-                sh 'mvn -version'
-                sh 'mvn -DskipTests clean verify'
+                script {
+                    sh 'docker login --username=${DOCKER_HUB_USER} --password=${DOCKER_HUB_PASSWORD}'
+                }
             }
-        }*/
+        }
         
         stage('Docker Build') {
             steps {
@@ -21,6 +27,7 @@ pipeline {
                 }
             }
         }
+
         stage('Run') {
             steps {
                 sh 'docker run -d -p 8000:8000 --name springboot-jenkins-app springboot-jenkins'
