@@ -1,4 +1,9 @@
 pipeline {
+    tools {
+        maven 'maven3'
+        dockerTool 'docker'
+    }
+
     environment {
         registry = 'arijknani009/myapp-jenkins'
         registryCredential = 'docker-hub'
