@@ -1,23 +1,36 @@
 pipeline {
-    agent any
-    tools {
-        maven 'maven3'
-        dockerTool 'docker'
+    environment {
+        registry = 'arijknani009/myapp-jenkins'
+        registryCredential = 'docker-hub'
+        dockerImage = ''
     }
 
+    agent any
+
     stages {
-        stage('Docker Build') {
+        stage('Building our image') {
             steps {
                 script {
-                    sh 'docker --version'
-                    sh 'docker build -t springboot-jenkins:latest .'
+                    dockerImage = docker.build("${registry}:${BUILD_NUMBER}")
                 }
             }
         }
 
-        stage('Run') {
+        stage('Deploy our image') {
             steps {
-                sh 'docker run -d -p 8000:8000 --name springboot-jenkins-app springboot-jenkins'
+                script {
+                    docker.withRegistry('', registryCredential) {
+                        dockerImage.push()
+                    }
+                }
+            }
+        }
+
+        stage('Cleaning up') {
+            steps {
+                script {
+                    sh 'docker rmi ${registry}:${BUILD_NUMBER}'
+                }
             }
         }
     }
