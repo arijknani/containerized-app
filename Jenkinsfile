@@ -21,5 +21,10 @@ pipeline {
                 }
             }
         }
+        stage('Run') {
+            steps {
+                sh 'docker run -d -p 8000:8000 --name springboot-jenkins-app springboot-jenkins'
+            }
+        }
     }
 }
