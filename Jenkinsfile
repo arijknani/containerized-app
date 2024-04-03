@@ -6,12 +6,13 @@ pipeline {
         dockerTool 'docker'
     }
     stages {
-        stage('Build') {
+        /*stage('Build') {
             steps {
                 sh 'mvn -version'
                 sh 'mvn -DskipTests clean verify'
             }
-        }
+        }*/
+        
         stage('Docker Build') {
             steps {
                 script {
