@@ -1,9 +1,28 @@
 pipeline {
-    agent any
-    tools {
-        maven 'maven3'
-        dockerTool 'docker'
+    agent {
+    kubernetes {
+      yaml '''
+apiVersion: v1
+kind: Pod
+metadata:
+  name: buildah
+spec:
+  containers:
+  - name: buildah
+    image: quay.io/buildah/stable:v1.23.1
+    command:
+    - cat
+    tty: true
+    securityContext:
+      privileged: true
+    volumeMounts:
+      - name: varlibcontainers
+        mountPath: /var/lib/containers
+  volumes:
+    - name: varlibcontainers
+'''   
     }
+  }
     stages {
         stage('Docker Build') {
             steps {
