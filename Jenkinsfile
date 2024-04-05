@@ -12,18 +12,18 @@ spec:
     - sleep
     args:
     - 9999999
-    #volumeMounts:
-      #- name: jenkins-docker-cfg
-        #mountPath: /kaniko/.docker
-  #volumes:
-  #- name: jenkins-docker-cfg
-    #projected:
-      #sources:
-      #- secret:
-          #name: docker-credentials 
-          #items:
-            #- key: .dockerconfigjson
-              #path: config.json
+    volumeMounts:
+      - name: jenkins-docker-cfg
+        mountPath: /kaniko/.docker
+  volumes:
+  - name: jenkins-docker-cfg
+    projected:
+      sources:
+      - secret:
+          name: docker-credentials 
+          items:
+            - key: .dockerconfigjson
+              path: config.json
 """
     }
   }
@@ -32,7 +32,7 @@ spec:
       steps {
         container(name: 'kaniko', shell: '/busybox/sh') {
           sh '''#!/busybox/sh
-            /kaniko/executor --context `pwd` --dockerfile Dockerfile -v error  --skip-tls-verify-pull --skip-tls-verify-registry  --destination image-registry.openshift-image-registry.svc:5000/hello-kaniko:latest 
+            /kaniko/executor --context `pwd` --dockerfile Dockerfile -v error  --destination arijknani009/hello-kaniko:latest 
           '''
         }
       }
