@@ -28,7 +28,7 @@ spec:
       steps {
         container(name: 'kaniko', shell: '/busybox/sh') {
           sh '''#!/busybox/sh
-            /kaniko/executor --context `pwd` --dockerfile Dockerfile --destination arijknani009/hello-kaniko:latest 
+            /kaniko/executor --context $pwd --dockerfile Dockerfile --destination arijknani009/hello-kaniko:latest 
           '''
         }
       }
