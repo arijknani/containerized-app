@@ -32,7 +32,7 @@ spec:
       steps {
         container(name: 'kaniko', shell: '/busybox/sh') {
           sh '''#!/busybox/sh
-            /kaniko/executor --context `pwd` --dockerfile Dockerfile -v error --destination arijknani009/hello-kaniko:latest 
+            /kaniko/executor --context `pwd` --dockerfile Dockerfile -v error --destination image-registry.openshift-image-registry.svc.cluster:5000/hello-kaniko:latest 
           '''
         }
       }
