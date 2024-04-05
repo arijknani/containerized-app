@@ -12,7 +12,7 @@ spec:
     - sleep
     args:
     - 9999999
-    volumeMounts:
+    /*volumeMounts:
       - name: jenkins-docker-cfg
         mountPath: /kaniko/.docker
   volumes:
@@ -23,7 +23,7 @@ spec:
           name: docker-credentials 
           items:
             - key: .dockerconfigjson
-              path: config.json
+              path: config.json*/
 """
     }
   }
