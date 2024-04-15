@@ -33,7 +33,7 @@ pipeline {
             steps {
                 container(name: 'kaniko', shell: '/busybox/sh') {
                     sh '''#!/busybox/sh
-                        /kaniko/executor --context `pwd` --dockerfile Dockerfile -v Error --force --destination arijknani009/hello-kaniko:latest 
+                        /kaniko/executor --context `pwd` --dockerfile Dockerfile --verbosity debug  --destination arijknani009/hello-kaniko:latest 
                     '''
                 }
             }
