@@ -34,23 +34,22 @@ spec:
                 container(name: 'kaniko', shell: '/busybox/sh') {
                     sh '''
 #!/busybox/sh
-echo "# Build the app
+echo "
+#Build the app
 FROM maven:latest AS build
-ENV home=/home/app
-WORKDIR ${home}
-# Copy everything from the current directory into /home/app
-COPY . ${home}/
-# Build the project, package it, and install the artifact into the local Maven repository
+WORKDIR /home/app
+#Copy everything from the current directory into /home/app
+COPY . /home/app
+#Build the project, package it, and install the artifact into the local Maven repository
 RUN mvn package -Dmaven.test.skip=true
-
-# Create the final image
+#Create the final image
 FROM openjdk:latest
-WORKDIR ${home}
+WORKDIR /home/app
 EXPOSE 8080
 COPY --from=build /home/app/target/*.jar app.jar
 ENTRYPOINT ['java', '-Dspring.profiles.active=prod', '-jar', 'app.jar']" > Dockerfile
 
-# Execute Kaniko to build the image
+#Execute Kaniko to build the image
 /kaniko/executor --context `pwd` --verbosity debug --destination arijknani009/build-app:latest
 '''
                 }
