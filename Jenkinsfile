@@ -27,21 +27,8 @@ pipeline {
             """
         }
     }
-    environment {
-        DOCKER_CREDS = credentials('docker-hub')
-    }
-    tools {
-        dockerTool 'docker'
-    }
+    
     stages {
-        stage('Docker Login') {
-            steps {
-                script {
-                    sh 'docker -v'
-                    sh 'docker login --username=${DOCKER_CREDS_USR} --password=${DOCKER_CREDS_PSW}'
-                }
-            }
-        }
         stage('Build with Kaniko') {
             steps {
                 container(name: 'kaniko', shell: '/busybox/sh') {
