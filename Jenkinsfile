@@ -34,7 +34,7 @@ pipeline {
                 container(name: 'kaniko', shell: '/busybox/sh') {
                     sh '''
 #!/busybox/sh
-/kaniko/executor --context `pwd` --dockerfile Dockerfile --verbosity debug --destination arijknani009/build-app:latest
+/kaniko/executor --context `pwd` --dockerfile ./Dockerfile --verbosity debug --destination arijknani009/build-app:latest
 '''
                 }
             }
