@@ -1,0 +1,6 @@
+auth:
+  rootPassword: "root"
+  createDatabase: true
+  database: "my_database"
+  username: "arij"
+  password: "Arijk123*"
