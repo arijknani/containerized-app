@@ -9,7 +9,7 @@ metadata:
 spec:
   containers:
   - name: buildah
-    image: quay.io/buildah/stable:v1.23.1
+    image: quay.io/buildah/stable:latest
     command:
     - cat
     tty: true
@@ -46,7 +46,7 @@ environment {
     stage('Build with Buildah') {
       steps {
         container('buildah') {
-          sh 'buildah build -t arijknani009/jenkins-example-buildah:8.5-230 .'
+          sh 'buildah build -t arijknani009/jenkins-example-buildah:latest .'
         }
       }
     }
