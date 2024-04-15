@@ -14,7 +14,7 @@ spec:
     - cat
     tty: true
     securityContext:
-      privileged: true
+      privileged: false
     volumeMounts:
       - name: varlibcontainers
         mountPath: /var/lib/containers
