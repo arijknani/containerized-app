@@ -34,12 +34,13 @@ spec:
   }
   stages {
     stage('Build with Buildah') {
-      steps {
-        container('buildah') {
-          sh ' buildah --version '
-          sh ' buildah bud -t arijknani009/jenkins-example-buildah:latest . '
+        steps {
+            container('buildah') {
+                sh 'buildah --version'
+                sh 'buildah bud -t arijknani009/jenkins-example-buildah:latest .'
+            }
         }
-      }
     }
-  }
+}
+
 }
