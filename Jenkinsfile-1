@@ -41,7 +41,7 @@ spec:
       steps {
         container('buildah') {
           sh'buildah --version'
-          sh'buildah build -t arijknani009/jenkins-example-buildah:latest . '
+          sh'buildah bud -t arijknani009/jenkins-example-buildah:latest . '
         }
       }
     }
