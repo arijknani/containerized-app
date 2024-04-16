@@ -38,7 +38,7 @@ spec:
       steps {
         container('buildah') {
           sh'buildah --version'
-          sh'buildah build  --isolation=chroot -t arijknani009/jenkins-example-buildah:latest . '
+          sh'buildah build-using-dockerfile -t arijknani009/jenkins-example-buildah:latest . '
         }
       }
     }
