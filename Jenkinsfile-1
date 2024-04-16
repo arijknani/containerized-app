@@ -18,9 +18,6 @@ spec:
     tty: true
     securityContext:
       allowPrivilegedContainer: true
-      allowPrivilegeEscalation: true
-      allowedCapabilities:
-      - '*'
     serviceAccountName: test-buildah
     volumeMounts:
       - name: varlibcontainers
