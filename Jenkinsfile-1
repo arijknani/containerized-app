@@ -27,21 +27,17 @@ spec:
 '''   
     }
   }
-
-
-
   options {
     buildDiscarder(logRotator(numToKeepStr: '3'))
     durabilityHint('PERFORMANCE_OPTIMIZED')
     disableConcurrentBuilds()
   }
   stages {
-
     stage('Build with Buildah') {
       steps {
         container('buildah') {
-          sh'buildah --version'
-          sh'buildah bud -t jenkins-example-buildah:latest . '
+          sh ' buildah --version '
+          sh ' buildah bud -t arijknani009/jenkins-example-buildah:latest . '
         }
       }
     }
