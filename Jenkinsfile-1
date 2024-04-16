@@ -15,8 +15,8 @@ spec:
     tty: true
     securityContext:
       privileged: true
-    serviceAccount: test-buildah
-    serviceAccountName: test-buildah
+    serviceAccount: default
+    serviceAccountName: default
     volumeMounts:
       - name: varlibcontainers
         mountPath: /var/lib/containers
