@@ -7,6 +7,9 @@ kind: Pod
 metadata:
   name: buildah
 spec:
+  components:
+    devEnvironments:
+       disableContainerBuildCapabilities: false
   containers:
   - name: buildah
     image: quay.io/buildah/stable:v1.11.4
@@ -38,7 +41,7 @@ spec:
       steps {
         container('buildah') {
           sh'buildah --version'
-          sh'buildah build-using-dockerfile -t arijknani009/jenkins-example-buildah:latest . '
+          sh'buildah bud -t arijknani009/jenkins-example-buildah:latest . '
         }
       }
     }
