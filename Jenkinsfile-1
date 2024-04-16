@@ -37,7 +37,8 @@ spec:
     stage('Build with Buildah') {
       steps {
         container('buildah') {
-          sh 'buildah bud  --isolation=chroot -t arijknani009/jenkins-example-buildah:latest . '
+          sh'buildah --version'
+          sh'buildah bud  --isolation=chroot -t arijknani009/jenkins-example-buildah:latest . '
         }
       }
     }
