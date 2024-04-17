@@ -9,7 +9,7 @@ metadata:
 spec:
   containers:
   - name: podman
-    image: docker.io/mattermost/podman
+    image: mattermost/podman:1.8.0
     command:
     - cat
     tty: true
