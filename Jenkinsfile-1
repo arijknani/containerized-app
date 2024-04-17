@@ -9,6 +9,7 @@ metadata:
 spec:
   capabilities:
     add: ["CHOWN", "DAC_OVERRIDE", "FOWNER", "SETUID", "SETGID"]
+  runAsUser: 0
   containers:
   - name: buildah
     image: quay.io/buildah/stable:v1.11.4
@@ -16,7 +17,7 @@ spec:
     - cat
     tty: true
     securityContext:
-      runAsUser: 0
+      
       allowPrivilegedContainer: true
     serviceAccountName: test-buildah
     volumeMounts:
