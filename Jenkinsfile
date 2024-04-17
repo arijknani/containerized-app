@@ -1,5 +1,29 @@
 pipeline {
-agent any
+agent {
+    kubernetes {
+      yaml '''
+apiVersion: v1
+kind: Pod
+metadata:
+  name: podman
+spec:
+  containers:
+  - name: podman
+    image: quay.io/mattermost/podman:1.8.0
+    command:
+    - cat
+    tty: true
+    securityContext:
+      allowPrivilegedContainer: true
+    serviceAccountName: test-buildah
+    volumeMounts:
+      - name: podman-volume
+        mountPath: /var/lib/containers
+  volumes:
+    - name: podman-volume
+'''   
+    }
+  }
 environment {
         DOCKER_CREDS = credentials('dockerhub-cred')
     }
