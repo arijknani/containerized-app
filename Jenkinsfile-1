@@ -37,7 +37,7 @@ spec:
         steps {
             container('buildah') {
                 sh 'buildah --version'
-                sh 'buildah bud --security-opt seccomp=unconfined --cap-add all -t arijknani009/jenkins-example-buildah:latest .'
+                sh 'buildah bud --isolation=chroot -t arijknani009/jenkins-example-buildah:latest .'
             }
         }
     }
