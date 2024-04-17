@@ -32,7 +32,7 @@ spec:
       steps {
         container(name: 'kaniko', shell: '/busybox/sh') {
           sh '''#!/busybox/sh
-            /kaniko/executor --context `pwd` --dockerfile `pwd`/Dockerfile --destination arijknani009/test-kaniko:latest 
+            /kaniko/executor --context `pwd` --dockerfile `pwd`/Dockerfile  --verbosity debug --destination arijknani009/test-kaniko:latest 
           '''
         }
       }
