@@ -29,6 +29,10 @@ spec:
 """
     }
   }
+  environment {
+        DOCKERFILE = "${env.WORKSPACE}/Dockerfile"
+        BUILD_CONTEXT = "${env.WORKSPACE}"
+    }
   stages {
     stage('Build with Kaniko') {
       steps {
