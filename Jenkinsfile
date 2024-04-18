@@ -6,7 +6,7 @@ kind: Pod
 spec:
   containers:
   - name: kaniko
-    image: cr.io/kaniko-project/executor:v1.14.0-debug
+    image: gcr.io/kaniko-project/executor:v1.14.0-debug
     imagePullPolicy: Always
     command:
     - sleep
