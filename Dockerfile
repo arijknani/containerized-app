@@ -5,7 +5,7 @@ FROM maven:latest AS build
 RUN mvn package -Dmaven.test.skip=true
 
 
-FROM openjdk:latest
+#FROM openjdk:latest
 #WORKDIR ${home}
 #EXPOSE 8080
 #COPY --from=build /home/app/target/*.jar app.jar
