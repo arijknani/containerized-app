@@ -6,7 +6,7 @@ kind: Pod
 spec:
   containers:
   - name: kaniko
-    image: gcr.io/kaniko-project/executor:debug
+    image: cr.io/kaniko-project/executor:v1.14.0-debug
     imagePullPolicy: Always
     command:
     - sleep
@@ -38,7 +38,7 @@ spec:
       steps {
         container(name: 'kaniko', shell: '/busybox/sh') {
           sh '''#!/busybox/sh
-            /kaniko/executor  --context ${BUILD_CONTEXT} --dockerfile ${DOCKERFILE} --verbosity=debug --destination arijknani009/test-kaniko:latest 
+            /kaniko/executor  --context ${BUILD_CONTEXT} --dockerfile ${DOCKERFILE} --additional-whitelist="//bin/sh" --verbosity=debug --destination arijknani009/test-kaniko:latest 
           '''
         }
       }
