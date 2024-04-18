@@ -1,2 +1,2 @@
-FROM jenkins/inbound-agent:latest
+FROM maven:latest 
 
