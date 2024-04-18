@@ -14,7 +14,7 @@ spec:
     - 9999999
     securityContext:
       allowPrivilegedContainer: true
-    
+    restartPolicy: Always
     volumeMounts:
       - name: jenkins-docker-cfg
         mountPath: /kaniko/.docker
