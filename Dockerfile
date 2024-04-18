@@ -1,4 +1,3 @@
-FROM jenkins/inbound-agent:latest
 # build the app
 FROM maven:latest AS build
 ENV home=/home/app
