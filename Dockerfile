@@ -11,5 +11,5 @@ RUN mvn package -Dmaven.test.skip=true
 FROM openjdk:latest
 WORKDIR ${home}
 EXPOSE 8080
-ADD --from=build /home/app/target/*.jar app.jar
+COPY --from=build /home/app/target/*.jar app.jar
 ENTRYPOINT ["java", "-Dspring.profiles.active=prod", "-jar", "app.jar"]
