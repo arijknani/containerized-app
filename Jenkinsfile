@@ -12,6 +12,8 @@ spec:
     - sleep
     args:
     - 9999999
+    securityContext:
+      allowPrivilegedContainer: true
     volumeMounts:
       - name: jenkins-docker-cfg
         mountPath: /kaniko/.docker
