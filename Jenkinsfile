@@ -35,7 +35,7 @@ spec:
       steps {
         container(name: 'kaniko', shell: '/busybox/sh') {
           sh '''#!/busybox/sh
-            /kaniko/executor --context `pwd` --cache=true --destination arijknani009/test-kaniko:latest 
+            /kaniko/executor --context `pwd` --destination arijknani009/test-kaniko:latest 
           '''
         }
       }
