@@ -9,6 +9,7 @@ metadata:
 spec:
   containers:
   - name: podman
+    imagePullPolicy: Always
     image: quay.io/podman/stable:latest
     command:
     - cat
@@ -17,10 +18,26 @@ spec:
       allowPrivilegedContainer: true
     serviceAccountName: test-buildah
     volumeMounts:
-      - name: podman-volume
-        mountPath: /var/lib/containers
+    - mountPath: /var/lib/containers
+      name: podman-volume
+    - mountPath: /dev/shm
+      name: devshm-volume
+    - mountPath: /var/run
+      name: varrun-volume
+    - mountPath: /tmp
+      name: tmp-volume
+  restartPolicy: Never
   volumes:
-    - name: podman-volume
+  - name: podman-volume
+    emptyDir: {}
+  - name: devshm-volume
+    emptyDir:
+      medium: Memory
+  - name: varrun-volume
+    emptyDir: {}
+  - name: tmp-volume
+    emptyDir: {}
+
 '''   
     }
   }
