@@ -1,5 +1,4 @@
 FROM maven:latest AS build
-USER root
 WORKDIR /home/app
 COPY . /home/app/
 RUN mvn package -Dmaven.test.skip=true
