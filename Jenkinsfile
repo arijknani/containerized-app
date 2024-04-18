@@ -6,12 +6,14 @@ kind: Pod
 spec:
   containers:
   - name: kaniko
-    image: gcr.io/kaniko-project/executor:v1.7.0-debug
+    image: gcr.io/kaniko-project/executor:debug
     imagePullPolicy: Always
     command:
     - sleep
     args:
     - 9999999
+    securityContext:
+      runAsUser: 0
     volumeMounts:
       - name: jenkins-docker-cfg
         mountPath: /kaniko/.docker
@@ -32,7 +34,7 @@ spec:
       steps {
         container(name: 'kaniko', shell: '/busybox/sh') {
           sh '''#!/busybox/sh
-            /kaniko/executor --context `pwd` --destination arijknani009/test-kaniko:latest
+            /kaniko/executor --context `pwd`  --dockerfile Dockerfile  -v debug --destination arijknani009/test-kaniko:latest
           '''
         }
       }
