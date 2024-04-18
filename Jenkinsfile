@@ -48,7 +48,7 @@ environment {
   stages {
     stage('Remove all images from agent') {
       steps {
-        sh 'podman --version'
+        sh 'podman version'
         sh 'podman rmi --all --force'
       }
     }
