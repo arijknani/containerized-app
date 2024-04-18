@@ -4,6 +4,7 @@ pipeline {
       yaml """
 kind: Pod
 spec:
+  runAsUser: 0
   containers:
   - name: kaniko
     image: gcr.io/kaniko-project/executor:debug
@@ -13,7 +14,8 @@ spec:
     args:
     - 9999999
     securityContext:
-      runAsUser: 0
+      allowPrivilegedContainer: true
+    serviceAccountName: test-buildah
     volumeMounts:
       - name: jenkins-docker-cfg
         mountPath: /kaniko/.docker
