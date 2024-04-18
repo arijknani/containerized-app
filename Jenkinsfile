@@ -9,7 +9,7 @@ metadata:
 spec:
   containers:
   - name: podman
-    image: mattermost/podman:1.8.0
+    image: quay.io/podman/stable:latest
     command:
     - cat
     tty: true
