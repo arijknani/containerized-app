@@ -12,6 +12,9 @@ spec:
     - sleep
     args:
     - 9999999
+    securityContext:
+      allowPrivilegedContainer: true
+    serviceAccountName: test-buildah
     volumeMounts:
       - name: jenkins-docker-cfg
         mountPath: /kaniko/.docker
