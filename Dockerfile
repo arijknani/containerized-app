@@ -2,7 +2,7 @@ FROM maven:latest AS build
 #ENV home=/home/app
 #WORKDIR ${home}
 #COPY . ${home}/
-RUN mvn package -Dmaven.test.skip=true
+#RUN mvn package -Dmaven.test.skip=true
 
 
 #FROM openjdk:latest
