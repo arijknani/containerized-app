@@ -41,7 +41,7 @@ spec:
 
     stage('Build') {
             steps {
-                sh 'echo 'Building in $WORKSPACE''
+                sh "echo 'Building in $WORKSPACE'"
             }
         }
     
