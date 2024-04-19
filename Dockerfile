@@ -10,4 +10,4 @@ FROM openjdk:latest
 EXPOSE 8080
 #COPY --from=build /home/app/target/*.jar app.jar
 COPY  ./target/*.jar app.jar
-#ENTRYPOINT ["java", "-Dspring.profiles.active=prod", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-Dspring.profiles.active=prod", "-jar", "app.jar"]
