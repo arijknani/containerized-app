@@ -30,15 +30,19 @@ spec:
     }
   }
   environment {
-        DOCKERFILE = "${env.WORKSPACE}/Dockerfile"
-        BUILD_CONTEXT = "${env.WORKSPACE}"
+        DOCKERFILE = '${WORKSPACE}/Dockerfile'
+        BUILD_CONTEXT = '${WORKSPACE}'
+        DOCKERHUB_USERNAME = 'arijknani009'
+        APP_NAME = 'pfe-app'
+        IMAGE_NAME = '${DOCKERHUB_USERNAME}' + '/' + '${APP_NAME}'
+        IMAGE_TAG = '${BUILD_NUMBER}'
     }
   stages {
     stage('Build with Kaniko') {
       steps {
         container(name: 'kaniko', shell: '/busybox/sh') {
           sh '''#!/busybox/sh
-            /kaniko/executor  --context ${BUILD_CONTEXT} --dockerfile ${DOCKERFILE} --verbosity=debug --destination arijknani009/test-kaniko:latest 
+            /kaniko/executor  --context ${BUILD_CONTEXT} --dockerfile ${DOCKERFILE} --verbosity=debug  --destination $IMAGE_NAME:$IMAGE_TAG 
           '''
         }
       }
