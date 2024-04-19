@@ -29,11 +29,6 @@ spec:
 """
     }
   }
-  tools {
-        maven 'maven3'
-}
-  
-
   stages {
 
     stage('Build with Kaniko') {
