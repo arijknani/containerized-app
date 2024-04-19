@@ -35,12 +35,7 @@ spec:
   
 
   stages {
-    stage('Build') {
-            steps {
-                sh 'mvn -version'
-                sh 'mvn -B -DskipTests clean package'
-            }
-        }
+
     stage('Build with Kaniko') {
       steps {
         container('kaniko') {
