@@ -33,10 +33,8 @@ spec:
   stages {
     stage('Build with Kaniko') {
       steps {
-        container(name: 'kaniko', shell: '/busybox/sh') {
-          sh '''#!/busybox/sh
-            /kaniko/executor  --context $WORKSPACE --dockerfile $WORKSPACE/Dockerfile --verbosity=debug  --destination arijknani009/pfe-app:latest 
-          '''
+        container('kaniko') {
+          sh '/kaniko/executor  --context $WORKSPACE --dockerfile $WORKSPACE/Dockerfile --verbosity=debug  --destination arijknani009/pfe-app:latest '
         }
       }
     }
