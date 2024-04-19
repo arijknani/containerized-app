@@ -38,6 +38,13 @@ spec:
         IMAGE_TAG = '$BUILD_NUMBER'
     }
   stages {
+
+    stage('Build') {
+            steps {
+                sh 'echo 'Building in $WORKSPACE''
+            }
+        }
+    
     stage('Build with Kaniko') {
       steps {
         container(name: 'kaniko', shell: '/busybox/sh') {
