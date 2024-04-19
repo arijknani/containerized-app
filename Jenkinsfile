@@ -44,7 +44,7 @@ spec:
     stage('Build with Kaniko') {
       steps {
         container('kaniko') {
-          sh '/kaniko/executor  --context $WORKSPACE --dockerfile $WORKSPACE/Dockerfile --verbosity=debug  --no-push --destination arijknani009/pfe-app:latest  '
+          sh '/kaniko/executor  --context $WORKSPACE --dockerfile $WORKSPACE/Dockerfile --verbosity=debug  --destination arijknani009/pfe-app:latest  '
         }
       }
     }
