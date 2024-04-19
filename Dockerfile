@@ -1,7 +1,7 @@
 FROM maven:latest AS build
-ENV home=/home/app
-WORKDIR ${home}
-COPY . ${home}/
+#ENV home=/home/app
+#WORKDIR ${home}
+#COPY . ${home}/
 RUN mvn package -Dmaven.test.skip=true
 
 
