@@ -5,11 +5,6 @@ pipeline {
 kind: Pod
 spec:
   containers:
-  - name: maven
-    image: maven:3.8.3-adoptopenjdk-11
-    command:
-    - cat
-    tty: true
   - name: kaniko
     image: gcr.io/kaniko-project/executor:v1.14.0-debug
     imagePullPolicy: Always
@@ -36,14 +31,6 @@ spec:
   }
   
   stages {
-    stage('Build with maven'){
-      steps {
-        container('maven'){
-          sh 'mvn package -Dmaven.test.skip=true'
-        }
-      }
-    }
-    
     stage('Build with Kaniko') {
       steps {
         container('kaniko') {
