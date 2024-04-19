@@ -32,14 +32,15 @@ spec:
   tools {
         maven 'maven3'
 }
-  stage('Build') {
+  
+
+  stages {
+    stage('Build') {
             steps {
                 sh 'mvn -version'
                 sh 'mvn -B -DskipTests clean package'
             }
         }
-
-  stages {
     stage('Build with Kaniko') {
       steps {
         container('kaniko') {
