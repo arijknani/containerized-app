@@ -4,7 +4,7 @@ pipeline {
         stage('connect to openshift') {
             steps {
                 script {
-                    echo '$WORKSPACE'
+                    echo " ${WORKSPACE} "
                     wrap([$class: 'OpenShiftBuildWrapper',  
                         installation: 'oc', 
                         url: 'https://api.ocp4.smartek.ae:6443', 
