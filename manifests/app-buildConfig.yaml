@@ -3,7 +3,7 @@ kind: BuildConfig
 metadata:
   annotations:
     openshift.io/generated-by: OpenShiftNewApp
-  generation: 3
+  generation: 1
   labels:
     app: springboot-app
     app.kubernetes.io/component: springboot-app
