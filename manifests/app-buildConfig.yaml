@@ -8,7 +8,7 @@ metadata:
     app: springboot-app
     app.kubernetes.io/component: springboot-app
     app.kubernetes.io/instance: springboot-app
-  name: springboot-docker
+  name: springboot-app
   namespace: arij-project
   resourceVersion: "27984309"
   uid: 75d96d93-f5ec-4836-92d7-efe7e7a0602d
