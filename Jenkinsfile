@@ -1,7 +1,5 @@
 pipeline {
-    agent {
-        kubernetes
-    }
+    agent kubernetes
     stages {
         stage('connect to openshift') {
             steps {
