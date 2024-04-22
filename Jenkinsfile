@@ -1,4 +1,4 @@
-node('openshift-agent') {
+node {
     withEnv(["PATH+OC=${tool 'oc'}"]) {
         openshift.withCluster( 'openshift-cluster' ) {
             echo "${openshift.raw( "version" ).out}"
