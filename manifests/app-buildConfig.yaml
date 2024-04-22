@@ -7,6 +7,7 @@ spec:
     git:
       url: https://github.com/arijknani/containerized-app
       ref: build-with-oc
+    type: Git
   strategy:
     name: buildah
     kind: ClusterBuildStrategy
