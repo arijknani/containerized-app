@@ -1,5 +1,5 @@
 node('openshift-agent') {
-    withEnv(["PATH+OC=${tool 'oc1.3.2'}"]) {
+    withEnv(["PATH+OC=${tool 'oc'}"]) {
         openshift.withCluster( 'openshift-cluster' ) {
             echo "${openshift.raw( "version" ).out}"
             echo "In project: ${openshift.project()}"
