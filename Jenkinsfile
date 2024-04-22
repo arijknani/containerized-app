@@ -10,7 +10,7 @@ pipeline {
                         insecure: true, 
                         credentialsId: 'openshift-cred']) { 
                         sh 'oc version' 
-                        sh 'oc apply -f ${WORKSPACE}/manifests/app-buildConfig.yaml'
+                        sh 'oc apply -f ${WORKSPACE}/manifests/buildConfig.yaml'
                     }
                     
                 }
