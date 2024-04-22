@@ -1,3 +1,13 @@
+node('openshift-agent') {
+    withEnv(["PATH+OC=${tool 'oc1.3.2'}"]) {
+        openshift.withCluster( 'mycluster' ) {
+            echo "${openshift.raw( "version" ).out}"
+            echo "In project: ${openshift.project()}"
+        }
+    }
+}
+
+
 node {
    wrap([$class: 'OpenShiftBuildWrapper',  
       installation: 'oc (latest)', 
