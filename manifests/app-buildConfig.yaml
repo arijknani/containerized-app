@@ -10,17 +10,11 @@ metadata:
     app.kubernetes.io/instance: springboot-app
   name: springboot-app
   namespace: arij-project
-  resourceVersion: "27984309"
-  uid: 75d96d93-f5ec-4836-92d7-efe7e7a0602d
 spec:
-  failedBuildsHistoryLimit: 5
-  nodeSelector: null
   output:
     to:
       kind: ImageStreamTag
       name: springboot-app:latest
-  postCommit: {}
-  resources: {}
   runPolicy: Serial
   source:
     git:
@@ -34,7 +28,6 @@ spec:
         name: openjdk:latest
         namespace: arij-project
     type: Docker
-  successfulBuildsHistoryLimit: 5
   triggers:
   - github:
       secret: 5HBvJzxW8POqJ6KHeOrh
