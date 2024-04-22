@@ -48,7 +48,7 @@ spec:
   serviceAccount: builder
   source:
     git:
-      ref: docker-build
+      ref: build-with-oc
       uri: https://github.com/arijknani/containerized-app.git
     type: Git
   strategy:
@@ -65,32 +65,4 @@ spec:
         namespace: arij-project
       imageID: openjdk@sha256:fe05457a5e9b9403f8e72eeba507ae80a4237d2d2d3f219fa62ceb128482a9ee
     message: Image change
-status:
-  completionTimestamp: "2024-03-15T17:10:10Z"
-  conditions:
-  - lastTransitionTime: "2024-03-15T17:04:10Z"
-    lastUpdateTime: "2024-03-15T17:04:10Z"
-    status: "False"
-    type: New
-  - lastTransitionTime: "2024-03-15T17:04:13Z"
-    lastUpdateTime: "2024-03-15T17:04:13Z"
-    status: "False"
-    type: Pending
-  - lastTransitionTime: "2024-03-15T17:10:10Z"
-    lastUpdateTime: "2024-03-15T17:10:10Z"
-    status: "False"
-    type: Running
-  - lastTransitionTime: "2024-03-15T17:10:10Z"
-    lastUpdateTime: "2024-03-15T17:10:10Z"
-    status: "True"
-    type: Complete
-  config:
-    kind: BuildConfig
-    name: springboot-docker
-    namespace: arij-project
-  duration: 360000000000
-  output:
-    to:
-      imageDigest: sha256:1cdb8edcba482d1892874ac4864620f0af736ae33ad15f53cb4cff00ed1ee201
-  outputDockerImageReference: image-registry.openshift-image-registry.svc:5000/arij-project/springboot-docker:latest
 
