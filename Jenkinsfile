@@ -10,7 +10,7 @@ pipeline {
                         insecure: true, 
                         credentialsId: 'openshift-cred']) { 
                         sh 'oc version' 
-                        sh 'oc start-build springboot-docker-1'
+                        sh 'oc start-build springboot-docker'
                     }
                     
                 }
