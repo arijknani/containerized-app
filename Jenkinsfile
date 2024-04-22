@@ -1,21 +1,18 @@
 node {
     withEnv(["PATH+OC=${tool 'oc'}"]) {
-        openshift.withCluster( 'openshift-cluster' ) {
-            echo "${openshift.raw( "version" ).out}"
+        openshift.withCluster('openshift-cluster') {
+            echo "${openshift.raw('version').out}"
             echo "In project: ${openshift.project()}"
         }
     }
 
     wrap([$class: 'OpenShiftBuildWrapper',  
-      installation: 'oc (latest)', 
-      url: 'https://api.ocp4.smartek.ae:6443', 
-      insecure: true, 
-      credentialsId: 'openshift-cred']) { 
+          installation: 'oc (latest)', 
+          url: 'https://api.ocp4.smartek.ae:6443', 
+          insecure: true, 
+          credentialsId: 'openshift-cred']) { 
 
-       sh 'oc version' 
+        sh 'oc version' 
 
-   }
-    
+    }
 }
-
-
