@@ -1,15 +1,47 @@
-apiVersion: shipwright.io/v1beta1
-kind: Build
+apiVersion: build.openshift.io/v1
+kind: BuildConfig
 metadata:
-  name: build-with-oc
+  annotations:
+    openshift.io/generated-by: OpenShiftNewApp
+  generation: 3
+  labels:
+    app: springboot-app
+    app.kubernetes.io/component: springboot-app
+    app.kubernetes.io/instance: springboot-app
+  name: springboot-docker
+  namespace: arij-project
+  resourceVersion: "27984309"
+  uid: 75d96d93-f5ec-4836-92d7-efe7e7a0602d
 spec:
+  failedBuildsHistoryLimit: 5
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: springboot-app:latest
+  postCommit: {}
+  resources: {}
+  runPolicy: Serial
   source:
     git:
-      url: https://github.com/arijknani/containerized-app
       ref: build-with-oc
+      uri: https://github.com/arijknani/containerized-app.git
     type: Git
   strategy:
-    name: buildah
-    kind: ClusterBuildStrategy
-  output:
-    image: docker.io/arijknani009/example:latest
+    dockerStrategy:
+      from:
+        kind: ImageStreamTag
+        name: openjdk:latest
+        namespace: arij-project
+    type: Docker
+  successfulBuildsHistoryLimit: 5
+  triggers:
+  - github:
+      secret: 5HBvJzxW8POqJ6KHeOrh
+    type: GitHub
+  - generic:
+      secret: QxdAcouKfjiCUOJ2_k-1
+    type: Generic
+  - type: ConfigChange
+  - imageChange: {}
+    type: ImageChange
