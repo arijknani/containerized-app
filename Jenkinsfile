@@ -9,6 +9,7 @@ pipeline {
                         url: 'https://api.ocp4.smartek.ae:6443', 
                         insecure: true, 
                         credentialsId: 'openshift-cred']) { 
+                        sh 'oc version'
                         sh 'oc apply -f ${WORKSPACE}/manifests/app-secrets.yaml'
                         sh 'oc apply -f ${WORKSPACE}/manifests/app-configmap.yaml'
                         sh 'oc delete all -l app=springboot-app'
