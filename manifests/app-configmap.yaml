@@ -3,5 +3,5 @@ kind: ConfigMap
 metadata:
   name: app-configmap
 data:
-  db-url: jdbc:mysql://mysql-container:3306/appdb_docker
+  db-url: jdbc:mysql://mysql-docker:3306/appdb_docker
   app-profile: prod
