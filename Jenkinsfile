@@ -15,6 +15,8 @@ pipeline {
                         sh 'oc new-app https://github.com/arijknani/containerized-app.git#build-with-oc --name=springboot-docker --strategy=docker'
                         sh 'oc set env --from=secret/app-secrets  deployment/springboot-docker'
                         sh 'oc set env --from=configmap/app-configmap-docker  deployment/springboot-docker'
+                        sh 'oc expose service/springboot-docker'
+                        sh ' oc get deployment springboot-docker -o yaml'
                         sh 'oc get routes'
                     }
                     
