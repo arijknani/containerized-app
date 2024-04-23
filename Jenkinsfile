@@ -11,7 +11,7 @@ pipeline {
                         credentialsId: 'openshift-cred']) { 
                         sh 'oc apply -f ${WORKSPACE}/manifests/app-secrets.yaml'
                         sh 'oc apply -f ${WORKSPACE}/manifests/app-configmap.yaml'
-                        sh 'oc delete all -l app=springboot-docker'
+                        sh 'oc delete all -l app=springboot-app'
                         sh 'oc new-app https://github.com/arijknani/containerized-app.git#build-with-oc --name=springboot-app --strategy=docker'
                         sh 'oc set env --from=secret/app-secrets  deployment/springboot-app'
                         sh 'oc set env --from=configmap/app-configmap  deployment/springboot-app'
