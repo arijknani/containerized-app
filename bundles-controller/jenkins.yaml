@@ -12,6 +12,15 @@ credentials:
           password: "{AQAAABAAAAAQ8Qvfkt5tl394UVutl1AtdDX7LX5ZMrfnaaNKw5RktYI=}"
           scope: GLOBAL
           username: "arijknani009"
+      - openShiftBearerTokenCredentialImpl:
+          id: "openshift-cred"
+          password: "{AQAAABAAAAAQS9oqwBwUYq5FwnUVGTCWSHfOCxP4N1g0oCE9puVCWug=}"
+          scope: GLOBAL
+          username: "arij"
+      - openShiftToken:
+          id: "openshift-token"
+          scope: GLOBAL
+          secret: "{AQAAABAAAAUwx4JF8WY6m5WVP/QN/oTEstq2GKMNjXcqfpt/DFskvWBqVtNYeN4s1jHHGFn/RleOvWqszQGKQ+sFbbjcVfJOqfIVL5AAEGJKShAP+YHEaJSWHaXs1E+sV6eTNqpziPLbqJYFTfLrr/EUVtwzfxrVdgDuSBLwBMSu/5mQ1wObhfjPkKquAvhH5nwaoxhbqo9XSqwaqdiaqUPUx2aIV7g+SZxWZITOPSDhxoXJlBUarekd1RmPJ4mj9fdVgSWXEhdSuA3xXpF4LNwQT+w9qER5vsOtFkBSU2K6L9usuBbJbYfxi/hkf6UNRBgZ47Xr7DeSjvYhA5GNAe4h1K1H2PqnaDqiCSY5GuVZNpk+Sf5HjtZ/+6pr9r+TVlU28uV+321hSJJUdTVoXzTsk07YrWy1ao5LG8x7kDpHKklQnfDFapMMXf7/0rQBDQ2LdivLOvfXAJxPalpYbQUTSFAhq6yl9wZS2UqdfcifWBQj1f6LKybmGTRYetGAkk4yMZ/oaaWk5Fg5+w+gorhZQ+flaEVrMvPj2x1figJcBf70IDt6bovfmwRA9TlimQGn0n3AUCBSOxD4VO911wSWvwmM2dAkQBHk4A1iC9klbqQwrq5gRGj+OASPco3sIl5AA2G9yi0YYT9FXGoVl9Op/1D6Y4oDl8fEzdLJOa8KFCyKffSe28nfSujMCBoQB00bWKybfxmnZVKGAui5nHocX+NhO3L5sBilxSzYWMGESAr0282IyyBCuQnZSdI4lqOmFrDEDcc7JxYuIJc45LQk7eAJCvZXqeEAvAvJkH9Ot9OezPUcIr/ss3dKWeKOr3GlSXz40mdqTuv6Z7urpXyc9LGICEMZkHbiZWK6DPDPzYT4qzKXtSZQWxWdcQawf0gqF/8bVvz5mGwV34ZaaBExv0dl7OrDXJePyCjOkRc5Se+bhqFgrUR+mrUg/8yfQ35B84rTo0vai0CJnpefCLzQOUVI/mjIeF04IG7l4Ip8KQY4jlyV0Ymq+15JKwIYTuVrGGoO1qqNdEX5J0ykKgimLCD5SKym8pFRC5iFNUHrXkXG76Jq0CKlvj15qyVBf1k2DKuBWZU4XjYRngv8sztS+GyrarLkYxTUx8dUOmf/aeLy8mw/Dn6pXT+en+sirpwJ1BtJ1Fay/x8bfKXuFEXa+Jf4Wx0R97GKRS8H4RCQUaVh7ObpB7agyLINqoQF44gcAEoPTwChdsYx8W1sZwClcEoFceJ4ItfTroYG16X/IHm1+eHpx18u8WWuy5dNJVS0uPXoZBZeLx6Qx1zwfHAr4PENXTj2ZlFFCtN+t+JqL0K3Lwhvp1NHAmZtiw6AJJOE1eEXWrxbIw34nHlf3q0QuW852dKarybfZQACU16wSN4O57JSavG170xrCo1wq03PiqhDjmSh6SJ9tx3riADRfEZM7SSRr7okZ28XhqybAjlLUTkqPXGlP8dC52lHp84nmJ1EMbU1+LarLOnPsaNVx6BkjIXkHSCL2gQH3mTArSfgBdcZX8QI+UWIxr5gOSzr6t05gHUfl6RZ+4D0iiUaEKFaXye7MR4iZEmmccHdL1zx5/iFfH9F/Dy3Nm7vtp4ewpM7eNDYx0OcXOOBmFJ/mesjiQACW7DuhcZCf6ZXwAYDJ+KdK1Wb1nArVxTiEDDOm3yq/h+hFN4Cc8XAbwG4rFpKL2gRdGOGVw1HY8KfCfQOofman4WXOWfOIXHRaAHZm1tYc3LfP/JJMkId1NY4iz1zEaEsD8caR66ERDmTPHP3tzzvhahZGM4rSQWiD0pcQpdgSTmL}"
 jenkins:
   agentProtocols:
   - "Diagnostic-Ping"
@@ -27,8 +36,10 @@ jenkins:
   disableRememberMe: false
   disabledAdministrativeMonitors:
   - "com.cloudbees.opscenter.client.cloud.MissingCloudImplMonitor"
+  - "hudson.util.DoubleLaunchChecker"
   labelAtoms:
   - name: "built-in"
+  - name: "openshift-agent"
   markupFormatter: "plainText"
   mode: NORMAL
   myViewsTabBar: "standard"
@@ -44,7 +55,14 @@ jenkins:
       freeSpaceThreshold: "1GiB"
       freeSpaceWarningThreshold: "2GiB"
   - "responseTime"
-  numExecutors: 0
+  nodes:
+  - permanent:
+      launcher: "inbound"
+      name: "openshift-agent"
+      numExecutors: 3
+      remoteFS: "/var/jenkins_home"
+      retentionStrategy: "always"
+  numExecutors: 3
   primaryView:
     all:
       name: "all"
@@ -76,7 +94,7 @@ beekeeper:
 license:
   certificate: |
     -----BEGIN CERTIFICATE-----
-    MIIRRTCCEC2gAwIBAgIGAY7hoonCMA0GCSqGSIb3DQEBBQUAMIICczERMA8GCisG
+    MIIRRTCCEC2gAwIBAgIGAY7+ltxhMA0GCSqGSIb3DQEBBQUAMIICczERMA8GCisG
     AQQBgql/AQETATMxMDAuBgorBgEEAYKpfwECEyA5ODlmMDcxYzBmNTg0ZmQ0MGQx
     MTdmYTgyNjk1YWI2NDEVMBMGCysGAQQBgql/AQsOEwR0cnVlMRUwEwYLKwYBBAGC
     qX8BCw0TBHRydWUxFTATBgsrBgEEAYKpfwELEBMEdHJ1ZTEVMBMGCysGAQQBgql/
@@ -90,7 +108,7 @@ license:
     CysGAQQBgql/AQsVEwR0cnVlMRMwEQYKKwYBBAGCqX8BAxMDMTAwMRUwEwYKKwYB
     BAGCqX8BDhMFMTAwMDAxFTATBgorBgEEAYKpfwEJEwVmYWxzZTERMA8GA1UEAxMI
     c21hcnR0ZWsxCTAHBgNVBAsTADEWMBQGCysGAQQBgql/AQsYEwVmYWxzZTAeFw0y
-    NDA0MTUxMTAxNDlaFw0yNDA0MTgxMzAxNDlaMIICmzERMA8GA1UEAwwIc21hcnR0
+    NDA0MjEwMTU4MDNaFw0yNDA0MjQwMzU4MDNaMIICmzERMA8GA1UEAwwIc21hcnR0
     ZWsxETAPBgNVBAsMCHNtYXJ0dGVrMREwDwYKKwYBBAGCqX8BAQwBMzEwMC4GCisG
     AQQBgql/AQIMIGQxZjM0YzYxZGU2ODI0NDc4MDYyZTc2ZTU0YjYxZTUzMTQwMgYK
     KwYBBAGCqX8BBgwkYmI5Y2ZlYjgtZDJiZS00OWRhLWJlMTUtOWI5NjVmNjcwNTFk
@@ -162,13 +180,13 @@ license:
     dUtKS3JjSDV2eE8wQ2dGeFhBTkNKZy9KUnhha2hVTzE0SjUKK2NhY0R2c0oyL1c1
     MGdpWGRlRVpsR3M0SFpadS9ibzJnRGF6T0dkOW93OFN1Nk54TmVkbm9MQ3JLL2ds
     Skw1MQp2OUZvelpvR0lwN0o4L2lCbzljUkI4aVYrVzRoYWRGUVNkeFkKLS0tLS1F
-    TkQgQ0VSVElGSUNBVEUtLS0tLQoKMA0GCSqGSIb3DQEBBQUAA4IBAQCdS3z7utRA
-    +JNbBeIrpg/SrYbYGxuNQWmFqb3AUWKW03LGqUGBLAoLlEFLH0EvyHKRgRPZRZtO
-    Zo1uHRxqjtN8wW9jAXqkeNVuBaZEE/sL6cBPQMcap5mBD6AxfmAAdcizqTRWceZ5
-    detIAG2W3zU0T0vgIpDKwrNwivSqNSh/gm25NSFFyZdLakusAZG4v+Vum9gKZFxY
-    ygyw0a6WtD9/vixj308WMHgaQHqdIgzaoMU5mhUugO2FVrl9DLB+14qw36X7m/Ra
-    gIz9N+jV/lG4KUgjtKHX/uElGg630CUIa2T49FazFv4dr424sMMlwyoYVC6qFDuZ
-    Y8DRvdjSQI+q
+    TkQgQ0VSVElGSUNBVEUtLS0tLQoKMA0GCSqGSIb3DQEBBQUAA4IBAQCKJgAEN843
+    lHrn2UjODRVWPFR7CkRpkprLaR11hR1CSvvQHi92QYL8uRa44B3//sDmkVg2Un5m
+    MW0JqUXHS6UGAZ0mAKpiCln0zE6fChxUIhzHTbws27HMVMOShehLHTni3Ql4/Fnp
+    bg9/ZbSJbphwTkJcCyf3ZrKekZcnk9JzvXbP8OCwkpyWpD7PmeH6OZaYjXCMt2rF
+    ZzaiMm/V3P1Y4sgWnaj1ObEgZ9/csTmrqd1rtIpi8ZwjiV4B03mLaO85xbrrpqBF
+    0h7ChIDOYkKYb/ebvLmtyH86xlbkxMirwENn2laq82Euw7qbA4FL+eHPjj/94U3A
+    4kyFdFgQTdKe
     -----END CERTIFICATE-----
   key: |
     -----BEGIN RSA PRIVATE KEY-----
@@ -274,6 +292,9 @@ security:
     sshHostKeyVerificationStrategy: "knownHostsFileVerificationStrategy"
   sSHD:
     port: -1
+  scriptApproval:
+    approvedScriptHashes:
+    - "SHA512:3f205299bef2fe3329258a42f2c60d332cc35ccb41a3ca0512d7869c6aff4561ff708c48123b4f7c3dec33ccca30d54fb8b9b51b5bc7070f96236d11a3f0bdcb"
 unclassified:
   buildDiscarders:
     configuredBuildDiscarders:
@@ -303,6 +324,7 @@ unclassified:
       $PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS:
 
       Check console output at $BUILD_URL to view the results.
+    defaultContentType: "text/plain"
     defaultSubject: "$PROJECT_NAME - Build # $BUILD_NUMBER - $BUILD_STATUS!"
     defaultTriggerIds:
     - "hudson.plugins.emailext.plugins.trigger.FailureTrigger"
@@ -324,6 +346,22 @@ unclassified:
     apiRateLimitChecker: ThrottleForNormalize
   gitHubPluginConfig:
     hookUrl: "https://oc.apps.ocp4.smartek.ae/controller/github-webhook/"
+  globalPluginConfiguration:
+    buildConfigListInterval: 300
+    buildListInterval: 300
+    configMapListInterval: 300
+    enabled: true
+    foldersEnabled: true
+    imageStreamListInterval: 300
+    maxConnections: 100
+    namespace: "arij-project"
+    secretListInterval: 300
+    server: "https://api.ocp4.smartek.ae:6443"
+    syncBuildConfigsAndBuilds: true
+    syncConfigMaps: true
+    syncImageStreams: true
+    syncSecrets: true
+    useClusterMode: true
   injectionConfig:
     allowUntrusted: false
     checkForBuildAgentErrors: false
@@ -340,6 +378,136 @@ unclassified:
     charset: "UTF-8"
     useSsl: false
     useTls: false
+  openShift:
+    clusterConfigs:
+    - credentialsId: "openshift-token"
+      defaultProject: "arij-project"
+      name: "openshift-cluster"
+      serverCertificateAuthority: |-
+        -----BEGIN CERTIFICATE-----
+        MIIDMjCCAhqgAwIBAgIIEeEWNOz5/ucwDQYJKoZIhvcNAQELBQAwNzESMBAGA1UE
+        CxMJb3BlbnNoaWZ0MSEwHwYDVQQDExhrdWJlLWFwaXNlcnZlci1sYi1zaWduZXIw
+        HhcNMjQwMjA2MTIxOTMyWhcNMzQwMjAzMTIxOTMyWjA3MRIwEAYDVQQLEwlvcGVu
+        c2hpZnQxITAfBgNVBAMTGGt1YmUtYXBpc2VydmVyLWxiLXNpZ25lcjCCASIwDQYJ
+        KoZIhvcNAQEBBQADggEPADCCAQoCggEBAMAjQdyCpQnrb9fvVvh2quqkH6U737j7
+        PFK2pFK3+ZORyVyDzAg586Ryb8D5CKzh2/whc5N4Jfnviz9D+MM0+8MZ302eD+AT
+        EgRwz3bx7rvlVPreNXSEbrEujQkv6mZVMtRvH9tD+10s9m/inOR43eYtXTp1tbkG
+        x6NzvZ37wg+jczyn3y+wLMuWAPgw0FQlSJCDEVR3I7ZKET6Ifg3TLAI43XyohQNd
+        y5fUK/7tIBm5uOY/WjyWBuYSF35bRXk/dBWLyEK0DPujlh08Oa4xm5DfSS5n2Tfr
+        LpDPuJOFZ0ZF8yJS8JStPVwIsDXTYsB3A73yewm4tt84zwEFQHxoZokCAwEAAaNC
+        MEAwDgYDVR0PAQH/BAQDAgKkMA8GA1UdEwEB/wQFMAMBAf8wHQYDVR0OBBYEFGha
+        0qMa09c0XpOP2zuuCytZASQ/MA0GCSqGSIb3DQEBCwUAA4IBAQBjdA8d6lE+Q0EH
+        AHzAOKHtRAIJNpvNhSkPWVf4SKMGidP70guZxCv2Q8t/tiLGXWYm75liYAbILzVr
+        s+rQsInrvHi3qqmKUG1KaYFci27jofXqJ0URMmJjyxQGsTbOvPhwa7AsHJvuKeTl
+        9XFoSSkMeuT51klfmQwM0a3XA4XgAvcWsBSWnAvPf6MdLZiZz2MygvPYs1aynQ6K
+        +J8XS5fk11r+YFbhWYdrUjYpZOEnWR8HcmgcY162IssLvkp2xB6p7HgYGp4A7HoT
+        dbvaLOhdBKWMhPuXYLtk2awX6WrcckhcDMCgVahuWC1ezBCdF9ovBz6Lq/z+e9yO
+        7/HH5XP0
+        -----END CERTIFICATE-----
+        -----BEGIN CERTIFICATE-----
+        MIIDQDCCAiigAwIBAgIIIpsR/5DQxlQwDQYJKoZIhvcNAQELBQAwPjESMBAGA1UE
+        CxMJb3BlbnNoaWZ0MSgwJgYDVQQDEx9rdWJlLWFwaXNlcnZlci1sb2NhbGhvc3Qt
+        c2lnbmVyMB4XDTI0MDIwNjEyMTkzMVoXDTM0MDIwMzEyMTkzMVowPjESMBAGA1UE
+        CxMJb3BlbnNoaWZ0MSgwJgYDVQQDEx9rdWJlLWFwaXNlcnZlci1sb2NhbGhvc3Qt
+        c2lnbmVyMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAp6ItUn5STs36
+        weFZLbGkFW7VLHXpR6ljaGjCQQAQIo0NjFmxt65fL7VM71DuolaB/uZGInaVFyfW
+        dOB/bSQvklV77IUCLoO1uxQ+tgPaFAA7BNVNiJ2SBQAfvp5+r+UX/2wv1VAqLdki
+        xxhNbfRK9CvQHWrRXFFM6z/msReAVCuP+85YUo2m5KG53O/kvA/XrRApMBwOACBQ
+        XKEaYgVJaR/LlZQs1vSCLmiBozKTshBE0lzxG9VrOTs32I2afiZR8A/ZkgJwJY0A
+        7et1l3lL2nqMS2dY9OP3xPLyNW4r3p4Ernw+Emb0A+KLxBO35gtv8MhtiN3tSQpH
+        pp0Ns5pVuQIDAQABo0IwQDAOBgNVHQ8BAf8EBAMCAqQwDwYDVR0TAQH/BAUwAwEB
+        /zAdBgNVHQ4EFgQUDYW11TOelF7aqCWhP1eTgZPB3ikwDQYJKoZIhvcNAQELBQAD
+        ggEBAEtVtb2mWBvgHyUQIsiuvJ7XsGVx+oSiH+t4UFUNrM7iFm8KUzhRiuQ85ad2
+        NsaOe+qcB3cFAivOoKVNaGYJ2eKYgcPdWpE5AOKNc5U4OY990yf3TCwobeCvAzNj
+        twcxnHcpP5uQgLt70lS9N+bvwqd+02DEapnzgV3tOj20OsBTciQKuJrC85kc//4i
+        EwQ8lm16bcrmz2EcI5kxDTqq2CbkCjV4uyoOR+x1rBOAeLcXKH7vFOJLttutGIBx
+        /yJ96vSA5qqD7k7AYylEIjPMHOKnnnPk1RLteFPRUC0ZMjd3dx5Uu2YfOCt42xqP
+        bJYY9jphe0BrWnYu7w/cT3pbrkU=
+        -----END CERTIFICATE-----
+        -----BEGIN CERTIFICATE-----
+        MIIDTDCCAjSgAwIBAgIIHZsXS54fM4YwDQYJKoZIhvcNAQELBQAwRDESMBAGA1UE
+        CxMJb3BlbnNoaWZ0MS4wLAYDVQQDEyVrdWJlLWFwaXNlcnZlci1zZXJ2aWNlLW5l
+        dHdvcmstc2lnbmVyMB4XDTI0MDIwNjEyMTkzMloXDTM0MDIwMzEyMTkzMlowRDES
+        MBAGA1UECxMJb3BlbnNoaWZ0MS4wLAYDVQQDEyVrdWJlLWFwaXNlcnZlci1zZXJ2
+        aWNlLW5ldHdvcmstc2lnbmVyMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKC
+        AQEA7joFC1HuXg1OopyTOog6DlZ4EjIQZG0xucJQq/I/8wYW2FqO9vgFlmp5Dl81
+        0BElbOcOrsqZZ8ESzjMgUHIg6D+OdWXY+5zKoHCO1Wy4khxIag3lgqrud6MPelFI
+        owz7xIeAnwIJsCCIQBA1aoNWxV6L4cu1PmqFMbDoYELDRNATp3TXOOA2IXZ7Y81t
+        gx3EJnxXgXQ1kg7oeux8yVjPdCXQVvW2K6yyT8SjiZip9SvE1fcxP6kBbfH7ImPv
+        z7I8wZcn/zkqb1s6oHQdh/8MQHSNqBppZshvEgu/A15C1kPGaNPqPAvykXfcUu6n
+        fbJ7hLbxfPMye3hO3SOdjbBH1QIDAQABo0IwQDAOBgNVHQ8BAf8EBAMCAqQwDwYD
+        VR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUjn9zhtp0G2Mxztc2GqToNEfVlDIwDQYJ
+        KoZIhvcNAQELBQADggEBAOM3cmZqRY4WYqFEwU+MPlAEA9z9SZqdGgHEH1GG3DjG
+        wCh15QRG4iEhB2f2FCzRE2eJJwEwcME62QDJS44d/JkcvQAXjlzPmgZFE5vOhk2G
+        RqraOS1DRVz274OD8jbi1nB6VeQ3YUBJdVyoWSvBW6V/ZcZ9CkEY/erTtaVT2Z77
+        H1xsGByX1g+80/nvYJhyrbgyCsCgmzST7PxbtUrVEIZRBtE3PcAB/s0T5eR+Qyhi
+        z4ZEKDCkbkuxvTun4cweFHGEIs/ctse3wzcACpmgbWAo/1QHyzl+23oql27euu2Q
+        A95MSVV07/WRHCLPo5WJDkeil5S5WIrBgqF/ZAl1pBI=
+        -----END CERTIFICATE-----
+        -----BEGIN CERTIFICATE-----
+        MIIDlzCCAn+gAwIBAgIIZWuIznIsft8wDQYJKoZIhvcNAQELBQAwWTFXMFUGA1UE
+        AwxOb3BlbnNoaWZ0LWt1YmUtYXBpc2VydmVyLW9wZXJhdG9yX2xvY2FsaG9zdC1y
+        ZWNvdmVyeS1zZXJ2aW5nLXNpZ25lckAxNzA3MjI2ODI3MB4XDTI0MDIwNjEzNDAy
+        NloXDTM0MDIwMzEzNDAyN1owWTFXMFUGA1UEAwxOb3BlbnNoaWZ0LWt1YmUtYXBp
+        c2VydmVyLW9wZXJhdG9yX2xvY2FsaG9zdC1yZWNvdmVyeS1zZXJ2aW5nLXNpZ25l
+        ckAxNzA3MjI2ODI3MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0klK
+        LUT1LevgKZukd+2bOcgMexeE3EAq4phnQvl9H4QL9gygnxG1HIb4484rrUY+Ktlt
+        V1GeTYzC4YJWFEJOyoXat6Nn6x291rg22WvbTi/3WVc7v3embZIkqKBSxvxrnNd4
+        3cYMrL1mnobfx4LyuV2/tCnViRPnrNWiPIH8Ld+5QWNvdll2g83TRU2xJ+APanQx
+        VlGLRXOFJktSg3ATDOqNBzEfZ/D5WHEIk+l13NUD2UAsIxYhEGnVhIUGJ2IS/fNi
+        9JvV+Y2Xi6ftJI6jU7nVl7YM1+UsfQ1CAqsdtakFuMFC8q+3zHSRixycGqA8k2uN
+        EeTgsdPa4Vy2et7pDwIDAQABo2MwYTAOBgNVHQ8BAf8EBAMCAqQwDwYDVR0TAQH/
+        BAUwAwEB/zAdBgNVHQ4EFgQUArWv9/TxofKMtNzG0eCbdug4TaIwHwYDVR0jBBgw
+        FoAUArWv9/TxofKMtNzG0eCbdug4TaIwDQYJKoZIhvcNAQELBQADggEBABKwivvy
+        P34WkPkGnM6O+Bst568FKV0Df9ipgqvgEpnAFdwNrazKQkX4ad49Uxqb65OyIwuC
+        DIIBC0QdO4XyYQ9PghtlxoIFya4dP+iPYKNilA9Zty6qoKR/883FyWQAPtBMcmro
+        61vbIaUI5F9veRuZquz7fF/53PoYg/RZ/8pk3UiehEvhGvVvW61hewvxZssacsw+
+        Oj9adALH2pSZY6xcegRFMl/kJqZxHwQyvBnYOexCxNddXNKyd/t0wUalT172mUbJ
+        dxiuWrffCm/KcDsKPaA431GXBpifupRok+TRYjXmCLzRiBdcaBo81OMsNMj0TpjY
+        Wld4SHXDRmrFTNY=
+        -----END CERTIFICATE-----
+        -----BEGIN CERTIFICATE-----
+        MIIDYzCCAkugAwIBAgIIRu2ptM+CZAUwDQYJKoZIhvcNAQELBQAwJjEkMCIGA1UE
+        AwwbaW5ncmVzcy1vcGVyYXRvckAxNzA3MjI3MDQ2MB4XDTI0MDIwNjEzNDQxMloX
+        DTI2MDIwNTEzNDQxM1owITEfMB0GA1UEAwwWKi5hcHBzLm9jcDQuc21hcnRlay5h
+        ZTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAN2ooFzUjCMPjB6l5b0C
+        MqMXQFLjX8qnTokw8/UF16AaQX253sdjsYOV2qlkHmgZtNWYK4m1jpTNVtQUuVwi
+        1TtKf+Zz92TWtT3YEamcLU2KCusdRcSjTMUWmUWbqZCGhMQa9otHjZH8V58M5Gv6
+        OxjaG9E9R+NZhQxVCoR0fk5DK5dn5m+9Fg2eldaou2s3w4gjWhocWiXyLNaCe4gM
+        wyHdsJPSCCTLDQEP3heFUrzlGLRSNo4m5/Xc+X8SKxLD1R580H0M7hbuBQfp1Cxg
+        Uol5+6szM3CWBtJ5yq3L/7rFXaCsVRwglAa1TjnXQNb+2RCqUm1PE+83m/GoBdH0
+        JtcCAwEAAaOBmTCBljAOBgNVHQ8BAf8EBAMCBaAwEwYDVR0lBAwwCgYIKwYBBQUH
+        AwEwDAYDVR0TAQH/BAIwADAdBgNVHQ4EFgQUpQbN4he7vDokE+6qVpMHJxVGKxow
+        HwYDVR0jBBgwFoAUPJPyhl6fAzb5R1dOZe0+35wlfAAwIQYDVR0RBBowGIIWKi5h
+        cHBzLm9jcDQuc21hcnRlay5hZTANBgkqhkiG9w0BAQsFAAOCAQEAnz/KNqNupHLg
+        ZwEu9HiD6GEUyvIkx6kYo/DumVCw3HR9f9e82Y4gO5FnbBa5C2AFO5fh5nT2UG+r
+        t/3unuS8CZBqzpuw7HgvYzU3i6S3tvVlcyJZTtb88GVL6R8sU5m18fmPoWnA1Y39
+        9ZANMcBpJLTcbwu+rtHy3VMPdb/qphEMynFJKsxD732GlQ0zI6oVLmfhBV+65zfz
+        VeZWVgEGzpghOFzdR4COD94n5OCuPW5bTQ5lAmKcmxMbp9VHEyDpQLj1Wtss11so
+        F9ymdWwW60D8Dy5TKGE4a4/NoeMQ8nylT9+7kYdEt8ZWGxaLYm33vnWvtCn8+9VR
+        QR9ybdRmkQ==
+        -----END CERTIFICATE-----
+        -----BEGIN CERTIFICATE-----
+        MIIDDDCCAfSgAwIBAgIBATANBgkqhkiG9w0BAQsFADAmMSQwIgYDVQQDDBtpbmdy
+        ZXNzLW9wZXJhdG9yQDE3MDcyMjcwNDYwHhcNMjQwMjA2MTM0NDExWhcNMjYwMjA1
+        MTM0NDEyWjAmMSQwIgYDVQQDDBtpbmdyZXNzLW9wZXJhdG9yQDE3MDcyMjcwNDYw
+        ggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDfKWw6rNXo5KySGSQjpq6O
+        DRuO/eaDLL8EafTVBq/FWlVoer20AOeqS3r773BP6C+0p0Jnw2WceReCeIHLJFnk
+        U3nO6SYXvK+uL4fVx250bdUyWSQ5X2CaTFZYZrjY9NIUjya4XOkOXMs82grn7kgR
+        UpfH+F4ir6sAFLQepXbMA76AhuI2FyXTuJr6Dx9jnNhENNGNJCYFWsQCkwhc0jPK
+        0xapQRlNZSNevfVzB106s5PfZ1y5/V8N+nM4DpYDPncMwQwvLVCB1Y+lj7/0lC44
+        u3Gbn6kMBRD/BfM1zYNhlgts/BA+IofEZDwwkO0yOennGTOUh4PImHSx8LYTwoRn
+        AgMBAAGjRTBDMA4GA1UdDwEB/wQEAwICpDASBgNVHRMBAf8ECDAGAQH/AgEAMB0G
+        A1UdDgQWBBQ8k/KGXp8DNvlHV05l7T7fnCV8ADANBgkqhkiG9w0BAQsFAAOCAQEA
+        F7vwZMZ73DlgZm8LTVvdGS1Fjq7QekwsFdfROcJlyCbhGFoS1+Ca1hXNCawPKRI5
+        0keqWJ6mFx4BoceRJ4AxxAgAuLYm6O7eHd45moBhsXvEUrivNDBZU1kZUa6KMi3D
+        UJUeHY/q6mrOtLBzqGrcDZiKZ9EE99nzVeWOpdoor5uy7A6OcH1C5eRrLgH0qRc/
+        ZH1BErsvyCEU/RgmsWJ1zqPUnm23iP9M6l015ftfG4XqZYJLb9b61luEYunEpe+o
+        0rFAKksRQ3QydvQ+0fiESkpe88WH7szMCLshNCjoJB5YhK68IKqfIpVApvWxz+8q
+        LzEHEAiME7yU9lSrp5X4FA==
+        -----END CERTIFICATE-----
+      serverUrl: "https://api.ocp4.smartek.ae:6443"
+      skipTlsVerify: true
   operationsCenterRootAction:
     connectionDetails: "----- BEGIN CONNECTION DETAILS -----\nH4sIAAAAAAAA/x2NQQ7CIBAA/8JZoDVSpd/oC9hl0eKmNAvVg/HvEq+TmcxH3SVsTc0KwGMiuOl4\r\
       \nBtIXH4MGGp324CeXpuvgxqhOao3dHTSWrUlhJunsEO7w0do+W4u5oAmyZr1LyYTN1Bca5KM2EsMF\r\
@@ -362,10 +530,34 @@ unclassified:
 tool:
   cloudbeesPluginUsageAnalyzer:
     enabled: true
+  dockerTool:
+    installations:
+    - name: "docker"
+      properties:
+      - installSource:
+          installers:
+          - fromDocker:
+              version: "17.09.1-ce"
   git:
     installations:
     - home: "git"
       name: "Default"
+  maven:
+    installations:
+    - name: "maven3"
+      properties:
+      - installSource:
+          installers:
+          - maven:
+              id: "3.9.6"
   mavenGlobalConfig:
     globalSettingsProvider: "standard"
     settingsProvider: "standard"
+  openshift:
+    installations:
+    - name: "oc"
+      properties:
+      - installSource:
+          installers:
+          - zip:
+              url: "https://mirror.openshift.com/pub/openshift-v4/clients/ocp/latest/openshift-client-linux-4.15.9.tar.gz"

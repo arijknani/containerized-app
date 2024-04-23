@@ -1,3 +1,15 @@
+credentials:
+  system:
+    domainCredentials:
+    - credentials:
+      - string:
+          id: "openshift-jenkins"
+          scope: GLOBAL
+          secret: "{AQAAABAAAAUAvj250bD+dRYLpiFrveg+S14WEhPfslbyps4ZXqnClcDnHArrT+zdzlmaxHZw25bqWEPPH5R+1BD0EB5XhJqjxzt73tV6cbxICe5QTXOtVNSEzDJ/s/us0EyZ+bC2asx+8i9jWndEFvaxNuA9tEPuwMAckbmokJsnv8bq+mejfsjMRtPL5Jb7dlX9eQ9WR8VEoq6ulJjdVQ8lnXLoMcjiFQP2L7OlwIrCTiFT5JpD6nzkp98Pu5gjNyIScpBhAQSYqpdFbCVBP7OhBO5jtRSg8JqxnADIdTniXYkFrbGtL7v4yPWuRIdgsGNNacxkazwGlloWYYDpQPHrBLdHPoi0fEQ0xWNeiIS49FYhoBcgXPCEiJtyThFI/xoeSudcGYs70aAFy7YDH0+SBaSdnhs05jTTV3qMMitW+plfx8iSGxH8wh+u92DoxyuZlpMd8xuBfkAGTXbPHveXSaKM9ABeIcMOAVIAzsTNqx+m2SRxJoIXcMbCJo6AZ26rgRPOCmCHYbRaEivbbfdvvZAmmFL52mrAN0leFMZy3i7Z5QNaPb3RKwbA36b8ywLsUmmesMV5G3RpJOkC3udfUvISwJ6tPsUo3IgIIFrpRYg5bqmfI90wx4bna37CXUa9SfG8MY7ou4dFBI4O2oxfwqmes+S+iplOQ2ZzSF/d7H3KhQwKqP21SbMVNmVD06Vsuq4KWO5R/LFOzCxZO39VlFLkZKY0Q2R5YhLADZx6rx1XBPTsxBXPCtQrgMqJxjjyzMH5zRK8cmpvI1ggj6OXVcTyaly9a2BDbI0rnZS+glqOYxq9cRCO2erhsGYo60mwEUFDL4pCDXEmOpv9sFVVg1L6t01+XcI2ybXUar0gSJWenqeSsCQRJdz/dk+Vy+gdUTGao4dyWR6rOSL/49c4y4O83b/rITXYAr1tKM3y8DGNc9u7DcJwBzoylf1pRWvBnMAbpdn2jfeHFHyeB4BQqgUwvbSy0iQhdkN1CTqjCDQZU1tCNzfBrdHBdajDr5GBf7yUFP1ZvX5wP/avlRuLaYVd9SmFYau6g8uRWTkEb0zSz4+mQccKacM/EuJrRNfqT5NUaQAoQ9IGqlA7EFSWyz5jer8znpWV0kxhER40H9PFA7Ur5YFtwqeYr6kISYS9XUiTLPWkWBsEJARAcd2xcTT8ewB48qlmSJ/Z8IT7IN0O9enzQ6kb0XSscjXnx0wy714o+VaRaUUYg4oEct4ITlBpvRg5ofwpXo5yNkhMqfvG0BhsGtJq3HTal4Afa9iOl+S24qJgjmVHjZ9xmoYLgv1rjgJYcOR3CHJDZ6fOLdlCXyGZo2z9YqVS0ul8w44L3Usjkwuk+HHEsuyoJwt5YHfvn0ysrBsXIg4nC+W+9c9OQWzRXoCVNL8kwdLtc/XcF+czXtDhFTkraki97SrBQjDEicaLQZfEH82PyoN5Lyz5+DJLanSVGpKhI2A2pEScqR2X0RUJRrVA7tJzesQCk9xacrLCFpkxFfI48T+W6rfWOWx0Y+VWsZqNai9EaHtzC905/E1s0DekWu5APX7N150IJRTyAylxRHBKJ5ZZD075VViifmN/qii58fp7Jw/UyDd7G2FUqO4PYdumLkQj0ZG7m0w8eqybQS/bNG7Wur1CPpFn8b+tIeoWwd1Hx+FaZTFmnnL2+YbDu6e/TuSJ+UdSzDH3EQi4zhiz0OmttBeD6CXLGZx75+DzuQpTUdwDWvNeMw2t}"
+      - string:
+          id: "jenkins"
+          scope: GLOBAL
+          secret: "{AQAAABAAAAGww74fNnZxHsU2zcENCKCqkgIZZ2X3L5cx69ytQWiT55ia3Zpi38yNog3+W+yUZnvx/9iUSykf8zT02mOnBzAk0XVyrrCOFTic6R4OnG1IxqABQAwOB50BATl0oyYc6Hzi2bjNCUXJe8L1osU6gJ7YNTgLtq9PEapO2U5YV5KIN7BkvXENcsG88Xnf7PagFyugLzHzC+DTMCda4z51+0BZXCiiNiOOak5GA95IOo0DJlCi+0knr2M3gdPahO4SG7UC6SezUK9C+hcVK+2tWbyWRJiPVMXTO+rr/qu/U9AOgtvUg23y5gyo5nw8N3vw/tFREkpaFEp34D5CdKNKKEI678aXeDjuicH1Evm9jlunppfHLOqRDjYHTaslJ9/3wU5bs5E9OXlzeNj2QQPTxJf9q9b+J+6CLJcuIlrrrMrCBQOLh1sIWF3nRKg9FgjQ0ENyBy0CzH/di8C2/YINywVvlg1U4l3L7HU/mF/Yzpn/FSGPoGZECeoBN73ywxpPOYAdJNMHyIE3FkFGe/RMAdWbYAGdPnXTpwLWCWuEtT0HynBLcnh4/YTzA5ZCYnH/e/2jLW1urZil8OE0aJVaitphtg==}"
 jenkins:
   agentProtocols:
   - "Diagnostic-Ping"
@@ -7,14 +19,26 @@ jenkins:
   authorizationStrategy:
     loggedInUsersCanDoAnything:
       allowAnonymousRead: false
+  clouds:
+  - kubernetes:
+      containerCap: 10
+      containerCapStr: "10"
+      credentialsId: "jenkins"
+      name: "kubernetes"
+      namespace: "arij-project"
+      serverUrl: "https://api.ocp4.smartek.ae:6443"
+      skipTlsVerify: true
+      webSocket: true
   crumbIssuer:
     standard:
       excludeClientIPFromCrumb: false
   disableRememberMe: false
   labelAtoms:
   - name: "built-in"
+  - name: "ghfghfghfghfghgfhfg"
+  labelString: "ghfghfghfghfghgfhfg"
   markupFormatter: "plainText"
-  mode: NORMAL
+  mode: EXCLUSIVE
   myViewsTabBar: "standard"
   noUsageStatistics: true
   nodeMonitors:
@@ -28,7 +52,7 @@ jenkins:
       freeSpaceThreshold: "1GiB"
       freeSpaceWarningThreshold: "2GiB"
   - "responseTime"
-  numExecutors: 2
+  numExecutors: 0
   primaryView:
     masters:
       columns:
