@@ -10,6 +10,7 @@ pipeline {
                         insecure: true, 
                         credentialsId: 'openshift-cred']) { 
                         sh'oc apply -f app-secrets.yaml'
+                        sh'oc apply -f app-configmap.yaml'
                         
                     }
                     
