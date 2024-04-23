@@ -10,7 +10,9 @@ pipeline {
                         insecure: true, 
                         credentialsId: 'openshift-cred']) { 
                         sh 'oc version' 
-                        sh 'oc apply -f ${WORKSPACE}/manifests/buildConfig.yaml'
+                        sh 'oc delete secret app-secrets '
+                        sh 'oc delete configmap app-configmap-docker '
+                        sh 'oc delete all -l app=springboot-docker'
                     }
                     
                 }
