@@ -9,14 +9,6 @@ data:
       - "jenkins.yaml"
     plugins:
       - "plugins.yaml"
-    rbac:
-      - "rbac.yaml"
-    items:
-      - "items.yaml"
-  items.yaml: |
-    removeStrategy:
-      rbac: SYNC
-      items: NONE
   jenkins.yaml: |
     credentials:
       system:
@@ -343,8 +335,8 @@ data:
         reloadAlwaysOnRestart: false
         skipNewVersions: false
       cascItemsConfiguration:
-        variableInterpolationEnabledForAdmin: true
-        variableInterpolationEnabledForNonAdmin: true
+        variableInterpolationEnabledForAdmin: false
+        variableInterpolationEnabledForNonAdmin: false
       experimentalPlugins:
         enabled: false
       fingerprints:
@@ -487,9 +479,6 @@ data:
     - id: workflow-durable-task-step
     - id: workflow-step-api
     - id: workflow-support
-  rbac.yaml: |
-    removeStrategy:
-      rbac: SYNC
 kind: ConfigMap
 metadata:
   name: oc-casc
