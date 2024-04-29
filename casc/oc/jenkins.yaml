@@ -33,6 +33,8 @@ jenkins:
     standard:
       excludeClientIPFromCrumb: false
   disableRememberMe: false
+  disabledAdministrativeMonitors:
+  - "hudson.util.DoubleLaunchChecker"
   labelAtoms:
   - name: "built-in"
   - name: "ghfghfghfghfghgfhfg"
@@ -52,6 +54,8 @@ jenkins:
       freeSpaceThreshold: "1GiB"
       freeSpaceWarningThreshold: "2GiB"
   - "responseTime"
+  - ? ''
+    : ignored: true
   numExecutors: 0
   primaryView:
     masters:
@@ -129,6 +133,7 @@ beekeeper:
     autoDowngradePlugins: false
     autoUpgradePlugins: true
 cloudBeesCasCServer:
+  defaultBundle: "bundle-location/controller-casc-bundle"
   disableRemoteValidation: false
   visibility: false
 controllerLifecycleNotifications:
@@ -205,6 +210,8 @@ license:
 masterprovisioning:
   dockerImageDefinitionConfiguration:
     images:
+    - imageTag: "cloudbees/cloudbees-core-mm:2.440.3.7"
+      name: "CloudBees CI - Managed Controller - 2.440.3.7"
     - imageTag: "cloudbees/cloudbees-core-mm:2.440.2.1"
       name: "CloudBees CI - Managed Controller - 2.440.2.1"
   kubernetes:
@@ -215,10 +222,10 @@ masterprovisioning:
       serviceExposure: "openShiftRoute"
     cpus: "1.0"
     disk: 50
-    globalJavaOptions: "-Dorg.csanchez.jenkins.plugins.kubernetes.pipeline.PodTemplateStepExecution.defaultImage=cloudbees/cloudbees-core-agent:2.440.2.1\
+    globalJavaOptions: "-Dorg.csanchez.jenkins.plugins.kubernetes.pipeline.PodTemplateStepExecution.defaultImage=cloudbees/cloudbees-core-agent:2.440.3.7\
       \ -Dcom.cloudbees.jenkins.plugins.kube.ServiceAccountFilter.defaultServiceAccount=jenkins-agents\
       \ -Dcom.cloudbees.networking.useSubdomain=false -Dcom.cloudbees.networking.protocol=\"\
-      https\" -Dcom.cloudbees.networking.hostname=\"oc.apps.ocp4.smartek.ae\" -Dcom.cloudbees.networking.port=443\
+      http\" -Dcom.cloudbees.networking.hostname= -Dcom.cloudbees.networking.port=80\
       \ -Dcom.cloudbees.networking.operationsCenterName=\"cjoc\""
     javaOptions: "-XshowSettings:vm -XX:+AlwaysPreTouch -XX:+DisableExplicitGC -XX:+ParallelRefProcEnabled\
       \ -XX:+UseStringDeduplication -Dhudson.slaves.NodeProvisioner.initialDelay=0"
@@ -313,6 +320,11 @@ unclassified:
     - "jobBuildDiscarder"
   bundleStorageService:
     activated: false
+    bundles:
+    - name: "bundle-location"
+      retriever:
+        localFolderRetriever:
+          localFolder: "/var/jenkins_config/"
     checkOutTimeout: 600
     pollingPeriod: 120
     purgeOnDeactivation: false
@@ -322,6 +334,12 @@ unclassified:
     rejectWarnings: false
     reloadAlwaysOnRestart: false
     skipNewVersions: false
+  cascAutoControllerProvisioning:
+    duration: 60
+    fireAndForget: true
+    initialDelay: 15
+    provisionControllerOnCreation: false
+    timeout: 600
   cascItemsConfiguration:
     variableInterpolationEnabledForAdmin: false
     variableInterpolationEnabledForNonAdmin: false
