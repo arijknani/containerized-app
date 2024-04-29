@@ -9,6 +9,7 @@ data:
       - "jenkins.yaml"
     plugins:
       - "plugins.yaml"
+  items.yaml: |
   jenkins.yaml: |
     credentials:
       system:
