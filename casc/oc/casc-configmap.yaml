@@ -12,7 +12,7 @@ data:
     plugins:
       - "plugins.yaml"
   items.yaml: |
-     removeStrategy:
+removeStrategy:
   rbac: SYNC
   items: NONE
 items:
