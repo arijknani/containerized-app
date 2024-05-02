@@ -19,7 +19,11 @@ plugins:
 - id: cloudbees-analytics
 - id: cloudbees-assurance
 - id: cloudbees-casc-client
+- id: cloudbees-casc-it
 - id: cloudbees-casc-items-api
+- id: cloudbees-casc-items-commons
+- id: cloudbees-casc-items-controller
+- id: cloudbees-casc-shared
 - id: cloudbees-folder
 - id: cloudbees-folders-plus
 - id: cloudbees-github-reporting
