@@ -1,0 +1,4 @@
+OperationsCenter:
+  CasC:
+    Enabled: true
+    ConfigMapName: oc-casc
