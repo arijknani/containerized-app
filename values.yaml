@@ -1,0 +1,12 @@
+OperationsCenter:
+  CasC:
+    Enabled: true
+    ConfigMapName: oc-casc
+    Retriever:
+      Enabled: true 
+      scmRepo: "https://github.com/arijknani/containerized-app" 
+      scmBundlePath: "CasC/oc" 
+      scmBranch: "CasC"
+      secrets:
+        scmUsername: scm_username
+        scmPassword: scm_password
