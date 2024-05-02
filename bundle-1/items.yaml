@@ -1,5 +1,6 @@
-rbac: SYNC
-items: NONE
+removeStrategy:
+  rbac: SYNC
+  items: NONE
 items:
 - kind: pipeline
   name: my-app
