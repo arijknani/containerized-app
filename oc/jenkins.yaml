@@ -137,10 +137,6 @@ beekeeper:
   upgrades:
     autoDowngradePlugins: false
     autoUpgradePlugins: true
-cloudBeesCasCServer:
-  defaultBundle: "bundle-location/controller-casc-bundle"
-  disableRemoteValidation: false
-  visibility: false
 controllerLifecycleNotifications:
   authenticator: "none"
   enabled: false
