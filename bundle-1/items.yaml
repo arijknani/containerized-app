@@ -1,5 +1,5 @@
-  rbac: SYNC
-  items: NONE
+rbac: SYNC
+items: NONE
 items:
 - kind: pipeline
   name: my-app
