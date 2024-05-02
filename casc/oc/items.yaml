@@ -3,8 +3,6 @@ removeStrategy:
   items: NONE
 items:
 - kind: managedController
-<<<<<<< HEAD
-=======
   name: casc-controller
   configuration:
     kubernetes:
@@ -43,7 +41,6 @@ items:
   - sharedConfigurationOptOut:
       optOut: false
 - kind: managedController
->>>>>>> d2c430db46839db4833d638ee44b8870566da498
   name: controller
   configuration:
     kubernetes:
