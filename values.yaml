@@ -1,4 +1,8 @@
 OperationsCenter:
+  HostName: 'oc.apps.ocp4.smartek.ae'
+  Route:
+    tls:
+      Enable: true
   CasC:
     Enabled: true
     ConfigMapName: oc-casc

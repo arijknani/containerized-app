@@ -5,11 +5,16 @@ credentials:
       - string:
           id: "openshift-jenkins"
           scope: GLOBAL
-          secret: "{AQAAABAAAAUAvj250bD+dRYLpiFrveg+S14WEhPfslbyps4ZXqnClcDnHArrT+zdzlmaxHZw25bqWEPPH5R+1BD0EB5XhJqjxzt73tV6cbxICe5QTXOtVNSEzDJ/s/us0EyZ+bC2asx+8i9jWndEFvaxNuA9tEPuwMAckbmokJsnv8bq+mejfsjMRtPL5Jb7dlX9eQ9WR8VEoq6ulJjdVQ8lnXLoMcjiFQP2L7OlwIrCTiFT5JpD6nzkp98Pu5gjNyIScpBhAQSYqpdFbCVBP7OhBO5jtRSg8JqxnADIdTniXYkFrbGtL7v4yPWuRIdgsGNNacxkazwGlloWYYDpQPHrBLdHPoi0fEQ0xWNeiIS49FYhoBcgXPCEiJtyThFI/xoeSudcGYs70aAFy7YDH0+SBaSdnhs05jTTV3qMMitW+plfx8iSGxH8wh+u92DoxyuZlpMd8xuBfkAGTXbPHveXSaKM9ABeIcMOAVIAzsTNqx+m2SRxJoIXcMbCJo6AZ26rgRPOCmCHYbRaEivbbfdvvZAmmFL52mrAN0leFMZy3i7Z5QNaPb3RKwbA36b8ywLsUmmesMV5G3RpJOkC3udfUvISwJ6tPsUo3IgIIFrpRYg5bqmfI90wx4bna37CXUa9SfG8MY7ou4dFBI4O2oxfwqmes+S+iplOQ2ZzSF/d7H3KhQwKqP21SbMVNmVD06Vsuq4KWO5R/LFOzCxZO39VlFLkZKY0Q2R5YhLADZx6rx1XBPTsxBXPCtQrgMqJxjjyzMH5zRK8cmpvI1ggj6OXVcTyaly9a2BDbI0rnZS+glqOYxq9cRCO2erhsGYo60mwEUFDL4pCDXEmOpv9sFVVg1L6t01+XcI2ybXUar0gSJWenqeSsCQRJdz/dk+Vy+gdUTGao4dyWR6rOSL/49c4y4O83b/rITXYAr1tKM3y8DGNc9u7DcJwBzoylf1pRWvBnMAbpdn2jfeHFHyeB4BQqgUwvbSy0iQhdkN1CTqjCDQZU1tCNzfBrdHBdajDr5GBf7yUFP1ZvX5wP/avlRuLaYVd9SmFYau6g8uRWTkEb0zSz4+mQccKacM/EuJrRNfqT5NUaQAoQ9IGqlA7EFSWyz5jer8znpWV0kxhER40H9PFA7Ur5YFtwqeYr6kISYS9XUiTLPWkWBsEJARAcd2xcTT8ewB48qlmSJ/Z8IT7IN0O9enzQ6kb0XSscjXnx0wy714o+VaRaUUYg4oEct4ITlBpvRg5ofwpXo5yNkhMqfvG0BhsGtJq3HTal4Afa9iOl+S24qJgjmVHjZ9xmoYLgv1rjgJYcOR3CHJDZ6fOLdlCXyGZo2z9YqVS0ul8w44L3Usjkwuk+HHEsuyoJwt5YHfvn0ysrBsXIg4nC+W+9c9OQWzRXoCVNL8kwdLtc/XcF+czXtDhFTkraki97SrBQjDEicaLQZfEH82PyoN5Lyz5+DJLanSVGpKhI2A2pEScqR2X0RUJRrVA7tJzesQCk9xacrLCFpkxFfI48T+W6rfWOWx0Y+VWsZqNai9EaHtzC905/E1s0DekWu5APX7N150IJRTyAylxRHBKJ5ZZD075VViifmN/qii58fp7Jw/UyDd7G2FUqO4PYdumLkQj0ZG7m0w8eqybQS/bNG7Wur1CPpFn8b+tIeoWwd1Hx+FaZTFmnnL2+YbDu6e/TuSJ+UdSzDH3EQi4zhiz0OmttBeD6CXLGZx75+DzuQpTUdwDWvNeMw2t}"
+          secret: "{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}"
       - string:
           id: "jenkins"
           scope: GLOBAL
-          secret: "{AQAAABAAAAGww74fNnZxHsU2zcENCKCqkgIZZ2X3L5cx69ytQWiT55ia3Zpi38yNog3+W+yUZnvx/9iUSykf8zT02mOnBzAk0XVyrrCOFTic6R4OnG1IxqABQAwOB50BATl0oyYc6Hzi2bjNCUXJe8L1osU6gJ7YNTgLtq9PEapO2U5YV5KIN7BkvXENcsG88Xnf7PagFyugLzHzC+DTMCda4z51+0BZXCiiNiOOak5GA95IOo0DJlCi+0knr2M3gdPahO4SG7UC6SezUK9C+hcVK+2tWbyWRJiPVMXTO+rr/qu/U9AOgtvUg23y5gyo5nw8N3vw/tFREkpaFEp34D5CdKNKKEI678aXeDjuicH1Evm9jlunppfHLOqRDjYHTaslJ9/3wU5bs5E9OXlzeNj2QQPTxJf9q9b+J+6CLJcuIlrrrMrCBQOLh1sIWF3nRKg9FgjQ0ENyBy0CzH/di8C2/YINywVvlg1U4l3L7HU/mF/Yzpn/FSGPoGZECeoBN73ywxpPOYAdJNMHyIE3FkFGe/RMAdWbYAGdPnXTpwLWCWuEtT0HynBLcnh4/YTzA5ZCYnH/e/2jLW1urZil8OE0aJVaitphtg==}"
+          secret: "{AQAAABAAAAJwnBCbbuedvZyU0mMpUwn1XeityuPVNrZUBciz+wN/+CbBrwUt3UFDvZ2ReICQPOZovlLjTf54mvJwvXBniONLc/uuawk+j9AXjnAMkEdoDZub7rdxMZFQ1LbR5t1lBcltA3lfQJf/v4hUVTSI1sXX/kQX9F8BQerZcmTj2Zuz5twHIdYGtD/80tX01vmW/W91wjovyqReo25urY46aO573LOZzuW01bcTybLXT21JrarRbIaNt9z7fUyMONaYr4tq/UPlX5waw9kyscLr/tKe2Zwu42K30Ksm1yaRNGB8DEkqyqbRpVQrX8nHvizTnXFtZwBFLtyqJmi3S6pXzoP6hATx93DnFJ1RyRx5ebems24bimsAfWhx0nV6BEkI/WzqHzIEsIribvbhCGbo74EtTqyl7ulJWQgMyBkuo9zOUtg/IlDK7fXDBtYmgzhfcbKBT1P1lTWq7Gv6kru6+KNY8uMdugC54u6FAMkIaWZ7eqqQXvtj77PtPzol4xProxi2T14y8vacQjV60icRkvYZ+THJdfPtavzKqSeB7OOvIsUi75rsapNV0vWrPdx+1Tosi/salaQursIJtxx4yymDbrYva6kFIvkgw5Io4BPw84d29mFE24G5Ph1/IheExh75/vw+/PEwUo1gx/237godA3xosMTuEeSO1RZMmXnJOfQthCv2hsLnmNi0QGU7KqREJMaZlCRDudfZhAQ9X9afYCc0vX0lXbMSdFdBpgAYW+UNG3LjV+66dIJfMq6dtmbm8Qxkif1fPNXuWWQeBKJM3CPgAf6njfLTo5FS2HIFI/2lW9D/uXNHYAMKJwVRtSeBEOli5xXqCuwdrfq1UUmDng==}"
+      - usernamePassword:
+          id: "git-cred"
+          password: "{AQAAABAAAAAwSQxqR7xut7i9ojVsOtT5Dqp6A361FyF/4fqIvsp0ScBPxlGEORyfbw41EyYcmwBDvvwzPz6wwc3xRydH+mxGRA==}"
+          scope: GLOBAL
+          username: "arijknani"
 jenkins:
   agentProtocols:
   - "Diagnostic-Ping"
@@ -140,6 +145,73 @@ controllerLifecycleNotifications:
   authenticator: "none"
   enabled: false
   ignoreTlsConnectionErrors: false
+license:
+  certificate: |
+    -----BEGIN CERTIFICATE-----
+    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
+    r1f46iacosYtM35527dneiuO+i5j0YqjBbg=
+    -----END CERTIFICATE-----
+  key: |
+    -----BEGIN RSA PRIVATE KEY-----
+    MIIEowIBAAKCAQEA5fxJQi+Bi4nBJnSlRjVPrdA/4SuRo1u2w5Q/PdA410fREIhh
+    jrK7IDZM0lG+Rio52RI+NuM90xmOC9vgQjE7h7l6M3hF/FCg1wMip0rzNPm4SMba
+    L3AdpbWcnuK6H4BkaGSlaDEYbGwJBgr565mUl8t45RretmNS/2EYMb77gCa14Yfs
+    g42H7IZN74IoXR80sXmz+S963Js+/N2fk7c8tqpaPxs9LCwnOGeKUodsunh8O3Jr
+    A9rNKbH3n1UFX9tiQSsuYondH450q5mDotX5zLTvNBf5GHM7Cf5Wrl/XI9rkEoM8
+    uWscggSvIplLuwlu4olyp0zvUCP4U9JjFeXpVQIDAQABAoIBAF5kR2UEvnSY209/
+    PH4uTz+VY0J1cVbMw5xN8g7asRmafjH85517udWks672odOGbSuskyBP8AX+TRCM
+    8+P29OnltEP/rym5penZfZWP63XosDwecVpa97AVc+y6PY3EUnGOLV0wGUgWpzV1
+    t9F8vUH33uyZNKNC7MOoBBgWvH6BnaJkR1pWud2/WJU0c7Z/3dz3MC9W94fMCV8i
+    JIlUSy1WWzSKIaK8fiHa6VoiyNv3nz/YLx0qX4T3Fm/xeSpyIZaRFFqBL83tqhWx
+    sAwm6Nh1QcHcFbsol+28f81c+2Tbg1A8zlxTJoXnlca11wHtWVTkIzCSn3M0Xl0H
+    4XTOGNkCgYEA9AvaT4x1vOvXb2SCurigk3JG5cJSg081o9NNJonaaeNmti89SNNa
+    S6Zc8tNe9jQHYv3X9FW6UAsUdQzfvl3GriRok6sQRQ+tobnQyj85JDHl6ewxkOzb
+    D/+sJrb4FrssRWiEgoq5oHDvixur/8nMG8QwifYGbtZgNxikborZEGcCgYEA8UAf
+    PBdC2RCfbctOh0rh6Y1r+a9Xym6yoQ1SO17dS2ooeRKdRbZ4WPMqmNG2BA+ymuRp
+    TnJX36tfVCyfVXmz5FIvSOPGBBzFFw6uYeMn/SVrbZmxwqZ2H5jjXuhhGemT38jj
+    MnjWulHbcvY8rLykjs9DMHw6HCT8LaP201vd8uMCgYBfm8EkRwfdQpv9BOh+VFR8
+    T1ndK1r+HGsMSnzAK2OI9lDH8QvWWw7V8lAZxZs/YzS9oGsZSviZ4S1bifah8sUi
+    dhsONwdBtxmz8UMN6OTu/Clxkln8x/4ub2C3LhlVdnCqpH69UbHVXElMO0QQCrPO
+    8PZ/JgZxJ8U78IiC0hyl4wKBgFETtKuUQbIDhSD4B48uWlgMYDJMfFua8ktv16f+
+    TK7QoYN2/wXzueRi7HjpWZtpzyOBCecERIX16Ra33GB0g0GDYULE0cKGDLKgC3j4
+    R3MrBTyTP4tkOCSMVDWMMT3tIvY9ZCWNONTrN64eFOwUhdU80J7V0Q2uXFXWWdhU
+    cnXzAoGBAKwZflqX6FmaM2ilNJZYvuRf0tTVzHvan+wHSPXBH7fawb0VQtWc9CuY
+    evwfXwkFdgD62M3MN/Xj4xU2VmhFj0BJjF+DU4qyMZRhVTU+NfNjp/RRqPmBFN5w
+    QGy52rHZptv4R4FVlcCrZ543PZAY2T3L2E/AVrKsz1nKps2PNyAz
+    -----END RSA PRIVATE KEY-----
 masterprovisioning:
   dockerImageDefinitionConfiguration:
     images:
@@ -158,7 +230,7 @@ masterprovisioning:
     globalJavaOptions: "-Dorg.csanchez.jenkins.plugins.kubernetes.pipeline.PodTemplateStepExecution.defaultImage=cloudbees/cloudbees-core-agent:2.440.3.7\
       \ -Dcom.cloudbees.jenkins.plugins.kube.ServiceAccountFilter.defaultServiceAccount=jenkins-agents\
       \ -Dcom.cloudbees.networking.useSubdomain=false -Dcom.cloudbees.networking.protocol=\"\
-      http\" -Dcom.cloudbees.networking.hostname= -Dcom.cloudbees.networking.port=80\
+      https\" -Dcom.cloudbees.networking.hostname=\"oc.apps.ocp4.smartek.ae\" -Dcom.cloudbees.networking.port=443\
       \ -Dcom.cloudbees.networking.operationsCenterName=\"cjoc\""
     javaOptions: "-XshowSettings:vm -XX:+AlwaysPreTouch -XX:+DisableExplicitGC -XX:+ParallelRefProcEnabled\
       \ -XX:+UseStringDeduplication -Dhudson.slaves.NodeProvisioner.initialDelay=0"
@@ -239,6 +311,11 @@ security:
     creationOfLegacyTokenEnabled: false
     tokenGenerationOnCreationEnabled: false
     usageStatisticsEnabled: true
+  gitHooks:
+    allowedOnAgents: false
+    allowedOnController: false
+  gitHostKeyVerificationConfiguration:
+    sshHostKeyVerificationStrategy: "knownHostsFileVerificationStrategy"
   sSHD:
     port: -1
   securitySettingsEnforcement:
@@ -252,12 +329,16 @@ unclassified:
     configuredBuildDiscarders:
     - "jobBuildDiscarder"
   bundleStorageService:
-    activated: false
+    activated: true
     bundles:
     - name: "bundle-location"
       retriever:
-        localFolderRetriever:
-          localFolder: "/var/jenkins_config/"
+        SCM:
+          scmSource:
+            git:
+              credentialsId: "git-cred"
+              id: "bf477d23-9513-44dc-803b-bce4f7724209"
+              remote: "https://github.com/arijknani/containerized-app"
     checkOutTimeout: 600
     pollingPeriod: 120
     purgeOnDeactivation: false
@@ -271,15 +352,21 @@ unclassified:
     duration: 60
     fireAndForget: true
     initialDelay: 15
-    provisionControllerOnCreation: true
+    provisionControllerOnCreation: false
     timeout: 600
   cascItemsConfiguration:
-    variableInterpolationEnabledForAdmin: true
+    variableInterpolationEnabledForAdmin: false
     variableInterpolationEnabledForNonAdmin: true
   experimentalPlugins:
     enabled: false
   fingerprints:
     fingerprintCleanupDisabled: false
+    storage: "file"
+  gitHubConfiguration:
+    apiRateLimitChecker: ThrottleForNormalize
+  gitHubPluginConfig:
+    hookUrl: "https://oc.apps.ocp4.smartek.ae/cjoc/github-webhook/"
+  junitTestResultStorage:
     storage: "file"
   location:
     adminAddress: "address not configured yet <nobody@nowhere>"
@@ -292,6 +379,14 @@ unclassified:
     enabled: false
   pollSCM:
     pollingThreadCount: 10
+  scmGit:
+    addGitTagAction: false
+    allowSecondFetch: false
+    createAccountBasedOnEmail: false
+    disableGitToolChooser: false
+    hideCredentials: false
+    showEntireCommitSummaryInChanges: false
+    useExistingAccountWithSameEmail: false
   usageStatisticsCloudBees:
     disabledJenkinsUsageStatistics: true
     usageStatisticsCollected: true
@@ -300,6 +395,10 @@ unclassified:
 tool:
   cloudbeesPluginUsageAnalyzer:
     enabled: true
+  git:
+    installations:
+    - home: "git"
+      name: "Default"
   mavenGlobalConfig:
     globalSettingsProvider: "standard"
     settingsProvider: "standard"
