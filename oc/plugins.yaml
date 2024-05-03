@@ -2,7 +2,6 @@ plugins:
 - id: ace-editor
 - id: antisamy-markup-formatter
 - id: apache-httpcomponents-client-4-api
-- id: apache-httpcomponents-client-5-api
 - id: asm-api
 - id: authentication-tokens
 - id: aws-credentials
@@ -14,9 +13,7 @@ plugins:
 - id: bluesteel-cjoc
 - id: bootstrap5-api
 - id: bouncycastle-api
-- id: branch-api
 - id: caffeine-api
-- id: cas-plugin
 - id: checks-api
 - id: cloudbees-administrative-monitors
 - id: cloudbees-analytics
@@ -48,7 +45,6 @@ plugins:
 - id: credentials-binding
 - id: display-url-api
 - id: docker-commons
-- id: docker-java-api
 - id: durable-task
 - id: echarts-api
 - id: font-awesome-api
@@ -57,7 +53,6 @@ plugins:
 - id: github
 - id: github-api
 - id: github-branch-source
-- id: github-oauth
 - id: gson-api
 - id: handy-uri-templates-2-api
 - id: infradna-backup
@@ -126,10 +121,7 @@ plugins:
 - id: user-activity-monitoring
 - id: variant
 - id: workflow-api
-- id: workflow-cps
 - id: workflow-durable-task-step
-- id: workflow-job
-- id: workflow-multibranch
 - id: workflow-scm-step
 - id: workflow-step-api
 - id: workflow-support
