@@ -47,6 +47,7 @@ plugins:
 - id: commons-lang3-api
 - id: commons-text-api
 - id: configuration-as-code
+- id: configuration-as-code-groovy
 - id: credentials
 - id: credentials-binding
 - id: display-url-api
@@ -85,6 +86,7 @@ plugins:
 - id: kubernetes
 - id: kubernetes-client-api
 - id: kubernetes-credentials
+- id: kubernetes-credentials-provider
 - id: ldap
 - id: mailer
 - id: mapdb-api
@@ -103,6 +105,7 @@ plugins:
 - id: openshift-cli
 - id: openshift-client
 - id: openshift-deployer
+- id: openshift-k8s-credentials
 - id: openshift-login
 - id: openshift-pipeline
 - id: openshift-sync

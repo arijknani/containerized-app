@@ -27,3 +27,9 @@ configurations:
       version: 1.0.57
     openshift-sync:
       version: 1.1.0.802.v45585f8cdc07
+    configuration-as-code-groovy:
+      version: '1.1'
+    kubernetes-credentials-provider:
+      version: 1.262.v2670ef7ea_0c5
+    openshift-k8s-credentials:
+      version: 168.v79a_983191991
