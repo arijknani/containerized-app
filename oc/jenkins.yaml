@@ -12,7 +12,7 @@ credentials:
           secret: "{AQAAABAAAAJwnBCbbuedvZyU0mMpUwn1XeityuPVNrZUBciz+wN/+CbBrwUt3UFDvZ2ReICQPOZovlLjTf54mvJwvXBniONLc/uuawk+j9AXjnAMkEdoDZub7rdxMZFQ1LbR5t1lBcltA3lfQJf/v4hUVTSI1sXX/kQX9F8BQerZcmTj2Zuz5twHIdYGtD/80tX01vmW/W91wjovyqReo25urY46aO573LOZzuW01bcTybLXT21JrarRbIaNt9z7fUyMONaYr4tq/UPlX5waw9kyscLr/tKe2Zwu42K30Ksm1yaRNGB8DEkqyqbRpVQrX8nHvizTnXFtZwBFLtyqJmi3S6pXzoP6hATx93DnFJ1RyRx5ebems24bimsAfWhx0nV6BEkI/WzqHzIEsIribvbhCGbo74EtTqyl7ulJWQgMyBkuo9zOUtg/IlDK7fXDBtYmgzhfcbKBT1P1lTWq7Gv6kru6+KNY8uMdugC54u6FAMkIaWZ7eqqQXvtj77PtPzol4xProxi2T14y8vacQjV60icRkvYZ+THJdfPtavzKqSeB7OOvIsUi75rsapNV0vWrPdx+1Tosi/salaQursIJtxx4yymDbrYva6kFIvkgw5Io4BPw84d29mFE24G5Ph1/IheExh75/vw+/PEwUo1gx/237godA3xosMTuEeSO1RZMmXnJOfQthCv2hsLnmNi0QGU7KqREJMaZlCRDudfZhAQ9X9afYCc0vX0lXbMSdFdBpgAYW+UNG3LjV+66dIJfMq6dtmbm8Qxkif1fPNXuWWQeBKJM3CPgAf6njfLTo5FS2HIFI/2lW9D/uXNHYAMKJwVRtSeBEOli5xXqCuwdrfq1UUmDng==}"
       - usernamePassword:
           id: "git-cred"
-          password: "{AQAAABAAAAAwSQxqR7xut7i9ojVsOtT5Dqp6A361FyF/4fqIvsp0ScBPxlGEORyfbw41EyYcmwBDvvwzPz6wwc3xRydH+mxGRA==}"
+          password: "{AQAAABAAAAAwLVwfTcsXItVW1PUoQYIARO3d+sSjDtSJ9iQpNMBukVdYIH1P/VW577wTFsyDGmlXIDh/9YqfgaLkJ0vPIlfsow==}"
           scope: GLOBAL
           username: "arijknani"
 jenkins:
@@ -137,6 +137,10 @@ beekeeper:
   upgrades:
     autoDowngradePlugins: false
     autoUpgradePlugins: true
+cloudBeesCasCServer:
+  defaultBundle: "CasC/bundle-1"
+  disableRemoteValidation: false
+  visibility: false
 controllerLifecycleNotifications:
   authenticator: "none"
   enabled: false
@@ -327,32 +331,34 @@ unclassified:
   bundleStorageService:
     activated: true
     bundles:
-    - name: "bundle-location"
+    - name: "location-bundle"
       retriever:
         SCM:
           scmSource:
             git:
               credentialsId: "git-cred"
-              id: "bf477d23-9513-44dc-803b-bce4f7724209"
+              id: "49af4b20-92c1-4ba8-9c78-605e6ae60f95"
               remote: "https://github.com/arijknani/containerized-app"
+              traits:
+              - "gitBranchDiscovery"
     checkOutTimeout: 600
     pollingPeriod: 120
     purgeOnDeactivation: false
   bundleUpdateTiming:
     automaticReload: false
     automaticRestart: false
-    rejectWarnings: false
+    rejectWarnings: true
     reloadAlwaysOnRestart: false
     skipNewVersions: false
   cascAutoControllerProvisioning:
     duration: 60
     fireAndForget: true
     initialDelay: 15
-    provisionControllerOnCreation: false
+    provisionControllerOnCreation: true
     timeout: 600
   cascItemsConfiguration:
     variableInterpolationEnabledForAdmin: false
-    variableInterpolationEnabledForNonAdmin: true
+    variableInterpolationEnabledForNonAdmin: false
   experimentalPlugins:
     enabled: false
   fingerprints:
