@@ -345,8 +345,8 @@ unclassified:
     pollingPeriod: 120
     purgeOnDeactivation: false
   bundleUpdateTiming:
-    automaticReload: false
-    automaticRestart: false
+    automaticReload: true
+    automaticRestart: true
     rejectWarnings: true
     reloadAlwaysOnRestart: false
     skipNewVersions: false
@@ -357,8 +357,8 @@ unclassified:
     provisionControllerOnCreation: true
     timeout: 600
   cascItemsConfiguration:
-    variableInterpolationEnabledForAdmin: false
-    variableInterpolationEnabledForNonAdmin: false
+    variableInterpolationEnabledForAdmin: true
+    variableInterpolationEnabledForNonAdmin: true
   experimentalPlugins:
     enabled: false
   fingerprints:
