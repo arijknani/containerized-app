@@ -4,17 +4,17 @@ credentials:
     - credentials:
       - usernamePassword:
           id: "git-cred"
-          password: "{AQAAABAAAABwZbTtICSFeti3nvwk0rUDouWITJwuryJ16ngp1Ib9+w8dqTzS/xUhNtxeuPLTeXXAIiZhvlHMwUAr0KmbtZSLOHhazT1mw0SDcH/uXlzNGOf/Fd8nCvzL55tXD5nAxv+nR3V07ZmJWQi/0U5qo8uZhV/zWRdLqib8jH7oOrlDYME=}"
+          password: "{AQAAABAAAABw2sG+QfML6wobSrWXOdMTGMjsgPtiNsoqZstGib/7+uEGA42pnBY2vWncM4KuTqI3hXTICWOPuSU7Wc22lpiYkDI6lyJYeqYQWyhiood0G+7LFDPgBdrWGSGhAR8fEcgopTEsfG6qfEy9jyK0GG5KLnvl8pTjYGSZZjJUeRApIM8=}"
           scope: GLOBAL
           username: "arijknani"
       - usernamePassword:
           id: "dockerhub-cred"
-          password: "{AQAAABAAAABAKfTO79A8Pn+/Ojanb2lX9EI5zGA2NV3rw8q2CJ1apuKarGgcEoP3AhdkbN9a+VmXSCyfMMtVK3rLTvba/kXnT4vhpX0cyCTp4CRPldjt1/0=}"
+          password: "{AQAAABAAAABAzrbpUEVn93wBZ+7hWmBVbR8geFRqpTgsxuyfkRgiOd23m+wkNGl4w/fYg+qvX6fMG/0zdXc2+U6UgfHPBP3pohHwiy8ZU5qdW+e9SZ9/yWQ=}"
           scope: GLOBAL
           username: "arijknani009"
       - openShiftBearerTokenCredentialImpl:
           id: "openshift-cred"
-          password: "{AQAAABAAAAAQDOpzb82R1l7hvJg1kkoUdn3ryMpYNhRNG9VrPewJ18Q=}"
+          password: "{AQAAABAAAAAQvEBD+BKBqpKgN1N8XRjcu/Dw4DxANhuEs70NNpnoHdo=}"
           scope: GLOBAL
           username: "arij"
       - openShiftToken:
@@ -39,7 +39,6 @@ jenkins:
   - "hudson.util.DoubleLaunchChecker"
   labelAtoms:
   - name: "built-in"
-  - name: "openshift-agent"
   markupFormatter: "plainText"
   mode: NORMAL
   myViewsTabBar: "standard"
@@ -59,13 +58,8 @@ jenkins:
     : ignored: true
   - ? ''
     : ignored: true
-  nodes:
-  - permanent:
-      launcher: "inbound"
-      name: "openshift-agent"
-      numExecutors: 3
-      remoteFS: "/var/jenkins_home"
-      retentionStrategy: "always"
+  - ? ''
+    : ignored: true
   numExecutors: 2
   primaryView:
     all:
