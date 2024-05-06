@@ -62,14 +62,15 @@ spec:
         }
       }
     }
-        stage('Connect to OpenShift') {
+        stage('deploy mysql to OpenShift') {
             steps {
                 script {
                     wrap([$class: 'OpenShiftBuildWrapper',  
                         installation: 'oc', 
                         url: 'https://api.ocp4.smartek.ae:6443', 
                         insecure: true, 
-                        credentialsId: 'openshift-cred']) { 
+                        credentialsId: 'openshift-cred'])
+                    { 
                         sh 'oc apply -f ${WORKSPACE}/deployments/app-secrets.yaml'
 
                     }
