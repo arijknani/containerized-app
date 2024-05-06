@@ -62,6 +62,9 @@ spec:
         }
       }
     }
+        stage('deploy mysql'){
+            
+        }
         
     }
 
