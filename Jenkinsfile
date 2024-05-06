@@ -61,25 +61,7 @@ spec:
           sh 'buildah push arijknani009/example-buildah:latest'
         }
       }
-    }
-        stage('deploy mysql-docker to OpenShift') {
-            steps {
-                script {
-                    wrap([$class: 'OpenShiftBuildWrapper',  
-                        installation: 'oc', 
-                        url: 'https://api.ocp4.smartek.ae:6443', 
-                        insecure: true, 
-                        credentialsId: 'openshift-cred'])
-                    { 
-                        
-
-                    }
-                }
-            }
-        }
-        
-
-        
+    }        
     }
 
     post {
