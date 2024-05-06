@@ -71,11 +71,7 @@ spec:
                         insecure: true, 
                         credentialsId: 'openshift-cred'])
                     { 
-                        sh 'oc apply -f ${WORKSPACE}/deployments/app-secrets.yaml'
-                        sh 'oc delete all -l app=mysql-docker'
-                        sh 'oc new-app mysql:latest --name=mysql-docker'
-                        sh 'oc set env --from=secret/mysql-secrets-docker  deployment/mysql-docker'
-                        sh 'oc set volume deployment/mysql-docker --add --name=mysql-docker --type=persistentVolumeClaim --claim-name=mysql --mount-path=/var/lib/mysql'
+                        
 
                     }
                 }
