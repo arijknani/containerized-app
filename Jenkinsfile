@@ -28,6 +28,10 @@ spec:
     durabilityHint('PERFORMANCE_OPTIMIZED')
     disableConcurrentBuilds()
   }
+  environment {
+        DOCKER_CREDS = credentials('dockerhub-cred')
+    }
+
   stages {
     stage('Build with Buildah') {
       steps {
@@ -36,5 +40,14 @@ spec:
         }
       }
     }
+
+    stage('Login to Docker Hub') {
+      steps {
+        container('buildah') {
+          sh 'echo $DOCKER_CREDS_PSW | buildah login -u $DOCKER_CREDS_USR --password-stdin docker.io'
+        }
+      }
+    }
+
   }
 }
