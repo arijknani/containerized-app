@@ -70,7 +70,8 @@ spec:
                         url: 'https://api.ocp4.smartek.ae:6443', 
                         insecure: true, 
                         credentialsId: 'openshift-cred']) { 
-                        sh 'oc version'
+                        sh 'oc apply -f ${WORKSPACE}/deployments/app-secrets.yaml'
+
                     }
                 }
             }
