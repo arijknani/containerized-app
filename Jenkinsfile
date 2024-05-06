@@ -36,7 +36,7 @@ spec:
         stage('Build with Buildah') {
             steps {
                 container('buildah') {
-                    sh 'buildah build -t arijknani009/example-buildah:latest .'
+                    sh 'buildah build -t arijknani009/my-app:latest .'
                 }
             }
         }
@@ -51,14 +51,14 @@ spec:
         stage('tag image') {
             steps {
                 container('buildah') {
-                    sh 'buildah tag arijknani009/example-buildah:latest arijknani009/example-buildah:latest'
+                    sh 'buildah tag arijknani009/my-app:latest arijknani009/my-app:latest'
                 }
             }
         }
         stage('push image') {
             steps {
                 container('buildah') {
-                    sh 'buildah push arijknani009/example-buildah:latest'
+                    sh 'buildah push arijknani009/my-app:latest'
                 }
             }
         }
