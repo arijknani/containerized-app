@@ -81,13 +81,7 @@ spec:
                 }
             }
         }
-        stage('test mysql') {
-            steps{
-                script{
-                    
-                }
-            }
-        }
+        
 
         
     }
