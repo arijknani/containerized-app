@@ -1,28 +1,40 @@
 pipeline {
-    agent any
-    stages {
-        stage('connect to openshift') {
-            steps {
-                script {
-                    wrap([$class: 'OpenShiftBuildWrapper',  
-                        installation: 'oc', 
-                        url: 'https://api.ocp4.smartek.ae:6443', 
-                        insecure: true, 
-                        credentialsId: 'openshift-cred']) { 
-                        sh 'oc version'
-                        sh 'oc apply -f ${WORKSPACE}/manifests/app-secrets.yaml'
-                        sh 'oc apply -f ${WORKSPACE}/manifests/app-configmap.yaml'
-                        sh 'oc delete all -l app=springboot-app'
-                        sh 'oc new-app  https://github.com/arijknani/containerized-app.git#build-with-oc --name=springboot-app --strategy=docker'
-                        sh 'oc set env --from=secret/app-secrets  deployment/springboot-app'
-                        sh 'oc set env --from=configmap/app-configmap  deployment/springboot-app'
-                        sh 'oc expose service/springboot-app'
-                        sh ' oc get deployment springboot-app -o yaml'
-                        sh 'oc get routes'
-                    }
-                    
-                }
-            }
-        }
+  agent {
+    kubernetes {
+      yaml '''
+apiVersion: v1
+kind: Pod
+metadata:
+  name: buildah
+spec:
+  containers:
+  - name: buildah
+    image: quay.io/buildah/stable:v1.23.1
+    command:
+    - cat
+    tty: true
+    securityContext:
+      privileged: true
+    volumeMounts:
+      - name: varlibcontainers
+        mountPath: /var/lib/containers
+  volumes:
+    - name: varlibcontainers
+'''   
     }
+  }
+  options {
+    buildDiscarder(logRotator(numToKeepStr: '3'))
+    durabilityHint('PERFORMANCE_OPTIMIZED')
+    disableConcurrentBuilds()
+  }
+  stages {
+    stage('Build with Buildah') {
+      steps {
+        container('buildah') {
+          sh 'buildah build -t darinpope/jenkins-example-buildah:8.5-230 .'
+        }
+      }
+    }
+  }
 }
