@@ -1,7 +1,7 @@
 pipeline {
-  agent {
-    kubernetes {
-      yaml '''
+    agent {
+        kubernetes {
+            yaml '''
 apiVersion: v1
 kind: Pod
 metadata:
@@ -20,34 +20,41 @@ spec:
         mountPath: /var/lib/containers
   volumes:
     - name: varlibcontainers
-'''   
+'''
+        }
     }
-  }
-  options {
-    buildDiscarder(logRotator(numToKeepStr: '3'))
-    durabilityHint('PERFORMANCE_OPTIMIZED')
-    disableConcurrentBuilds()
-  }
-  environment {
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '3'))
+        durabilityHint('PERFORMANCE_OPTIMIZED')
+        disableConcurrentBuilds()
+    }
+    environment {
         DOCKER_CREDS = credentials('dockerhub-cred')
     }
 
-  stages {
-    stage('Build with Buildah') {
-      steps {
-        container('buildah') {
-          sh 'buildah build -t arijknani009/example-buildah:latest .'
+    stages {
+        stage('Build with Buildah') {
+            steps {
+                container('buildah') {
+                    sh 'buildah build -t arijknani009/example-buildah:latest .'
+                }
+            }
         }
-      }
+
+        stage('Login to Docker Hub') {
+            steps {
+                container('buildah') {
+                    sh 'echo $DOCKER_CREDS_PSW | buildah login -u $DOCKER_CREDS_USR --password-stdin docker.io'
+                }
+            }
+        }
     }
 
-    stage('Login to Docker Hub') {
-      steps {
-        container('buildah') {
-          sh 'echo $DOCKER_CREDS_PSW | buildah login -u $DOCKER_CREDS_USR --password-stdin docker.io'
+    post {
+        always {
+            container('buildah') {
+                sh 'buildah logout docker.io'
+            }
         }
-      }
     }
-
-  }
 }
