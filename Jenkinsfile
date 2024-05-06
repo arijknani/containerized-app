@@ -48,6 +48,14 @@ spec:
                 }
             }
         }
+        stage('tag image') {
+      steps {
+        container('buildah') {
+          sh 'buildah tag arijknani009/example-buildah:latest arijknani009/example-buildah:latest'
+        }
+      }
+    }
+        
     }
 
     post {
