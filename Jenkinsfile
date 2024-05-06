@@ -49,37 +49,33 @@ spec:
             }
         }
         stage('tag image') {
-      steps {
-        container('buildah') {
-          sh 'buildah tag arijknani009/example-buildah:latest arijknani009/example-buildah:latest'
+            steps {
+                container('buildah') {
+                    sh 'buildah tag arijknani009/example-buildah:latest arijknani009/example-buildah:latest'
+                }
+            }
         }
-      }
-    }
         stage('push image') {
-      steps {
-        container('buildah') {
-          sh 'buildah push arijknani009/example-buildah:latest'
+            steps {
+                container('buildah') {
+                    sh 'buildah push arijknani009/example-buildah:latest'
+                }
+            }
         }
-      }
-    }        
-    }
-
-    stage('connect to OpenShift') {
+        stage('connect to OpenShift') {
             steps {
                 script {
                     wrap([$class: 'OpenShiftBuildWrapper',  
                         installation: 'oc', 
                         url: 'https://api.ocp4.smartek.ae:6443', 
                         insecure: true, 
-                        credentialsId: 'openshift-cred'])
-                    { 
-                        sh 'oc version '
-
+                        credentialsId: 'openshift-cred']) {
+                            sh 'oc version'
                     }
                 }
             }
         }
-
+    }
 
     post {
         always {
