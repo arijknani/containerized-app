@@ -48,6 +48,7 @@ spec:
                 }
             }
         }
+
         stage('tag image') {
             steps {
                 container('buildah') {
@@ -55,6 +56,7 @@ spec:
                 }
             }
         }
+
         stage('push image') {
             steps {
                 container('buildah') {
@@ -62,6 +64,7 @@ spec:
                 }
             }
         }
+
         stage('connect to OpenShift') {
             steps {
                 script {
@@ -69,15 +72,14 @@ spec:
                         installation: 'oc', 
                         url: 'https://api.ocp4.smartek.ae:6443',  
                         credentialsId: 'openshift-cred']) {
-                            sh 'oc apply -f ${WORKSPACE}/manifests/app-secrets.yaml'
-                            sh 'oc apply -f ${WORKSPACE}/manifests/app-configmap.yaml'
-                            sh 'oc delete all -l app=springboot-app'
-                            sh 'oc new-app  https://github.com/arijknani/containerized-app.git#CasC --name=springboot-app --strategy=docker'
-                            sh 'oc set env --from=secret/app-secrets  deployment/springboot-app'
-                            sh 'oc set env --from=configmap/app-configmap  deployment/springboot-app'
-                            sh 'oc expose service/springboot-app'                
-                            sh 'oc get routes'
-                    }
+                        sh 'oc apply -f ${WORKSPACE}/manifests/app-secrets.yaml'
+                        sh 'oc apply -f ${WORKSPACE}/manifests/app-configmap.yaml'
+                        sh 'oc delete all -l app=springboot-app'
+                        sh 'oc new-app  https://github.com/arijknani/containerized-app.git#CasC --name=springboot-app --strategy=docker'
+                        sh 'oc set env --from=secret/app-secrets  deployment/springboot-app'
+                        sh 'oc set env --from=configmap/app-configmap  deployment/springboot-app'
+                        sh 'oc expose service/springboot-app'                
+                        sh 'oc get routes'
                     }
                 }
             }
