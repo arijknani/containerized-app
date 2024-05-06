@@ -10,7 +10,7 @@ db-password:
 
 db-username: 
 
-db-url: jdbc:mysql://mysql-container:3306/
+db-url: jdbc:mysql://mysql-docker:3306/
 
 
 ********MYSQL deployment*********
