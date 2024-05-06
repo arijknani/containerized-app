@@ -64,6 +64,23 @@ spec:
     }        
     }
 
+    stage('connect to OpenShift') {
+            steps {
+                script {
+                    wrap([$class: 'OpenShiftBuildWrapper',  
+                        installation: 'oc', 
+                        url: 'https://api.ocp4.smartek.ae:6443', 
+                        insecure: true, 
+                        credentialsId: 'openshift-cred'])
+                    { 
+                        sh 'oc version '
+
+                    }
+                }
+            }
+        }
+
+
     post {
         always {
             container('buildah') {
