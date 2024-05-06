@@ -55,6 +55,13 @@ spec:
         }
       }
     }
+        stage('push image') {
+      steps {
+        container('buildah') {
+          sh 'buildah push arijknani009/example-buildah:latest'
+        }
+      }
+    }
         
     }
 
