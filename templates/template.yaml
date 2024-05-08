@@ -1,0 +1,5 @@
+version: 1
+type: pipeline-template
+
+name: pfe App Pipeline 
+description: pfe app With openshift
