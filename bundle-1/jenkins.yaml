@@ -87,6 +87,14 @@ beekeeper:
   upgrades:
     autoDowngradePlugins: false
     autoUpgradePlugins: true
+globalCloudBeesPipelineTemplateCatalog:
+  catalogs:
+  - branchOrTag: "CasC"
+    scm:
+      git:
+        credentialsId: "git-cred"
+        id: "2e801445-3cda-4a47-b5ce-ed590c962506"
+        remote: "https://github.com/arijknani/containerized-app"
 support:
   automatedBundleConfiguration:
     componentIds:
