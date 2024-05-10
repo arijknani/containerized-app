@@ -226,7 +226,7 @@ masterprovisioning:
       name: "kubernetes"
       serviceExposure: "openShiftRoute"
     cpus: "1.0"
-    disk: 50
+    disk: 10
     globalJavaOptions: "-Dorg.csanchez.jenkins.plugins.kubernetes.pipeline.PodTemplateStepExecution.defaultImage=cloudbees/cloudbees-core-agent:2.440.3.7\
       \ -Dcom.cloudbees.jenkins.plugins.kube.ServiceAccountFilter.defaultServiceAccount=jenkins-agents\
       \ -Dcom.cloudbees.networking.useSubdomain=false -Dcom.cloudbees.networking.protocol=\"\
