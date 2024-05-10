@@ -13,7 +13,7 @@ db-password:
 
 db-username: 
 
-db-url: jdbc:mysql://mysql-docker:3306/
+db-url: jdbc:mysql://mysql:3306/
 
 
 ********MYSQL deployment*********
@@ -25,20 +25,21 @@ oc apply -f mysql-secrets.yaml
 oc get secret mysql-secrets -o yaml
 
 **MYSQL CONTAINER**
-oc delete all -l app=mysql-container
+oc delete all -l app=mysql
 
-oc new-app mysql:latest --name=mysql-container 
+oc new-app mysql:latest --name=mysql 
 
 oc logs 
 
 **ENV**
 
-oc set env --from=secret/mysql-secrets  deployment/mysql-container
+oc set env --from=secret/mysql-secrets  deployment/mysql
 
 **VOLUME**
 
-oc set volume deployment/mysql-container --add --name=mysql-container --type=persistentVolumeClaim --claim-name=mysql --mount-path=/var/lib/mysql
+oc apply -f mysql-storage.yaml
 
+oc set volume deployment/mysql --add --name=mysql-container --type=persistentVolumeClaim --claim-name=mysql-pv-claim --mount-path=/var/lib/mysql
 
 
 **TEST**
