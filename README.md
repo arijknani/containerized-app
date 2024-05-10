@@ -1,4 +1,5 @@
-
+********CASC********
+helm install cloudbees-ci cloudbees/cloudbees-core  --set OperationsCenter.HostName='oc.apps.ocp4.smartek.ae' --set OperationsCenter.Route.tls.Enable=true --values values.yaml
 ********DATA*********
 mysql-database: 
 
