@@ -15,7 +15,7 @@ items:
       livenessInitialDelaySeconds: 300
       readinessInitialDelaySeconds: 30
       clusterEndpointId: default
-      disk: 8
+      disk: 10
       readinessFailureThreshold: 100
       livenessTimeoutSeconds: 10
       domain: controller
