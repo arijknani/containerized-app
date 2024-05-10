@@ -22,7 +22,7 @@ vi mysql-secrets.yaml
 
 oc apply -f mysql-secrets.yaml
 
-oc get secret mysql-secrets -o yaml
+oc apply -f mysql-storage.yaml
 
 **MYSQL CONTAINER**
 oc delete all -l app=mysql
@@ -37,9 +37,7 @@ oc set env --from=secret/mysql-secrets  deployment/mysql
 
 **VOLUME**
 
-oc apply -f mysql-storage.yaml
-
-oc set volume deployment/mysql --add --name=mysql-container --type=persistentVolumeClaim --claim-name=mysql-pv-claim --mount-path=/var/lib/mysql
+oc set volume deployment/mysql --add --name=mysql --type=persistentVolumeClaim --claim-name=mysql-pv-claim --mount-path=/var/lib/mysql
 
 
 **TEST**
