@@ -95,7 +95,6 @@ globalCloudBeesPipelineTemplateCatalog:
         credentialsId: "git-cred"
         id: "2e801445-3cda-4a47-b5ce-ed590c962506"
         remote: "https://github.com/arijknani/containerized-app"
-license: {}
 support:
   automatedBundleConfiguration:
     componentIds:
@@ -234,7 +233,7 @@ unclassified:
     foldersEnabled: true
     imageStreamListInterval: 300
     maxConnections: 100
-    namespace: "arij-project"
+    namespace: "arij"
     secretListInterval: 300
     server: "https://api.ocp4.smartek.ae:6443"
     syncBuildConfigsAndBuilds: true
