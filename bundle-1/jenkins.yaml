@@ -95,6 +95,7 @@ globalCloudBeesPipelineTemplateCatalog:
         credentialsId: "git-cred"
         id: "2e801445-3cda-4a47-b5ce-ed590c962506"
         remote: "https://github.com/arijknani/containerized-app"
+license: {}
 support:
   automatedBundleConfiguration:
     componentIds:
@@ -257,7 +258,7 @@ unclassified:
     charset: "UTF-8"
     useSsl: false
     useTls: false
-  
+  openShift: {}
   operationsCenterRootAction:
     connectionDetails: "----- BEGIN CONNECTION DETAILS -----\nH4sIAAAAAAAA/x2NQQ7CIBAA/8JZoFSKpd/wBbgsWtyUZqF6MP5d4nUyk/mIO4etiUWAx8Gk4KSZ\r\
       \nzqO0F2ulnyPKyY9uTiG6IXpxEmvsrpFQtsaFCLmzg6nDR2v7ojXkAirwmuXOJSM0VV+ggI7akBUV\r\
