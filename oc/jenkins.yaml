@@ -30,7 +30,7 @@ jenkins:
       containerCapStr: "10"
       credentialsId: "jenkins"
       name: "kubernetes"
-      namespace: "arij-project"
+      namespace: "arij"
       serverUrl: "https://api.ocp4.smartek.ae:6443"
       skipTlsVerify: true
       webSocket: true
