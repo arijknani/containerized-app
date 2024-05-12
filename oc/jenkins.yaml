@@ -141,7 +141,6 @@ cloudBeesCasCServer:
   defaultBundle: "CasC/bundle-1"
   disableRemoteValidation: false
   visibility: false
-license: {}
 controllerLifecycleNotifications:
   authenticator: "none"
   enabled: false
