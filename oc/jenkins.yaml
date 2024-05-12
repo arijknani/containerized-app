@@ -155,7 +155,7 @@ masterprovisioning:
   kubernetes:
     clusterEndpoints:
     - id: "default"
-      jenkinsUrl: "http://cjoc.arij-project.svc.cluster.local/cjoc/"
+      jenkinsUrl: "http://cjoc.arij.svc.cluster.local/cjoc/"
       name: "kubernetes"
       serviceExposure: "openShiftRoute"
     cpus: "1.0"
