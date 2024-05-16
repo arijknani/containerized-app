@@ -75,11 +75,13 @@ spec:
                         credentialsId: 'openshift-cred']) {
                         sh 'oc apply -f ${WORKSPACE}/manifests/app-secrets.yaml'
                         sh 'oc apply -f ${WORKSPACE}/manifests/app-configmap.yaml'
-                        sh 'oc delete all -l app=springboot-app'
-                        sh 'oc new-app  https://github.com/arijknani/containerized-app.git#CasC --name=springboot-app --strategy=docker'
-                        sh 'oc set env --from=secret/app-secrets  deployment/springboot-app'
-                        sh 'oc set env --from=configmap/app-configmap  deployment/springboot-app'
-                        sh 'oc expose service/springboot-app'                
+                        sh 'oc delete all -l app=my-app'
+                        sh 'oc delete istag/my-app'
+                        sh 'oc create istag my-app:latest --from-image=docker.io/arijknani009/my-app:latest'
+                        sh 'oc new-app --image-stream=my-app'
+                        sh 'oc set env --from=secret/app-secrets  deployment/my-app'
+                        sh 'oc set env --from=configmap/app-configmap  deployment/my-app'
+                        sh 'oc expose service/my-app'                
                         sh 'oc get routes'
                     }
                 }
