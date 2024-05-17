@@ -8,7 +8,7 @@ pipeline {
                         installation: 'oc', 
                         url: 'https://api.sandbox-m3.1530.p1.openshiftapps.com:6443', 
                         insecure: true, 
-                        credentialsId: 'openshift-cred']) { 
+                        credentialsId: 'openshift-token']) { 
                         sh 'oc version'
                     }
                     
