@@ -9,11 +9,11 @@ pipeline {
                         url: 'https://api.sandbox-m3.1530.p1.openshiftapps.com:6443', 
                         insecure: true, 
                         credentialsId: 'openshift-token']) { 
-                        sh 'oc create istag my-app:latest --from-image=docker.io/arijknani009/my-app:latest'
-                        sh 'oc new-app  --name=my-app --image-stream=my-app '
-                        sh 'oc set env --from=secret/app-secrets  deployment/my-app'
-                        sh 'oc set env --from=configmap/app-configmap  deployment/my-app'
-                        sh 'oc expose service/my-app'                
+                         sh'oc new-app --image=docker.io/arijknani009/my-app --name=test-pip'
+                         sh'oc set env --from=secret/app-secrets  deployment/test-pip'
+                         sh'oc set env --from=configmap/app-configmap  deployment/test-pip'
+                         sh'oc expose service/test-pip'
+                        
                     }
                     
                 }
