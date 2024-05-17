@@ -10,7 +10,7 @@ pipeline {
                         insecure: true, 
                         credentialsId: 'openshift-token']) { 
                         sh 'oc create istag my-app:latest --from-image=docker.io/arijknani009/my-app:latest'
-                        sh 'oc new-app --as-deployment-config=false --name=my-app --image-stream=my-app'
+                        sh 'oc new-app  --name=my-app --image-stream=my-app --as-deployment-config=false '
                         sh 'oc set env --from=secret/app-secrets  deployment/my-app'
                         sh 'oc set env --from=configmap/app-configmap  deployment/my-app'
                         sh 'oc expose service/my-app'                
