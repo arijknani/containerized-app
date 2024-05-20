@@ -1,8 +1,14 @@
 pipeline {
     agent any
     environment {
+        DOCKER_CREDS = credentials('dockerhub-cred')
+        OPENSHIFT_CREDS = credentials('openshift-token')
+        OPENSHIFT_SERVER="https://api.sandbox-m3.1530.p1.openshiftapps.com:6443"
+        DOCKER_REPO= "arijknani009"
+        IMAGE = "my-app"
+        TAG= "latest" 
+        REGISTRY_URL = "docker.io/${DOCKER_REPO}/${IMAGE}:${TAG}"
         APP_NAME = "test-pip"
-        REGISTRY_URL = "docker.io/arijknani009/my-app"
         APP_SECRET = "app-secrets"
         APP_CM = "app-configmap"
     }
