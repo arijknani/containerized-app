@@ -27,7 +27,7 @@ pipeline {
                             echo "Deployment ${APP_NAME} exists, refreshing app..."
                             sh "oc set env --from=secret/${APP_SECRET} dc/${APP_NAME} --overwrite"
                             sh "oc set env --from=configmap/${APP_CM} dc/${APP_NAME} --overwrite"
-                            sh "oc rollout latest dc/${APP_NAME}"
+                            sh "oc oc rollout restart dc/${APP_NAME}"
                         }
                     }
                 }
