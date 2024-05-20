@@ -1,4 +1,16 @@
 pipeline {
+    environment {
+        DOCKER_CREDS = credentials('dockerhub-cred')
+        OPENSHIFT_CREDS = credentials('openshift-token')
+        OPENSHIFT_SERVER="https://api.sandbox-m3.1530.p1.openshiftapps.com:6443"
+        DOCKER_REPO= "arijknani009"
+        IMAGE = "my-app"
+        TAG= "latest" 
+        REGISTRY_URL = "docker.io/${DOCKER_REPO}/${IMAGE}:${TAG}"
+        APP_NAME = "test-pip"
+        APP_SECRET = "app-secrets"
+        APP_CM = "app-configmap"
+    }
     agent {
         kubernetes {
             yaml '''
@@ -28,20 +40,7 @@ spec:
         durabilityHint('PERFORMANCE_OPTIMIZED')
         disableConcurrentBuilds()
     }
-    environment {
-        DOCKER_CREDS = credentials('dockerhub-cred')
-        OPENSHIFT_CREDS = credentials('openshift-token')
-        OPENSHIFT_SERVER="https://api.sandbox-m3.1530.p1.openshiftapps.com:6443"
-        DOCKER_REPO= "arijknani009"
-        IMAGE = "my-app"
-        TAG= "latest" 
-        REGISTRY_URL = "docker.io/${DOCKER_REPO}/${IMAGE}:${TAG}"
-        APP_NAME = "test-pip"
-        APP_SECRET = "app-secrets"
-        APP_CM = "app-configmap"
-        
-    }
-
+    
     stages {
         stage('Build with Buildah') {
             steps {
@@ -87,8 +86,8 @@ spec:
                         } else {
                             echo "Deployment ${APP_NAME} exists, refreshing app..."
                             sh "oc rollout latest dc/${APP_NAME}"
-                            sh "oc set env --from=secret/${APP_SECRET} dc/${APP_NAME} --overwrite"
-                            sh "oc set env --from=configmap/${APP_CM} dc/${APP_NAME} --overwrite"
+                            sh "oc set env --from=secret/${APP_SECRET} dc/${APP_NAME} "
+                            sh "oc set env --from=configmap/${APP_CM} dc/${APP_NAME} "
                             
                         }
                     }
