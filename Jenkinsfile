@@ -1,7 +1,6 @@
 pipeline {
     agent any
     environment {
-        OPENSHIFT_SERVER="https://api.sandbox-m3.1530.p1.openshiftapps.com:6443"
         DOCKER_REPO= "arijknani009"
         IMAGE = "my-app"
         TAG= "latest" 
@@ -16,7 +15,7 @@ pipeline {
                 script {
                     wrap([$class: 'OpenShiftBuildWrapper',  
                         installation: 'oc', 
-                        url: '${OPENSHIFT_SERVER}', 
+                        url: 'https://api.sandbox-m3.1530.p1.openshiftapps.com:6443', 
                         insecure: true, 
                         credentialsId: 'openshift-token']) { 
                         def deploymentExists = sh(script: "oc get dc/${APP_NAME}", returnStatus: true) == 0
