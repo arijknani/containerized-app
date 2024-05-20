@@ -31,18 +31,22 @@ spec:
     environment {
         DOCKER_CREDS = credentials('dockerhub-cred')
         OPENSHIFT_CREDS = credentials('openshift-token')
-        APP_NAME = "test-pip"
+        OPENSHIFT_SERVER="https://api.sandbox-m3.1530.p1.openshiftapps.com:6443"
+        DOCKER_REPO= "arijknani009"
+        IMAGE = "my-app"
+        TAG= "latest" 
         REGISTRY_URL = "docker.io/arijknani009/my-app"
+        APP_NAME = "test-pip"
         APP_SECRET = "app-secrets"
         APP_CM = "app-configmap"
-        OPENSHIFT_SERVER="https://api.sandbox-m3.1530.p1.openshiftapps.com:6443"
+        
     }
 
     stages {
         stage('Build with Buildah') {
             steps {
                 container('buildah') {
-                    sh 'buildah build -t arijknani009/my-app:latest .'
+                    sh 'buildah build -t ${DOCKER_REPO}/${IMAGE}:${TAG} .'
                 }
             }
         }
@@ -55,18 +59,11 @@ spec:
             }
         }
 
-        stage('tag image') {
-            steps {
-                container('buildah') {
-                    sh 'buildah tag arijknani009/my-app:latest arijknani009/my-app:latest'
-                }
-            }
-        }
 
         stage('push image') {
             steps {
                 container('buildah') {
-                    sh 'buildah push arijknani009/my-app:latest'
+                    sh 'buildah push ${DOCKER_REPO}/${IMAGE}:${TAG}'
                 }
             }
         }
