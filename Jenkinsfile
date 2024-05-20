@@ -30,6 +30,7 @@ spec:
     }
     environment {
         DOCKER_CREDS = credentials('dockerhub-cred')
+        OPENSHIFT_CREDS = credentials('openshift-token')
         APP_NAME = "test-pip"
         REGISTRY_URL = "docker.io/arijknani009/my-app"
         APP_SECRET = "app-secrets"
@@ -77,7 +78,7 @@ spec:
                         installation: 'oc', 
                         url: ${OPENSHIFT_SERVER}, 
                         insecure: true, 
-                        credentialsId: 'openshift-token']) { 
+                        credentialsId: ${OPENSHIFT_CREDS}]) { 
                         
                         def deploymentExists = sh(script: "oc get dc/${APP_NAME}", returnStatus: true) == 0
                         if (!deploymentExists) {
