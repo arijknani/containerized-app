@@ -30,6 +30,11 @@ spec:
     }
     environment {
         DOCKER_CREDS = credentials('dockerhub-cred')
+        APP_NAME = "test-pip"
+        REGISTRY_URL = "docker.io/arijknani009/my-app"
+        APP_SECRET = "app-secrets"
+        APP_CM = "app-configmap"
+        OPENSHIFT_SERVER="https://api.sandbox-m3.1530.p1.openshiftapps.com:6443"
     }
 
     stages {
@@ -70,7 +75,7 @@ spec:
                 script {
                     wrap([$class: 'OpenShiftBuildWrapper',  
                         installation: 'oc', 
-                        url: 'https://api.sandbox-m3.1530.p1.openshiftapps.com:6443', 
+                        url: ${OPENSHIFT_SERVER}, 
                         insecure: true, 
                         credentialsId: 'openshift-token']) { 
                         
