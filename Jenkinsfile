@@ -1,8 +1,6 @@
 pipeline {
     environment {
         DOCKER_CREDS = credentials('dockerhub-cred')
-        OPENSHIFT_CREDS = credentials('openshift-token')
-        OPENSHIFT_SERVER="https://api.sandbox-m3.1530.p1.openshiftapps.com:6443"
         DOCKER_REPO= "arijknani009"
         IMAGE = "my-app"
         TAG= "latest" 
@@ -72,9 +70,9 @@ spec:
                 script {
                     wrap([$class: 'OpenShiftBuildWrapper',  
                         installation: 'oc', 
-                        url: ${OPENSHIFT_SERVER}, 
+                        url: 'https://api.sandbox-m3.1530.p1.openshiftapps.com:6443', 
                         insecure: true, 
-                        credentialsId: ${OPENSHIFT_CREDS}]) { 
+                        credentialsId: 'openshift-token' ]) { 
                         
                         def deploymentExists = sh(script: "oc get dc/${APP_NAME}", returnStatus: true) == 0
                         if (!deploymentExists) {
