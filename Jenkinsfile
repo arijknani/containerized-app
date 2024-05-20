@@ -28,7 +28,7 @@ pipeline {
                             }
                         } else {
                             echo "BuildConfig ${APP_NAME} does not exist, creating app ..."
-                            sh "oc new-app --image=${REGISTRY_URL} --name=${APP_NAME}"
+                            sh "oc new-app --image-stream=${REGISTRY_URL} --name=${APP_NAME}"
                             sh "oc set env --from=secret/${APP_SECRET} dc/${APP_NAME}"
                             sh "oc set env --from=configmap/${APP_CM} dc/${APP_NAME}"
                             sh "oc expose svc/${APP_NAME}"
