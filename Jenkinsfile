@@ -35,7 +35,7 @@ spec:
         DOCKER_REPO= "arijknani009"
         IMAGE = "my-app"
         TAG= "latest" 
-        REGISTRY_URL = "docker.io/arijknani009/my-app"
+        REGISTRY_URL = "docker.io/${DOCKER_REPO}/${IMAGE}:${TAG}"
         APP_NAME = "test-pip"
         APP_SECRET = "app-secrets"
         APP_CM = "app-configmap"
