@@ -1,7 +1,6 @@
 pipeline {
     agent any
     environment {
-        DOCKER_CREDS = credentials('dockerhub-cred')
         OPENSHIFT_CREDS = credentials('openshift-token')
         OPENSHIFT_SERVER="https://api.sandbox-m3.1530.p1.openshiftapps.com:6443"
         DOCKER_REPO= "arijknani009"
@@ -21,7 +20,6 @@ pipeline {
                         url: ${OPENSHIFT_SERVER}, 
                         insecure: true, 
                         credentialsId: ${OPENSHIFT_CREDS}]) { 
-                        
                         def deploymentExists = sh(script: "oc get dc/${APP_NAME}", returnStatus: true) == 0
                         if (!deploymentExists) {
                             echo "Deployment ${APP_NAME} does not exist, deployment app..."
