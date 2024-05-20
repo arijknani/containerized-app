@@ -65,24 +65,29 @@ spec:
             }
         }
 
-        stage('connect to OpenShift') {
+        stage('deployment') {
             steps {
                 script {
                     wrap([$class: 'OpenShiftBuildWrapper',  
                         installation: 'oc', 
-                        url: 'https://api.ocp4.smartek.ae:6443',  
-                        insecure: true,
-                        credentialsId: 'openshift-cred']) {
-                        sh 'oc apply -f ${WORKSPACE}/manifests/app-secrets.yaml'
-                        sh 'oc apply -f ${WORKSPACE}/manifests/app-configmap.yaml'
-                        sh 'oc delete all -l app=my-app'
-                        sh 'oc delete istag/my-app'
-                        sh 'oc create istag my-app:latest --from-image=docker.io/arijknani009/my-app:latest'
-                        sh 'oc new-app --image-stream=my-app'
-                        sh 'oc set env --from=secret/app-secrets  deployment/my-app'
-                        sh 'oc set env --from=configmap/app-configmap  deployment/my-app'
-                        sh 'oc expose service/my-app'                
-                        sh 'oc get routes'
+                        url: 'https://api.sandbox-m3.1530.p1.openshiftapps.com:6443', 
+                        insecure: true, 
+                        credentialsId: 'openshift-token']) { 
+                        
+                        def deploymentExists = sh(script: "oc get dc/${APP_NAME}", returnStatus: true) == 0
+                        if (!deploymentExists) {
+                            echo "Deployment ${APP_NAME} does not exist, deployment app..."
+                            sh "oc new-app --docker-image=${REGISTRY_URL} --name=${APP_NAME}"
+                            sh "oc set env --from=secret/${APP_SECRET} dc/${APP_NAME}"
+                            sh "oc set env --from=configmap/${APP_CM} dc/${APP_NAME}"
+                            sh "oc expose svc/${APP_NAME}"
+                        } else {
+                            echo "Deployment ${APP_NAME} exists, refreshing app..."
+                            sh "oc rollout latest dc/${APP_NAME}"
+                            sh "oc set env --from=secret/${APP_SECRET} dc/${APP_NAME} --overwrite"
+                            sh "oc set env --from=configmap/${APP_CM} dc/${APP_NAME} --overwrite"
+                            
+                        }
                     }
                 }
             }
