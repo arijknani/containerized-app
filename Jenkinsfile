@@ -7,7 +7,7 @@ pipeline {
         APP_CM = "app-configmap"
     }
     stages {
-        stage('connect to openshift') {
+        stage('deployment') {
             steps {
                 script {
                     wrap([$class: 'OpenShiftBuildWrapper',  
