@@ -16,22 +16,18 @@ pipeline {
                         insecure: true, 
                         credentialsId: 'openshift-token']) { 
                         
-                        def buildConfigExists = sh(script: "oc get bc/${APP_NAME}", returnStatus: true) == 0
-                        if (buildConfigExists) {
-                            echo "BuildConfig ${APP_NAME} exists, starting new build to update app ..."
-                            sh "oc start-build ${APP_NAME}"
-
-                            def routeExists = sh(script: "oc get route/${APP_NAME}", returnStatus: true) == 0
-                            if (!routeExists) {
-                                echo "Route ${APP_NAME} does not exist, exposing service ..."
-                                sh "oc expose svc/${APP_NAME}"
-                            }
-                        } else {
-                            echo "BuildConfig ${APP_NAME} does not exist, creating app ..."
+                        def deploymentExists = sh(script: "oc get dc/${APP_NAME}", returnStatus: true) == 0
+                        if (!deploymentExists) {
+                            echo "Deployment ${APP_NAME} does not exist, deployment app..."
                             sh "oc new-app --docker-image=${REGISTRY_URL} --name=${APP_NAME}"
                             sh "oc set env --from=secret/${APP_SECRET} dc/${APP_NAME}"
                             sh "oc set env --from=configmap/${APP_CM} dc/${APP_NAME}"
                             sh "oc expose svc/${APP_NAME}"
+                        } else {
+                            echo "Deployment ${APP_NAME} exists, refreshing app..."
+                            sh "oc set env --from=secret/${APP_SECRET} dc/${APP_NAME} --overwrite"
+                            sh "oc set env --from=configmap/${APP_CM} dc/${APP_NAME} --overwrite"
+                            sh "oc rollout latest dc/${APP_NAME}"
                         }
                     }
                 }
