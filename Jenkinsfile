@@ -21,7 +21,9 @@ pipeline {
                             } else {
                                 echo "Deployment ${app_name} does not exist, deploying app..."
                                 sh "oc new-app --docker-image=docker.io/${docker_repo}/${image_name} --name=${app_name}"
+                                sh "oc set triggers dc/${app_name} --from-image=${app_name}:latest -c ${app_name}"
                                 sh "oc expose svc/${app_name}"
+                                
                             }
                     }
                 }
