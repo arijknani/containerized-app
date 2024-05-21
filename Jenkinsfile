@@ -1,14 +1,10 @@
 pipeline {
     environment {
-        DOCKER_CREDS = credentials('dockerhub-cred')
-        DOCKER_REPO= "arijknani009"
-        IMAGE = "my-app"
-        TAG= "latest" 
-        REGISTRY_URL = "docker.io/${DOCKER_REPO}/${IMAGE}:${TAG}"
-        APP_NAME = "test-pip"
-        APP_SECRET = "app-secrets"
-        APP_CM = "app-configmap"
-    }
+        DOCKER_CREDS = credentials('dockerhub_creds')
+        docker_repo= "arijknani009"
+        docker_image = "my-app" 
+        app_name = "test-pip"
+         }
     agent {
         kubernetes {
             yaml '''
@@ -43,7 +39,7 @@ spec:
         stage('Build with Buildah') {
             steps {
                 container('buildah') {
-                    sh 'buildah build -t ${DOCKER_REPO}/${IMAGE}:${TAG} .'
+                    sh 'buildah build -t ${docker_repo}/${docker_image} .'
                 }
             }
         }
@@ -60,7 +56,7 @@ spec:
         stage('push image') {
             steps {
                 container('buildah') {
-                    sh 'buildah push ${DOCKER_REPO}/${IMAGE}:${TAG}'
+                    sh 'buildah push ${docker_repo}/${docker_image}:latest'
                 }
             }
         }
@@ -74,18 +70,14 @@ spec:
                         insecure: true, 
                         credentialsId: 'openshift-token' ]) { 
                         
-                        def deploymentExists = sh(script: "oc get dc/${APP_NAME}", returnStatus: true) == 0
+                        def deploymentExists = sh(script: "oc get dc/${app_name}", returnStatus: true) == 0
                         if (!deploymentExists) {
-                            echo "Deployment ${APP_NAME} does not exist, deployment app..."
-                            sh "oc new-app --docker-image=${REGISTRY_URL} --name=${APP_NAME}"
-                            sh "oc set env --from=secret/${APP_SECRET} dc/${APP_NAME}"
-                            sh "oc set env --from=configmap/${APP_CM} dc/${APP_NAME}"
-                            sh "oc expose svc/${APP_NAME}"
+                            echo "Deployment ${app_name} does not exist, deployment app..."
+                            sh "oc new-app --docker-image=docker.io/${docker_repo}/${docker_image} --name=${app_name}"
+                            sh "oc expose svc/${app_name}"
                         } else {
-                            echo "Deployment ${APP_NAME} exists, refreshing app..."
-                            sh "oc rollout latest dc/${APP_NAME}"
-                            sh "oc set env --from=secret/${APP_SECRET} dc/${APP_NAME} "
-                            sh "oc set env --from=configmap/${APP_CM} dc/${APP_NAME} "
+                            echo "Deployment ${app_name} exists, refreshing app..."
+                            sh "oc rollout latest dc/${app_name}"
                             
                         }
                     }
