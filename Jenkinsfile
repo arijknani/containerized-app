@@ -1,13 +1,9 @@
 pipeline {
     agent any
     environment {
-        DOCKER_REPO= "arijknani009"
-        IMAGE = "my-app"
-        TAG= "latest" 
-        REGISTRY_URL = "docker.io/${DOCKER_REPO}/${IMAGE}:${TAG}"
-        APP_NAME = "test-pip"
-        APP_SECRET = "app-secrets"
-        APP_CM = "app-configmap"
+        docker_repo = "arijknani009"
+        image_name = "my-app"
+        app_name = "test-pip"
     }
     stages {
         stage('deployment') {
@@ -17,21 +13,16 @@ pipeline {
                         installation: 'oc', 
                         url: 'https://api.sandbox-m3.1530.p1.openshiftapps.com:6443', 
                         insecure: true, 
-                        credentialsId: 'openshift-token']) { 
-                        def deploymentExists = sh(script: "oc get dc/${APP_NAME}", returnStatus: true) == 0
-                        if (!deploymentExists) {
-                            echo "Deployment ${APP_NAME} does not exist, deployment app..."
-                            sh "oc new-app --docker-image=${REGISTRY_URL} --name=${APP_NAME}"
-                            sh "oc set env --from=secret/${APP_SECRET} dc/${APP_NAME}"
-                            sh "oc set env --from=configmap/${APP_CM} dc/${APP_NAME}"
-                            sh "oc expose svc/${APP_NAME}"
-                        } else {
-                            echo "Deployment ${APP_NAME} exists, refreshing app..."
-                            sh "oc rollout latest dc/${APP_NAME}"
-                            sh "oc set env --from=secret/${APP_SECRET} dc/${APP_NAME} "
-                            sh "oc set env --from=configmap/${APP_CM} dc/${APP_NAME} "
-                            
-                        }
+                        credentialsId: 'openshift_creds']) { 
+                        def deploymentExists = sh(script: "oc get dc/${app_name}", returnStatus: true) == 0
+                        if (deploymentExists) {
+                                echo "Deployment ${app_name} exists, refreshing app..."
+                                sh "oc rollout latest dc/${app_name}"
+                            } else {
+                                echo "Deployment ${app_name} does not exist, deploying app..."
+                                sh "oc new-app --docker-image=docker.io/${docker_repo}/${image_name} --name=${app_name}"
+                                sh "oc expose svc/${app_name}"
+                            }
                     }
                 }
             }
