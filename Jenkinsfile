@@ -4,7 +4,7 @@ pipeline {
         docker_repo = "arijknani009"
         image_name = "my-app"
         app_name = "test-oc"
-        openshift_project = "arij-project"
+        openshift_project = "arijknani-dev"
     }
     stages {
         stage('deployment') {
