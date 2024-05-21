@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         docker_repo = "arijknani009"
-        image_name = "prod-app"
+        image_name = "my-app"
         app_name = "test-pip"
     }
     stages {
