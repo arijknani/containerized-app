@@ -3,7 +3,7 @@ pipeline {
     environment {
         docker_repo = "arijknani009"
         image_name = "my-app"
-        app_name = "test-pip"
+        app_name = "test-oc"
     }
     stages {
         stage('deployment') {
