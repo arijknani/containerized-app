@@ -4,6 +4,7 @@ pipeline {
         docker_repo = "arijknani009"
         image_name = "my-app"
         app_name = "test-oc"
+        openshift_project = "arij-project"
     }
     stages {
         stage('deployment') {
@@ -14,6 +15,7 @@ pipeline {
                         url: 'https://api.sandbox-m3.1530.p1.openshiftapps.com:6443', 
                         insecure: true, 
                         credentialsId: 'openshift_creds']) { 
+                        sh "oc project ${openshift_project}"
                         def deploymentExists = sh(script: "oc get dc/${app_name}", returnStatus: true) == 0
                         if (deploymentExists) {
                                 echo "Deployment ${app_name} exists, refreshing app..."
