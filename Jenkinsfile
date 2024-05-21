@@ -66,9 +66,9 @@ spec:
                 script {
                     wrap([$class: 'OpenShiftBuildWrapper',  
                         installation: 'oc', 
-                        url: 'https://api.sandbox-m3.1530.p1.openshiftapps.com:6443', 
+                        url: 'https://api.ocp.smartek.ae:6443', 
                         insecure: true, 
-                        credentialsId: 'openshift-token' ]) { 
+                        credentialsId: 'openshift_creds' ]) { 
                         
                         def deploymentExists = sh(script: "oc get dc/${app_name}", returnStatus: true) == 0
                         if (!deploymentExists) {
@@ -94,3 +94,4 @@ spec:
         }
     }
 }
+
