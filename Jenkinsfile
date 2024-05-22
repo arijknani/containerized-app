@@ -19,7 +19,11 @@ pipeline {
                         def deploymentExists = sh(script: "oc get dc/${app_name}", returnStatus: true) == 0
                         if (deploymentExists) {
                             echo "Deployment ${app_name} exists, refreshing app..."
+                            def currentImage = sh(script: "oc get dc/${app_name} -o=jsonpath='{.spec.template.spec.containers[0].image}'", returnStdout: true).trim()
+                            echo "Current image being used: ${currentImage}"
                             sh "oc set image dc/${app_name} ${app_name}=docker.io/${docker_repo}/${image_name}:latest"
+                            def updatedImage = sh(script: "oc get dc/${app_name} -o=jsonpath='{.spec.template.spec.containers[0].image}'", returnStdout: true).trim()
+                            echo "The deployment is now using image: ${updatedImage}"
                             def rolloutStatus = sh(script: "oc rollout status dc/${app_name}", returnStatus: true) != 0
                             if (rolloutStatus) {
                                 echo "Waiting for the ongoing rollout to complete..."
