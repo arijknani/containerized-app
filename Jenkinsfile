@@ -11,6 +11,8 @@ spec:
     command:
     - cat
     tty: true
+    securityContext:
+      privileged: true
     volumeMounts:
       - name: varlibcontainers
         mountPath: /var/lib/containers
@@ -21,7 +23,7 @@ spec:
     node(POD_LABEL) {
         stage('buildah test') {
             container('buildah') {
-                sh 'buildah build  '
+                sh 'buildah build arijknani/my-app . '
             }
         }
     }
