@@ -95,16 +95,12 @@ spec:
     post {
         always {
             container('buildah') {
-                sh 'buildah logout docker.io'
-            }
-        }
-    }
-      post {
-        always {
-            script {
+                script {
                 if (getContext(hudson.FilePath)) {
                     deleteDir()
                 }
+            }
+                sh 'buildah logout docker.io'
             }
         }
     }
