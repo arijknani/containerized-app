@@ -14,6 +14,8 @@ kind: Pod
 metadata:
   name: buildah
 spec:
+  securityContext:
+    runAsUser: 0
   containers:
   - name: buildah
     image: registry.access.redhat.com/ubi8/buildah
