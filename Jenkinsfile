@@ -25,7 +25,7 @@ pipeline {
                                 echo "Waiting for the ongoing rollout to complete..."
                                 sh "oc rollout status dc/${app_name} --watch"
                             }
-                            sh "oc rollout restart dc/${app_name}"
+                            sh "oc rollout latest dc/${app_name}"
                         } else {
                             echo "Deployment ${app_name} does not exist, deploying app..."
                             sh "oc new-app --docker-image=docker.io/${docker_repo}/${image_name} --name=${app_name}"
