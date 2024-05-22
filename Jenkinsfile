@@ -16,7 +16,7 @@ metadata:
 spec:
   containers:
   - name: buildah
-    image: quay.io/buildah/stable:v1.23.1
+    image: registry.access.redhat.com/ubi8/buildah
   - cat
     tty: true
     securityContext:
