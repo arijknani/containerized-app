@@ -16,11 +16,12 @@ spec:
         mountPath: /var/lib/containers
   volumes:
     - name: varlibcontainers
-""") {
+""") 
+{
     node(POD_LABEL) {
         stage('buildah test') {
             container('buildah') {
-                sh 'buildah build -t arijknani/my-app .'
+                sh 'buildah build --help '
             }
         }
     }
