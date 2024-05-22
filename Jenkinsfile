@@ -1,15 +1,5 @@
-pipeline {
-  agent {
-    kubernetes {
-      defaultContainer 'buildah'
+podTemplate {
+    node('buildah') {
+        sh'buildah version'
     }
-  }
-
-  stages {
-    stage('Run buildah') {
-      steps {
-        sh 'buildah version'
-      }
-    }
-  }
 }
