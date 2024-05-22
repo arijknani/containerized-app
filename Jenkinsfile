@@ -1,7 +1,7 @@
 pipeline {
     environment {
-        DOCKER_CREDS = credentials('dockerhub_creds')
-        docker_repo = "arijknani009"
+        QUAY_CREDS = credentials('quay_creds')
+        quay_repo = "arijknani"
         image_name = "my-app"
         app_name = "test-oc"
         openshift_project = "arij-project"
@@ -41,7 +41,7 @@ spec:
             steps {
                 container('buildah') {
                     sh 'buildah version'
-                    sh 'buildah build -t ${docker_repo}/${image_name} .'
+                    sh 'buildah build -t ${quay_repo}/${image_name} .'
                 }
             }
         }
@@ -49,7 +49,7 @@ spec:
         stage('Login to Docker Hub') {
             steps {
                 container('buildah') {
-                    sh 'echo $DOCKER_CREDS_PSW | buildah login -u $DOCKER_CREDS_USR --password-stdin docker.io'
+                    sh 'echo $QUAY_CREDS_PSW | buildah login -u $QUAY_CREDS_USR --password-stdin quay.io'
                 }
             }
         }
@@ -58,7 +58,7 @@ spec:
         stage('push image') {
             steps {
                 container('buildah') {
-                    sh 'buildah push ${docker_repo}/${image_name}:latest'
+                    sh 'buildah push quay.io/${quay_repo}/${image_name}'
                 }
             }
         }
@@ -79,7 +79,7 @@ spec:
                             sh "oc rollout restart deploy/${app_name}"
                         } else {
                             echo "Deployment ${app_name} does not exist, deploying app..."
-                            sh "oc new-app --image=docker.io/${docker_repo}/${image_name} --name=${app_name}"
+                            sh "oc new-app --image=quay.io/${quay_repo}/${image_name} --name=${app_name}"
                             sh "oc set env --from=secret/app-secrets deploy/${app_name}"
                             sh "oc set env --from=configmap/app-configmap  deploy/${app_name}"
                             sh "oc expose svc/${app_name}"
