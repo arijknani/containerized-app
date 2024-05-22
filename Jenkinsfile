@@ -3,7 +3,7 @@ pipeline {
         QUAY_CREDS = credentials('quay_creds')
         quay_repo = "arijknani"
         image_name = "my-app"
-        app_name = "test-oc"
+        app_name = "pfe-project"
         openshift_project = "arij-project"
          }
     agent {
