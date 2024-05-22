@@ -21,7 +21,7 @@ spec:
     node(POD_LABEL) {
         stage('buildah test') {
             container('buildah') {
-                sh 'buildah build --help '
+                sh 'buildah build  '
             }
         }
     }
