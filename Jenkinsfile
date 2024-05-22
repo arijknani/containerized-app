@@ -20,7 +20,7 @@ spec:
     node(POD_LABEL) {
         stage('buildah test') {
             container('buildah') {
-                sh 'buildah --version'
+                sh 'buildah build -t arijknani/my-app .'
             }
         }
     }
