@@ -1,5 +1,7 @@
 podTemplate {
     node('buildah') {
-        sh'buildah version'
+        stage('Run shell') {
+            sh 'echo hello world'
+        }
     }
 }
