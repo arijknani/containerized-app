@@ -18,11 +18,10 @@ spec:
   - name: buildah
     image: quay.io/buildah/stable:v1.23.1
     command:
-  - cat
+    - cat
     tty: true
-    #securityContext:
-      #privileged: true 
-      #allowPrivilegeEscalation : true
+    securityContext:
+      privileged: true
     volumeMounts:
       - name: varlibcontainers
         mountPath: /var/lib/containers
