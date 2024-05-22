@@ -3,7 +3,7 @@ pipeline {
     environment {
         docker_repo = "arijknani009"
         image_name = "my-app"
-        app_name = "test-oc"
+        app_name = "final-test"
         openshift_project = "arijknani-dev"
     }
     stages {
