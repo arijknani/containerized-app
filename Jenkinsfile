@@ -17,6 +17,7 @@ spec:
   containers:
   - name: buildah
     image: quay.io/buildah/stable:v1.23.1
+    command:
   - cat
     tty: true
     #securityContext:
