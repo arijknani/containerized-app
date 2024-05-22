@@ -14,15 +14,13 @@ kind: Pod
 metadata:
   name: buildah
 spec:
-  securityContext:
-    runAsUser: 0
   containers:
   - name: buildah
-    image: registry.access.redhat.com/ubi8/buildah
+    image: quay.io/buildah/stable:v1.23.1
   - cat
     tty: true
-    securityContext:
-      privileged: true 
+    #securityContext:
+      #privileged: true 
       #allowPrivilegeEscalation : true
     volumeMounts:
       - name: varlibcontainers
@@ -95,11 +93,6 @@ spec:
     post {
         always {
             container('buildah') {
-                script {
-                if (getContext(hudson.FilePath)) {
-                    deleteDir()
-                }
-            }
                 sh 'buildah logout docker.io'
             }
         }
