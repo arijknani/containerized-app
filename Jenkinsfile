@@ -40,7 +40,7 @@ spec:
         stage('Build with Buildah') {
             steps {
                 container('buildah') {
-                    sh 'buildah build -t ${docker_repo}/${docker_image} .'
+                    sh 'buildah build -t ${docker_repo}/${image_name} .'
                 }
             }
         }
@@ -57,7 +57,7 @@ spec:
         stage('push image') {
             steps {
                 container('buildah') {
-                    sh 'buildah push ${docker_repo}/${docker_image}:latest'
+                    sh 'buildah push ${docker_repo}/${image_name}:latest'
                 }
             }
         }
