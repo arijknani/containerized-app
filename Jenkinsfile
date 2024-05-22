@@ -13,10 +13,8 @@ spec:
     command:
     - cat
     tty: true
-    securityContext:
+    #securityContext:
       #allowPrivilegedContainer: true
-      runAsUser:
-        type: RunAsAny
       #privileged: true 
     volumeMounts:
       - name: varlibcontainers
