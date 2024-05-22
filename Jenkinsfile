@@ -40,6 +40,7 @@ spec:
         stage('Build with Buildah') {
             steps {
                 container('buildah') {
+                    sh 'buildah version'
                     sh 'buildah build -t ${docker_repo}/${image_name} .'
                 }
             }
