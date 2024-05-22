@@ -17,8 +17,7 @@ spec:
   containers:
   - name: buildah
     image: quay.io/buildah/stable:latest
-    command:
-    - cat
+    sleep infinity
     tty: true
     #securityContext:
       #privileged: true 
