@@ -1,10 +1,26 @@
-podTemplate(containers: [
-    containerTemplate(name: 'maven', image: 'maven:alpine', ttyEnabled: true, command: 'cat')
-]) {
+podTemplate(
+    yaml: """
+apiVersion: v1
+kind: Pod
+metadata:
+  name: buildah
+spec:
+  containers:
+  - name: buildah
+    image: quay.io/buildah/stable:v1.23.1
+    command:
+    - cat
+    tty: true
+    volumeMounts:
+      - name: varlibcontainers
+        mountPath: /var/lib/containers
+  volumes:
+    - name: varlibcontainers
+""") {
     node(POD_LABEL) {
-        stage('maven test') {
-            container('maven') {
-                sh 'mvn -version'
+        stage('buildah test') {
+            container('buildah') {
+                sh 'buildah --version'
             }
         }
     }
