@@ -14,7 +14,9 @@ spec:
     - cat
     tty: true
     securityContext:
-      allowPrivilegedContainer: true
+      #allowPrivilegedContainer: true
+      runAsUser:
+        type: RunAsAny
       #privileged: true 
     volumeMounts:
       - name: varlibcontainers
