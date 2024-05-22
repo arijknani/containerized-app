@@ -18,7 +18,7 @@ spec:
   - name: buildah
     image: quay.io/buildah/stable:latest
   - sleep infinity
-    tty: true
+    #tty: true
     #securityContext:
       #privileged: true 
     volumeMounts:
