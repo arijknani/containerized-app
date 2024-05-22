@@ -12,7 +12,7 @@ pipeline {
                 script {
                     wrap([$class: 'OpenShiftBuildWrapper',  
                           installation: 'oc', 
-                          url: 'https://api.sandbox-m3.1530.p1.openshiftapps.com:6443', 
+                          url: 'https://api.ocp.smartek.ae:6443', 
                           insecure: true, 
                           credentialsId: 'openshift_creds']) { 
                         sh "oc project ${openshift_project}"
