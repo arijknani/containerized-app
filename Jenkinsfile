@@ -17,10 +17,11 @@ spec:
   containers:
   - name: buildah
     image: quay.io/buildah/stable:latest
-  - sleep infinity
-    #tty: true
-    #securityContext:
+  - cat
+    tty: true
+    securityContext:
       #privileged: true 
+      allowPrivilegeEscalation : true
     volumeMounts:
       - name: varlibcontainers
         mountPath: /var/lib/containers
