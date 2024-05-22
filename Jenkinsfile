@@ -16,11 +16,11 @@ pipeline {
                           insecure: true, 
                           credentialsId: 'openshift_creds']) { 
                         sh "oc project ${openshift_project}"
-                        def deploymentExists = sh(script: "oc get dc/${app_name}", returnStatus: true) == 0
+                        def deploymentExists = sh(script: "oc get deploy/${app_name}", returnStatus: true) == 0
                         if (deploymentExists) {
                             echo "Deployment ${app_name} exists, refreshing app..."
                             sh "oc tag docker.io/${docker_repo}/${image_name}:latest ${app_name}:latest "
-                            sh "oc rollout latest dc/${app_name}"
+                            sh "oc rollout restart deploy/${app_name}"
                         } else {
                             echo "Deployment ${app_name} does not exist, deploying app..."
                             sh "oc new-app --docker-image=docker.io/${docker_repo}/${image_name} --name=${app_name}"
