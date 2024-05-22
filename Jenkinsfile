@@ -5,6 +5,8 @@ kind: Pod
 metadata:
   name: buildah
 spec:
+  securityContext:
+    runAsUser: 1000
   containers:
   - name: buildah
     image: quay.io/buildah/stable:v1.23.1
@@ -12,9 +14,8 @@ spec:
     - cat
     tty: true
     securityContext:
-      RunAsUser : 0
       #allowPrivilegedContainer: true
-      #privileged: true 
+      privileged: true 
     volumeMounts:
       - name: varlibcontainers
         mountPath: /var/lib/containers
