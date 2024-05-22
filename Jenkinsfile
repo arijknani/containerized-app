@@ -1,10 +1,15 @@
-podTemplate(name: 'buildah') {
-    node(POD_LABEL) {
-        stage('buildah test') {
-            container('buildah') {
-                sh 'buildah --version'
-                sh 'buildah build -t myimage .'
-            }
-        }
+pipeline {
+  agent {
+    kubernetes {
+      defaultContainer 'buildah'
     }
+  }
+
+  stages {
+    stage('Run buildah') {
+      steps {
+        sh 'buildah version'
+      }
+    }
+  }
 }
