@@ -6,7 +6,7 @@ metadata:
   name: buildah
 spec:
   securityContext:
-    runAsUser: 1000
+    runAsUser: 1000720000
   containers:
   - name: buildah
     image: quay.io/buildah/stable:v1.23.1
