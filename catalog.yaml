@@ -1,5 +1,0 @@
-version: 1
-type: pipeline-template-catalog
-
-name: pfe-catalog
-displayName: Shared Template Catalog for pfe 
