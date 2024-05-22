@@ -19,6 +19,7 @@ pipeline {
                         def deploymentExists = sh(script: "oc get dc/${app_name}", returnStatus: true) == 0
                         if (deploymentExists) {
                             echo "Deployment ${app_name} exists, refreshing app..."
+                            sh "oc set triggers dc/${app_name} --auto"
                             sh "oc set image dc/${app_name} ${app_name}=docker.io/${docker_repo}/${image_name}:latest"
                             def rolloutStatus = sh(script: "oc rollout status dc/${app_name}", returnStatus: true) != 0
                             if (rolloutStatus) {
