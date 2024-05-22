@@ -23,7 +23,7 @@ pipeline {
                             sh "oc rollout restart deploy/${app_name}"
                         } else {
                             echo "Deployment ${app_name} does not exist, deploying app..."
-                            sh "oc new-app --docker-image=docker.io/${docker_repo}/${image_name} --name=${app_name}"
+                            sh "oc new-app --image=docker.io/${docker_repo}/${image_name} --name=${app_name}"
                             sh "oc expose svc/${app_name}"
                         }
                     }
