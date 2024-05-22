@@ -3,7 +3,7 @@ pipeline {
         DOCKER_CREDS = credentials('dockerhub_creds')
         docker_repo= "arijknani009"
         docker_image = "my-app" 
-        app_name = "test-pip"
+        app_name = "pfe-project"
          }
     agent {
         kubernetes {
@@ -73,11 +73,11 @@ spec:
                         def deploymentExists = sh(script: "oc get dc/${app_name}", returnStatus: true) == 0
                         if (deploymentExists) {
                             echo "Deployment ${app_name} exists, refreshing app..."
-                            sh "oc tag docker.io/${docker_repo}/${image_name}:latest ${app_name}:latest "
+                            sh "oc tag docker.io/${docker_repo}/${docker_image}:latest ${app_name}:latest "
                             sh "oc rollout latest dc/${app_name}"
                         } else {
                             echo "Deployment ${app_name} does not exist, deploying app..."
-                            sh "oc new-app --docker-image=docker.io/${docker_repo}/${image_name} --name=${app_name}"
+                            sh "oc new-app --docker-image=docker.io/${docker_repo}/${docker_image} --name=${app_name}"
                             sh "oc expose svc/${app_name}"
                         }
                     }
