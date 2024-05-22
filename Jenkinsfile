@@ -1,9 +1,10 @@
 pipeline {
     environment {
         DOCKER_CREDS = credentials('dockerhub_creds')
-        docker_repo= "arijknani009"
-        docker_image = "my-app" 
-        app_name = "pfe-project"
+        docker_repo = "arijknani009"
+        image_name = "my-app"
+        app_name = "test-oc"
+        openshift_project = "arij-project"
          }
     agent {
         kubernetes {
@@ -70,14 +71,16 @@ spec:
                           insecure: true, 
                           credentialsId: 'openshift_creds']) { 
                         sh "oc project ${openshift_project}"
-                        def deploymentExists = sh(script: "oc get dc/${app_name}", returnStatus: true) == 0
+                        def deploymentExists = sh(script: "oc get deploy/${app_name}", returnStatus: true) == 0
                         if (deploymentExists) {
                             echo "Deployment ${app_name} exists, refreshing app..."
-                            sh "oc tag docker.io/${docker_repo}/${docker_image}:latest ${app_name}:latest "
-                            sh "oc rollout latest dc/${app_name}"
+                            sh"oc set triggers deploy/${app_name} --from-image=${app_name}:latest "
+                            sh "oc rollout restart deploy/${app_name}"
                         } else {
                             echo "Deployment ${app_name} does not exist, deploying app..."
-                            sh "oc new-app --docker-image=docker.io/${docker_repo}/${docker_image} --name=${app_name}"
+                            sh "oc new-app --image=docker.io/${docker_repo}/${image_name} --name=${app_name}"
+                            sh "oc set env --from=secret/app-secrets deploy/${app_name}"
+                            sh "oc set env --from=configmap/app-configmap  deploy/${app_name}"
                             sh "oc expose svc/${app_name}"
                         }
                     }
