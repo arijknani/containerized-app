@@ -20,6 +20,7 @@ pipeline {
                         if (deploymentExists) {
                             echo "Deployment ${app_name} exists, refreshing app..."
                             sh "oc set image dc/${app_name} ${app_name}=docker.io/${docker_repo}/${image_name}:latest"
+                            sh "oc tag docker.io/${docker_repo}/${image_name}:latest ${app_name}:latest "
                             sh "oc rollout latest dc/${app_name}"
                         } else {
                             echo "Deployment ${app_name} does not exist, deploying app..."
