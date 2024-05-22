@@ -20,8 +20,8 @@ spec:
   - cat
     tty: true
     securityContext:
-      #privileged: true 
-      allowPrivilegeEscalation : true
+      privileged: true 
+      #allowPrivilegeEscalation : true
     volumeMounts:
       - name: varlibcontainers
         mountPath: /var/lib/containers
