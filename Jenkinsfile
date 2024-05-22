@@ -89,12 +89,4 @@ spec:
             }
         }
     }
-
-    post {
-        always {
-            container('buildah') {
-                sh 'buildah logout docker.io'
-            }
-        }
-    }
 }
