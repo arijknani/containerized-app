@@ -19,7 +19,7 @@ pipeline {
                         def deploymentExists = sh(script: "oc get deploy/${app_name}", returnStatus: true) == 0
                         if (deploymentExists) {
                             echo "Deployment ${app_name} exists, refreshing app..."
-                            sh "oc tag docker.io/${docker_repo}/${image_name}:latest ${app_name}:latest "
+                            sh"oc set triggers deploy/${app_name} --from-image=${app_name}:latest "
                             sh "oc rollout restart deploy/${app_name}"
                         } else {
                             echo "Deployment ${app_name} does not exist, deploying app..."
