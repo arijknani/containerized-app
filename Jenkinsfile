@@ -20,9 +20,6 @@ spec:
     command:
     - cat
     tty: true
-    #securityContext:
-      #capabilities:
-        #add: ["SETFCAP"]
     securityContext:
       #privileged: true
       runAsUser: 0
