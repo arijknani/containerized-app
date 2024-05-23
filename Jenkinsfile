@@ -16,7 +16,7 @@ metadata:
 spec:
   containers:
   - name: buildah
-    image: quay.io/buildah/stable:v1.34
+    image: quay.io/buildah/stable:latest
     command:
     - cat
     tty: true
@@ -41,6 +41,7 @@ spec:
             steps {
                 container('buildah') {
                     sh 'buildah version'
+                    sh 'ls -al'
                     sh 'buildah build -t ${quay_repo}/${image_name} .'
                 }
             }
