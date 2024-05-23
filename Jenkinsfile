@@ -1,11 +1,12 @@
-pipeline {
-    agent kubernetes 
-    
-    stages {
-        stage('buildah test') {
-            steps {
-                container('test') {
-                    sh 'echo "test "'
+podTemplate(
+    label 'kubernetes'
+    containers: [containerTemplate(name: 'maven', image: 'maven:alpine', command: 'cat', args: '')]) {
+
+    node(kubernetes) {
+        stage('Get a Maven project') {
+            container('maven') {
+                stage('Build a Maven project') {
+                    sh 'mvn -version'
                 }
             }
         }
