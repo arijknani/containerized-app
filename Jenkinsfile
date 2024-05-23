@@ -1,6 +1,6 @@
 podTemplate(
     inheritFrom: 'my-pod',
-    containers: [containerTemplate(name: 'maven')]) 
+    containers: [containerTemplate(image: 'maven:alpine', name: 'maven', command: 'cat', ttyEnabled: true)]) 
 {
   node(POD_LABEL) {
     stage('buildah test') {
