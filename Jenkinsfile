@@ -85,7 +85,7 @@ spec:
                             sh "oc rollout restart deploy/${app_name}"
                         } else {
                             echo "Deployment ${app_name} does not exist, deploying app..."
-                            sh "oc new-app --image=quay.io/${quay_repo}/${image_name} --name=${app_name}"
+                            sh "oc new-app --image=quay.io/${quay_repo}/${image_name} --name=${app_name} -c ${app_name}"
                             sh "oc set env --from=secret/app-secrets deploy/${app_name}"
                             sh "oc set env --from=configmap/app-configmap  deploy/${app_name}"
                             sh "oc expose svc/${app_name}"
