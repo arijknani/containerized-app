@@ -42,7 +42,7 @@ spec:
                 container('buildah') {
                     sh 'buildah version'
                     sh 'ls -al'
-                    sh 'buildah build -t ${quay_repo}/${image_name} .'
+                    sh 'buildah build -t ${quay_repo}/${image_name} -f Dockerfile .'
                 }
             }
         }
