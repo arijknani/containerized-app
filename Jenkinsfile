@@ -21,8 +21,6 @@ spec:
     - cat
     tty: true
     securityContext:
-      #privileged: true
-      runAsUser: 0
       capabilities:
         add: ["SETFCAP"]
     volumeMounts:
@@ -31,8 +29,6 @@ spec:
   volumes:
     - name: varlibcontainers
       emptyDir: {}
-      #persistentVolumeClaim:
-        #claimName: buildah-pvc
 '''
         }
     }
@@ -65,7 +61,7 @@ spec:
         stage('push image') {
             steps {
                 container('buildah') {
-                    sh 'buildah push quay.io/${quay_repo}/${image_name}'
+                    sh 'buildah push --storage-driver=vfs quay.io/${quay_repo}/${image_name}'
                 }
             }
         }
