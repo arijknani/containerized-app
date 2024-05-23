@@ -16,12 +16,12 @@ metadata:
 spec:
   containers:
   - name: buildah
-    image: quay.io/buildah/stable:v1.23.1
+    image: quay.io/buildah/stable:latest
     command:
     - cat
     tty: true
-    #securityContext:
-      #privileged: true
+    securityContext:
+      privileged: true
     volumeMounts:
       - name: varlibcontainers
         mountPath: /var/lib/containers
