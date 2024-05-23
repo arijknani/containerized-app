@@ -1,14 +1,12 @@
 podTemplate(
-    label 'kubernetes'
-    containers: [containerTemplate(name: 'maven', image: 'maven:alpine', command: 'cat', args: '')]) {
-
-    node(kubernetes) {
-        stage('Get a Maven project') {
+    inheritFrom: 'my-pod',
+    containers: [containerTemplate(name: 'maven')]) 
+{
+  node(POD_LABEL) {
+    stage('buildah test') {
             container('maven') {
-                stage('Build a Maven project') {
-                    sh 'mvn -version'
-                }
+                sh 'mvn -version'
             }
         }
-    }
+  }
 }
