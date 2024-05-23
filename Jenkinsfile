@@ -20,18 +20,18 @@ spec:
     command:
     - cat
     tty: true
-    securityContext:
-      capabilities:
-        add: ["SETFCAP"]
     #securityContext:
-      #privileged: true
+      #capabilities:
+        #add: ["SETFCAP"]
+    securityContext:
+      privileged: true
     volumeMounts:
       - name: varlibcontainers
         mountPath: /var/lib/containers
   volumes:
     - name: varlibcontainers
-      persistentVolumeClaim:
-        claimName: buildah-pvc
+      #persistentVolumeClaim:
+        #claimName: buildah-pvc
 '''
         }
     }
