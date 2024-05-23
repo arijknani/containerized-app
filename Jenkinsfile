@@ -1,4 +1,4 @@
-node() {
+node {
         stage('test') {
             container('buildah') {
                 sh 'buildah version'
