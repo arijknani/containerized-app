@@ -24,7 +24,8 @@ spec:
       #capabilities:
         #add: ["SETFCAP"]
     securityContext:
-      privileged: true
+      #privileged: true
+      runAsUser: 0
       capabilities:
         add: ["SETFCAP"]
     volumeMounts:
