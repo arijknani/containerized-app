@@ -1,11 +1,11 @@
-FROM docker.io/maven:latest AS build
+FROM registry.redhat.io/redhat-openjdk-18/openjdk18-openshift AS build
 ENV home=/home/app
 WORKDIR ${home}
 COPY . ${home}/
 RUN mvn package -Dmaven.test.skip=true
 
 
-FROM docker.io/openjdk:latest
+FROM registry.redhat.io/redhat-openjdk-18/openjdk18-openshift
 WORKDIR ${home}
 EXPOSE 8080
 COPY --from=build /home/app/target/*.jar app.jar
