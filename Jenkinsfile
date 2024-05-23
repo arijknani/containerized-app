@@ -30,6 +30,7 @@ spec:
         mountPath: /var/lib/containers
   volumes:
     - name: varlibcontainers
+      emptyDir: {}
       #persistentVolumeClaim:
         #claimName: buildah-pvc
 '''
