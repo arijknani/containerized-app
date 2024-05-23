@@ -1,11 +1,11 @@
-FROM image-registry.openshift-image-registry.svc:5000/openshift/java:8 AS build
+FROM registry.access.redhat.com/ubi8/openjdk-17:1.19-4.1715070735 AS build
 ENV home=/home/app
 WORKDIR ${home}
 COPY . ${home}/
 RUN mvn package -Dmaven.test.skip=true
 
 
-FROM image-registry.openshift-image-registry.svc:5000/openshift/java:8
+FROM registry.access.redhat.com/ubi8/openjdk-17:1.19-4.1715070735
 WORKDIR ${home}
 EXPOSE 8080
 COPY --from=build /home/app/target/*.jar app.jar
