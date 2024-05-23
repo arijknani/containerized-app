@@ -1,11 +1,26 @@
-node ('buildah' ){
-        stage('test') {
-            container('buildah') {
-                sh 'buildah version'
-                sh 'buildah build arijknani/my-app . '
-            }
-        }
+pipeline {
+  agent {
+    kubernetes {
+      yaml '''
+        apiVersion: v1
+        kind: Pod
+        spec:
+          containers:
+          - name: maven
+            image: maven:alpine
+            command:
+            - cat
+            tty: true
+        '''
     }
-
-
-
+  }
+  stages {
+    stage('Run maven') {
+      steps {
+        container('maven') {
+          sh 'mvn -version'
+        }
+      }
+    }
+  }
+}
