@@ -1,15 +1,12 @@
 pipeline {
     agent {
-        kubernetes {
-            label 'buildah'
-            defaultContainer 'buildah'
-        }
+        kubernetes 
     }
     stages {
         stage('buildah test') {
             steps {
-                container('buildah') {
-                    sh 'buildah --version'
+                container('test') {
+                    sh 'echo "test "'
                 }
             }
         }
