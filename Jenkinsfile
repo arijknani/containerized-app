@@ -20,6 +20,9 @@ spec:
     command:
     - cat
     tty: true
+    securityContext:
+      capabilities:
+        add: ["SETFCAP"]
     #securityContext:
       #privileged: true
     volumeMounts:
