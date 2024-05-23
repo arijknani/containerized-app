@@ -16,7 +16,7 @@ metadata:
 spec:
   containers:
   - name: buildah
-    image: quay.io/buildah/stable:latest
+    image: quay.io/buildah/stable:1.34
     command:
     - cat
     tty: true
