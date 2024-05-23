@@ -50,7 +50,7 @@ spec:
             }
         }
 
-        stage('Login to Docker Hub') {
+        stage('Login to quay') {
             steps {
                 container('buildah') {
                     sh 'echo $QUAY_CREDS_PSW | buildah login -u $QUAY_CREDS_USR --password-stdin quay.io'
@@ -96,7 +96,7 @@ spec:
     post {
     always {
       container('buildah') {
-        sh 'buildah logout docker.io'
+        sh 'buildah logout quay.io'
       }
     }
   }
