@@ -1,4 +1,4 @@
-node(POD_LABEL) {
+node('maven') {
         stage('test') {
             container('maven') {
                 sh 'mvn -version'
