@@ -23,14 +23,15 @@ spec:
     securityContext:
       capabilities:
         add: ["SETFCAP"]
-    securityContext:
-      privileged: true
+    #securityContext:
+      #privileged: true
     volumeMounts:
       - name: varlibcontainers
         mountPath: /var/lib/containers
   volumes:
     - name: varlibcontainers
-      emptyDir: {}
+      persistentVolumeClaim:
+        claimName: buildah-pvc
 '''
         }
     }
