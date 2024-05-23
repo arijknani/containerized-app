@@ -1,7 +1,6 @@
 pipeline {
-    agent {
-        kubernetes 
-    }
+    agent kubernetes 
+    
     stages {
         stage('buildah test') {
             steps {
