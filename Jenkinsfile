@@ -4,7 +4,7 @@ podTemplate(
 {
   node(POD_LABEL) {
     stage('buildah test') {
-            container('maven') {
+            container('buildah') {
                 sh 'buildah version'
             }
         }
