@@ -48,7 +48,7 @@ spec:
                 container('buildah') {
                     sh 'buildah version'
                     sh 'ls -al'
-                    sh 'buildah build -t ${quay_repo}/${image_name} -f Dockerfile .'
+                    sh 'buildah build --storage-driver=vfs -t ${quay_repo}/${image_name} -f Dockerfile .'
                 }
             }
         }
