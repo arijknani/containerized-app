@@ -23,14 +23,14 @@ spec:
     securityContext:
       capabilities:
         add: ["SETFCAP"]
-    #securityContext:
-      #privileged: true
-    #volumeMounts:
-      #- name: varlibcontainers
-        #mountPath: /var/lib/containers
-  #volumes:
-    #- name: varlibcontainers
-      #emptyDir: {}
+    securityContext:
+      privileged: true
+    volumeMounts:
+      - name: varlibcontainers
+        mountPath: /var/lib/containers
+  volumes:
+    - name: varlibcontainers
+      emptyDir: {}
 '''
         }
     }
