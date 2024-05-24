@@ -79,7 +79,7 @@ spec:
                         if (deploymentExists) {
                             echo "Deployment ${app_name} exists, refreshing app..."
                             sh "oc set image deployment/${app_name} ${app_name}=quay.io/${quay_repo}/${image_name}:latest"
-                            sh "oc rollout restart deploy/${app_name}"
+                            sh "oc rollout restart deployment/${app_name}"
                         } else {
                             echo "Deployment ${app_name} does not exist, deploying app..."
                             sh "oc new-app --image=quay.io/${quay_repo}/${image_name} --name=${app_name} "
