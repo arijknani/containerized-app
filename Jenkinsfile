@@ -31,7 +31,7 @@ pipeline {
         stage('Login to quay') {
             steps {
                 container('buildah') {
-                    sh 'echo $QUAY_CREDS_PSW | buildah login -u $QUAY_CREDS_USR --password-stdin quay.io'
+                    sh 'echo ${quay_creds_psw} | buildah login -u ${quay_creds_usr} --password-stdin quay.io'
                 }
             }
         }
