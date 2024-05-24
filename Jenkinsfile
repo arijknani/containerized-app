@@ -1,4 +1,9 @@
 pipeline {
+    agent {
+        kubernetes {
+          inheritFrom 'buildah' 
+        }
+    }
     environment {
         QUAY_CREDS = credentials('quay_creds')
         quay_repo = "arijknani"
@@ -6,11 +11,6 @@ pipeline {
         app_name = "pfe-project"
         openshift_project = "arij-project"
          }
-    agent {
-        kubernetes {
-          inheritFrom 'buildah' 
-        }
-    }
     options {
         buildDiscarder(logRotator(numToKeepStr: '3'))
         durabilityHint('PERFORMANCE_OPTIMIZED')
