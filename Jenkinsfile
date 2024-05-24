@@ -8,28 +8,7 @@ pipeline {
          }
     agent {
         kubernetes {
-            yaml '''
-apiVersion: v1
-kind: Pod
-metadata:
-  name: buildah
-spec:
-  containers:
-  - name: buildah
-    image: quay.io/buildah/stable:latest
-    command:
-    - cat
-    tty: true
-    securityContext:
-      capabilities:
-        add: ["SETFCAP"]
-    volumeMounts:
-      - name: varlibcontainers
-        mountPath: /var/lib/containers
-  volumes:
-    - name: varlibcontainers
-      emptyDir: {}
-'''
+          inheritFrom 'buildah' 
         }
     }
     options {
