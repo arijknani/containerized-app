@@ -86,6 +86,7 @@ spec:
                             sh "oc set env --from=secret/app-secrets deploy/${app_name}"
                             sh "oc set env --from=configmap/app-configmap  deploy/${app_name}"
                             sh "oc expose svc/${app_name}"
+                            sh "oc set triggers deploy/${app_name} --from-image=${app_name}:latest -c ${app_name}"
                         }
                     }
                 }
