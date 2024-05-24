@@ -79,6 +79,7 @@ spec:
                         if (deploymentExists) {
                             echo "Deployment ${app_name} exists, refreshing app..."
                             sh "oc import-image ${image_name}:latest --from=quay.io/${quay_repo}/${image_name} --confirm"
+                            sh "oc set triggers deploy/${app_name} --from-image=${image_name}:latest -c ${app_name}"
                             sh "oc set image deployment/${app_name} ${app_name}=${image_name}:latest "
                             sh "oc rollout restart deployment/${app_name}"
                         } else {
