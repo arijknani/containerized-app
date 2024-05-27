@@ -1,4 +1,4 @@
-@Library('shared-library') _
+@Library('deploy-openshift-library') _
 def config = [openshift_project: 'arij-project', app_name: 'shared-library', quay_repo: 'arijknani', image_name:'library-app' ]
 pipeline {    
     agent {
