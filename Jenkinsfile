@@ -18,7 +18,6 @@ pipeline {
         buildDiscarder(logRotator(numToKeepStr: '3'))
         durabilityHint('PERFORMANCE_OPTIMIZED')
         disableConcurrentBuilds()
-        skipDefaultCheckout true
     }
     
     stages {
