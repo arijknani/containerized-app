@@ -1,5 +1,5 @@
 @Library('shared-library') _
-def config = [openshift_project: 'arij-project', app_name: 'shared-library', quay_repo: 'arijknani', image_name:'my-app' ]
+def config = [openshift_project: 'arij-project', app_name: 'shared-library', quay_repo: 'arijknani', image_name:'library-app' ]
 pipeline {    
     agent {
         kubernetes {
