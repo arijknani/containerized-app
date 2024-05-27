@@ -1,82 +1,62 @@
-pipeline {
+@Library('shared-library') _
+def config = [openshift_project: 'arij-project', app_name: 'shared-library', quay_repo: 'arijknani', image_name:'my-app' ]
+pipeline {    
     agent {
         kubernetes {
-          inheritFrom 'buildah' 
+            inheritFrom 'buildah' 
         }
     }
-    environment {
-        QUAY_CREDS = credentials('quay_creds')
-        quay_repo = "arijknani"
-        image_name = "my-app"
-        app_name = "pfe-project"
-        openshift_project = "arij-project"
-         }
+    environment { 
+        github_creds= credentials('github_creds')
+        repo_url= 'https://github.com/arijknani/containerized-app.git'
+        quay_repo= 'arijknani'
+        image_name= 'library-app'
+        QUAY_CREDS= credentials('quay_cred')
+        openshift_url= 'https://api.ocp.smartek.ae:6443'
+        sa_token = credentials('sa_token')
+    }
     options {
         buildDiscarder(logRotator(numToKeepStr: '3'))
         durabilityHint('PERFORMANCE_OPTIMIZED')
         disableConcurrentBuilds()
+        skipDefaultCheckout true
     }
     
     stages {
+        stage('Checkout') {
+            steps {
+              git credentialsId: "${github_creds}", url: "${repo_url}"
+            }
+        }
+        
         stage('Build with Buildah') {
             steps {
                 container('buildah') {
-                    sh 'buildah version'
-                    sh 'ls -al'
-                    sh 'buildah build --storage-driver=vfs -t quay.io/${quay_repo}/${image_name} -f Dockerfile .'
+                    sh "buildah build --storage-driver=vfs -t quay.io/${quay_repo}/${image_name} -f Dockerfile ."
+                    sh "echo ${QUAY_CREDS_PSW} | buildah login -u ${QUAY_CREDS_USR} --password-stdin quay.io"
+                    sh "buildah push --storage-driver=vfs quay.io/${quay_repo}/${image_name}"
                 }
             }
         }
-
-        stage('Login to quay') {
-            steps {
-                container('buildah') {
-                    sh 'echo $QUAY_CREDS_PSW | buildah login -u $QUAY_CREDS_USR --password-stdin quay.io'
-                }
-            }
-        }
-
-
-        stage('push image') {
-            steps {
-                container('buildah') {
-                    sh 'buildah push --storage-driver=vfs quay.io/${quay_repo}/${image_name}'
-                }
-            }
-        }
-
         stage('deployment') {
             steps {
                 script {
                     wrap([$class: 'OpenShiftBuildWrapper',  
                           installation: 'oc', 
-                          url: 'https://api.ocp.smartek.ae:6443', 
+                          url: "${openshift_url}", 
                           insecure: true, 
-                          credentialsId: 'openshift_creds']) { 
-                        sh "oc project ${openshift_project}"
-                        def deploymentExists = sh(script: "oc get deploy/${app_name}", returnStatus: true) == 0
-                        if (deploymentExists) {
-                            echo "Deployment ${app_name} exists, refreshing app..."
-                            sh "oc set image deployment/${app_name} ${app_name}=${app_name}:latest "
-                            sh "oc rollout restart deployment/${app_name}"
-                        } else {
-                            echo "Deployment ${app_name} does not exist, deploying app..."
-                            sh "oc new-app --image=quay.io/${quay_repo}/${image_name} --name=${app_name} "
-                            sh "oc set env --from=secret/app-secrets deploy/${app_name}"
-                            sh "oc set env --from=configmap/app-configmap  deploy/${app_name}"
-                            sh "oc expose svc/${app_name}"
-                            sh "oc set triggers deploy/${app_name} --from-image=${app_name}:latest -c ${app_name}"
-                        }
+                          credentialsId: "${sa_token}"]) { 
+                          deployOpenshift(config)
                     }
                 }
             }
         }
     }
     post {
-    always {
-      container('buildah') {
-        sh 'buildah logout quay.io'
-      }
+        always {
+            container('buildah') {
+                sh "buildah logout quay.io"
+            }
+        }
     }
-  }
 }
