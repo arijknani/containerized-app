@@ -11,7 +11,7 @@ pipeline {
         repo_url= 'https://github.com/arijknani/containerized-app.git'
         quay_repo= 'arijknani'
         image_name= 'library-app'
-        QUAY_CREDS= credentials('quay_cred')
+        QUAY_CREDS= credentials('quay_creds')
         openshift_url= 'https://api.ocp.smartek.ae:6443'
         sa_token = credentials('sa_token')
     }
