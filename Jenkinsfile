@@ -12,7 +12,6 @@ pipeline {
         image_name= 'library-app'
         QUAY_CREDS= credentials('quay_creds')
         openshift_url= 'https://api.ocp.smartek.ae:6443'
-        sa_token = credentials('sa_token')
     }
     options {
         buildDiscarder(logRotator(numToKeepStr: '3'))
@@ -37,7 +36,7 @@ pipeline {
                           installation: 'oc', 
                           url: "${openshift_url}", 
                           insecure: true, 
-                          credentialsId: "${sa_token}"]) { 
+                          credentialsId: 'sa_token']) { 
                           deployOpenshift(config)
                     }
                 }
