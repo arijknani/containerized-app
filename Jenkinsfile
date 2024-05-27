@@ -7,7 +7,6 @@ pipeline {
         }
     }
     environment { 
-        github_creds= credentials('github_creds')
         repo_url= 'https://github.com/arijknani/containerized-app.git'
         quay_repo= 'arijknani'
         image_name= 'library-app'
@@ -23,12 +22,6 @@ pipeline {
     }
     
     stages {
-        stage('Checkout') {
-            steps {
-              git credentialsId: "${github_creds}", url: "${repo_url}"
-            }
-        }
-        
         stage('Build with Buildah') {
             steps {
                 container('buildah') {
